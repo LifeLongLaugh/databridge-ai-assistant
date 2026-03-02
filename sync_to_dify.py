@@ -30,7 +30,7 @@ def sync_document(file_name, content, existing_docs):
     if file_name in existing_docs:
         # Document exists, update it
         doc_id= existing_docs[file_name]
-        url=f"{BASE_URL}/datasets/{DATASET_ID}/documents/{doc_id}/update-by-terxt"
+        url=f"{BASE_URL}/datasets/{DATASET_ID}/documents/{doc_id}/update-by-text"
         payload = {
             "name": file_name,
             "text": content,
@@ -74,3 +74,4 @@ if __name__ == "__main__":
             with open(filepath, "r", encoding="utf-8") as f:
                 content = f.read()
         sync_document(filename, content, existing_docs)
+
