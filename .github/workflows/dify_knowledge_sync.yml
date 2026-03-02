@@ -1,0 +1,31 @@
+name: Sync Docs to Dify Knowledge Base
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'Docs/**' # Only trigger when markdown files in the Docs folder change
+  workflow_dispatch: # Allows you to trigger the sync manually from the GitHub UI if needed
+
+jobs:
+  sync_to_dify:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install Dependencies
+        run: pip install requests
+
+      - name: Run Dify Sync Script
+        env:
+          DIFY_API_KEY: ${{ secrets.DIFY_API_KEY }}
+          DIFY_DATASET_ID: ${{ secrets.DIFY_DATASET_ID }}
+        run: python sync_to_dify.py
