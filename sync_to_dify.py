@@ -4,9 +4,9 @@ import json
 
 #Fetch secrets from GitHub Actions environment
 API_KEY = os.environ.get("DIFY_API_KEY")
-DATASET ID= os.environ.get("DIFY_DATASET_ID")
-BASE URL= "https://api.dify.ai/v1"
-DOCS DIR="./Docs"
+DATASET_ID= os.environ.get("DIFY_DATASET_ID")
+BASE_URL= "https://api.dify.ai/v1"
+DOCS_DIR="./Docs"
 
 headers = {
     "Authorization": f"Bearer {API_KEY}",
@@ -14,7 +14,7 @@ headers = {
 }
 
 
-def get existing documents():
+def get_existing_documents():
     """Fetches the list of documents already inside the Dify Knowledge Base."""
     url = f"{BASE_URL}/datasets/{DATASET_ID}/documents"
     response = requests.get(url, headers=headers)
@@ -53,12 +53,12 @@ def sync_document(file_name, content, existing_docs):
     if response.status_code == 200:
         print(f"SUCCESS: {file_name} synced.")
     else:
-        print(f"FAILED to sync (file_name). Error: (response.text}")
+        print(f"FAILED to sync (file_name). Error: {response.text}")
 
 
-if __name__="__main__":
+if __name__ == "__main__":
     if not os.path.exists(DOCS_DIR):
-        print(f"Directory (DOCS_DIR} not found. Exiting)
+        print(f"Directory {DOCS_DIR} not found. Exiting.")
         exit(0) 
 
     try:
@@ -73,4 +73,4 @@ if __name__="__main__":
             filepath= os.path.join(DOCS_DIR, filename)
             with open(filepath, "r", encoding="utf-8") as f:
                 content = f.read()
-        sync_document(filename, content, existing docs)
+        sync_document(filename, content, existing_docs)
