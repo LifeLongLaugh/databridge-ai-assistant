@@ -27,7 +27,7 @@ def get_existing_documents():
 def sync_document(file_name, content, existing_docs):
 
     """Creates a new document or updates an existing one."""
-    if file_name in existing_docs:
+    """if file_name in existing_docs:
         # Document exists, update it
         doc_id= existing_docs[file_name]
         url=f"{BASE_URL}/datasets/{DATASET_ID}/documents/{doc_id}/update-by-text"
@@ -36,9 +36,9 @@ def sync_document(file_name, content, existing_docs):
             "text": content,
             "process_rule": {"mode": "automatic"}
         }
-        print(f"Updating existing document: {file_name}...")
+        print(f"Updating existing document: {file_name}...")"""
 
-    else:
+    if file_name not in existing_docs:
         #Document is new, create it
         url = f"{BASE_URL}/datasets/{DATASET_ID}/document/create-by-text"
         payload = {
@@ -49,11 +49,11 @@ def sync_document(file_name, content, existing_docs):
         }
         print(f"Creating new document: {file_name}...")
 
-    response = requests.post(url, headers=headers, json=payload)
-    if response.status_code == 200:
-        print(f"SUCCESS: {file_name} synced.")
-    else:
-        print(f"FAILED to sync (file_name). Error: {response.text}")
+        response = requests.post(url, headers=headers, json=payload)
+        if response.status_code == 200:
+            print(f"SUCCESS: {file_name} synced.")
+        else:
+            print(f"FAILED to sync (file_name). Error: {response.text}")
 
 
 if __name__ == "__main__":
@@ -69,7 +69,7 @@ if __name__ == "__main__":
 
     #Loop through all markdown files in the Doc folder
     for filename in os.listdir(DOCS_DIR):
-        if filename.endswith(".md"):
+        if filename.endswith(".md") or filename.endswith(".json"):
             filepath= os.path.join(DOCS_DIR, filename)
             with open(filepath, "r", encoding="utf-8") as f:
                 content = f.read()

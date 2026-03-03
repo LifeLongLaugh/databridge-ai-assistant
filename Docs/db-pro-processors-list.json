@@ -1,0 +1,2884 @@
+{
+  "processorTypes": [
+    {
+      "type": "org.apache.nifi.processors.avro.ExtractAvroMetadata",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-avro-nar",
+        "version": "2.4.0"
+      },
+      "description": "Extracts metadata from the header of an Avro datafile.",
+      "restricted": false,
+      "tags": [
+        "schema",
+        "metadata",
+        "avro"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.standard.RemoveRecordField",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-standard-nar",
+        "version": "2.4.0"
+      },
+      "description": "Modifies the contents of a FlowFile that contains Record-oriented data (i.e. data that can be read via a RecordReader and written by a RecordWriter) by removing selected fields. This Processor requires that at least one user-defined Property be added. The name of the property is ignored by the processor, but could be a meaningful identifier for the user. The value of the property should indicate a RecordPath that determines the field to be removed. The processor executes the removal in the order in which these properties are added to the processor. Set the \"Record Writer\" to \"Inherit Record Schema\" in order to use the updated Record Schema modified when removing Fields.",
+      "restricted": false,
+      "tags": [
+        "schema",
+        "record",
+        "csv",
+        "freeform",
+        "update",
+        "json",
+        "text",
+        "delete",
+        "generic",
+        "remove",
+        "avro"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.standard.ValidateJson",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-standard-nar",
+        "version": "2.4.0"
+      },
+      "description": "Validates the contents of FlowFiles against a configurable JSON Schema. See json-schema.org for specification standards. This Processor does not support input containing multiple JSON objects, such as newline-delimited JSON. If the input FlowFile contains newline-delimited JSON, only the first line will be validated.",
+      "restricted": true,
+      "explicitRestrictions": [
+        {
+          "requiredPermission": {
+            "id": "reference-remote-resources",
+            "label": "reference remote resources"
+          },
+          "explanation": "Schema configuration can reference resources over HTTP"
+        }
+      ],
+      "tags": [
+        "schema",
+        "restricted",
+        "JSON",
+        "validation"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.mqtt.ConsumeMQTT",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-mqtt-nar",
+        "version": "2.4.0"
+      },
+      "description": "Subscribes to a topic and receives messages from an MQTT broker",
+      "restricted": false,
+      "tags": [
+        "MQTT",
+        "subscribe",
+        "consume",
+        "listen",
+        "IOT"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.amqp.processors.PublishAMQP",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-amqp-nar",
+        "version": "2.4.0"
+      },
+      "description": "Creates an AMQP Message from the contents of a FlowFile and sends the message to an AMQP Exchange. In a typical AMQP exchange model, the message that is sent to the AMQP Exchange will be routed based on the 'Routing Key' to its final destination in the queue (the binding). If due to some misconfiguration the binding between the Exchange, Routing Key and Queue is not set up, the message will have no final destination and will return (i.e., the data will not make it to the queue). If that happens you will see a log in both app-log and bulletin stating to that effect, and the FlowFile will be routed to the 'failure' relationship.",
+      "restricted": false,
+      "tags": [
+        "amqp",
+        "rabbit",
+        "publish",
+        "message",
+        "send",
+        "put"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.standard.RouteText",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-standard-nar",
+        "version": "2.4.0"
+      },
+      "description": "Routes textual data based on a set of user-defined rules. Each line in an incoming FlowFile is compared against the values specified by user-defined Properties. The mechanism by which the text is compared to these user-defined properties is defined by the 'Matching Strategy'. The data is then routed according to these rules, routing each line of the text individually.",
+      "restricted": false,
+      "tags": [
+        "regexp",
+        "string",
+        "csv",
+        "delimited",
+        "detect",
+        "Regular Expression",
+        "filter",
+        "routing",
+        "regex",
+        "Expression Language",
+        "search",
+        "find",
+        "attributes",
+        "text",
+        "logs"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.standard.AttributesToCSV",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-standard-nar",
+        "version": "2.4.0"
+      },
+      "description": "Generates a CSV representation of the input FlowFile Attributes. The resulting CSV can be written to either a newly generated attribute named 'CSVAttributes' or written to the FlowFile as content.  If the attribute value contains a comma, newline or double quote, then the attribute value will be escaped with double quotes.  Any double quote characters in the attribute value are escaped with another double quote.",
+      "restricted": false,
+      "tags": [
+        "flowfile",
+        "csv",
+        "attributes"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.standard.GetFTP",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-standard-nar",
+        "version": "2.4.0"
+      },
+      "description": "Fetches files from an FTP Server and creates FlowFiles from them",
+      "restricted": false,
+      "tags": [
+        "input",
+        "FTP",
+        "get",
+        "fetch",
+        "retrieve",
+        "files",
+        "source",
+        "remote",
+        "ingest"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.standard.InvokeHTTP",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-standard-nar",
+        "version": "2.4.0"
+      },
+      "description": "An HTTP client processor which can interact with a configurable HTTP Endpoint. The destination URL and HTTP Method are configurable. When the HTTP Method is PUT, POST or PATCH, the FlowFile contents are included as the body of the request and FlowFile attributes are converted to HTTP headers, optionally, based on configuration properties.",
+      "restricted": false,
+      "tags": [
+        "rest",
+        "http",
+        "client",
+        "https"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.standard.PartitionRecord",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-standard-nar",
+        "version": "2.4.0"
+      },
+      "description": "Splits, or partitions, record-oriented data based on the configured fields in the data. One or more properties must be added. The name of the property is the name of an attribute to add. The value of the property is a RecordPath to evaluate against each Record. Two records will go to the same outbound FlowFile only if they have the same value for each of the given RecordPaths. Because we know that all records in a given output FlowFile have the same value for the fields that are specified by the RecordPath, an attribute is added for each field. See Additional Details on the Usage page for more information and examples.",
+      "restricted": false,
+      "tags": [
+        "partition",
+        "split",
+        "organize",
+        "bin",
+        "record",
+        "segment",
+        "recordpath",
+        "rpath",
+        "group"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.standard.EnforceOrder",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-standard-nar",
+        "version": "2.4.0"
+      },
+      "description": "Enforces expected ordering of FlowFiles that belong to the same data group within a single node.  Although PriorityAttributePrioritizer can be used on a connection to ensure that flow files going through that connection are in priority order, depending on error-handling, branching, and other flow designs, it is possible for FlowFiles to get out-of-order. EnforceOrder can be used to enforce original ordering for those FlowFiles. [IMPORTANT] In order to take effect of EnforceOrder, FirstInFirstOutPrioritizer should be used at EVERY downstream relationship UNTIL the order of FlowFiles physically get FIXED by operation such as MergeContent or being stored to the final destination.",
+      "restricted": false,
+      "tags": [
+        "sort",
+        "order"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.standard.LookupRecord",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-standard-nar",
+        "version": "2.4.0"
+      },
+      "description": "Extracts one or more fields from a Record and looks up a value for those fields in a LookupService. If a result is returned by the LookupService, that result is optionally added to the Record. In this case, the processor functions as an Enrichment processor. Regardless, the Record is then routed to either the 'matched' relationship or 'unmatched' relationship (if the 'Routing Strategy' property is configured to do so), indicating whether or not a result was returned by the LookupService, allowing the processor to also function as a Routing processor. The \"coordinates\" to use for looking up a value in the Lookup Service are defined by adding a user-defined property. Each property that is added will have an entry added to a Map, where the name of the property becomes the Map Key and the value returned by the RecordPath becomes the value for that key. If multiple values are returned by the RecordPath, then the Record will be routed to the 'unmatched' relationship (or 'success', depending on the 'Routing Strategy' property's configuration). If one or more fields match the Result RecordPath, all fields that match will be updated. If there is no match in the configured LookupService, then no fields will be updated. I.e., it will not overwrite an existing value in the Record with a null value. Please note, however, that if the results returned by the LookupService are not accounted for in your schema (specifically, the schema that is configured for your Record Writer) then the fields will not be written out to the FlowFile.",
+      "restricted": false,
+      "tags": [
+        "filter",
+        "lookup",
+        "enrichment",
+        "database",
+        "route",
+        "record",
+        "csv",
+        "json",
+        "convert",
+        "logs",
+        "db",
+        "avro"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.standard.MergeRecord",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-standard-nar",
+        "version": "2.4.0"
+      },
+      "description": "This Processor merges together multiple record-oriented FlowFiles into a single FlowFile that contains all of the Records of the input FlowFiles. This Processor works by creating 'bins' and then adding FlowFiles to these bins until they are full. Once a bin is full, all of the FlowFiles will be combined into a single output FlowFile, and that FlowFile will be routed to the 'merged' Relationship. A bin will consist of potentially many 'like FlowFiles'. In order for two FlowFiles to be considered 'like FlowFiles', they must have the same Schema (as identified by the Record Reader) and, if the \u003CCorrelation Attribute Name\u003E property is set, the same value for the specified attribute. See Processor Usage and Additional Details for more information. NOTE: this processor should NOT be configured with Cron Driven for the Scheduling Strategy.",
+      "restricted": false,
+      "tags": [
+        "correlation",
+        "stream",
+        "merge",
+        "record",
+        "event",
+        "content"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.elasticsearch.PutElasticsearchJson",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-elasticsearch-restapi-nar",
+        "version": "2.4.0"
+      },
+      "description": "An Elasticsearch put processor that uses the official Elastic REST client libraries. Each FlowFile is treated as a document to be sent to the Elasticsearch _bulk API. Multiple FlowFiles can be batched together into each Request sent to Elasticsearch.",
+      "restricted": false,
+      "tags": [
+        "elasticsearch",
+        "elasticsearch7",
+        "json",
+        "elasticsearch8",
+        "index",
+        "elasticsearch5",
+        "elasticsearch6",
+        "put"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.standard.PutEmail",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-standard-nar",
+        "version": "2.4.0"
+      },
+      "description": "Sends an e-mail to configured recipients for each incoming FlowFile",
+      "restricted": false,
+      "tags": [
+        "smtp",
+        "email",
+        "put",
+        "notify"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.standard.FetchSFTP",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-standard-nar",
+        "version": "2.4.0"
+      },
+      "description": "Fetches the content of a file from a remote SFTP server and overwrites the contents of an incoming FlowFile with the content of the remote file.",
+      "restricted": false,
+      "tags": [
+        "input",
+        "get",
+        "fetch",
+        "retrieve",
+        "files",
+        "sftp",
+        "source",
+        "remote",
+        "ingest"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.jolt.JoltTransformRecord",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-jolt-nar",
+        "version": "2.4.0"
+      },
+      "description": "Applies a JOLT specification to each record in the FlowFile payload. A new FlowFile is created with transformed content and is routed to the 'success' relationship. If the transform fails, the original FlowFile is routed to the 'failure' relationship.",
+      "restricted": false,
+      "tags": [
+        "transform",
+        "chainr",
+        "record",
+        "defaultr",
+        "shiftr",
+        "removr",
+        "sort",
+        "jolt",
+        "cardinality"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.azure.storage.DeleteAzureBlobStorage_v12",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-azure-nar",
+        "version": "2.4.0"
+      },
+      "description": "Deletes the specified blob from Azure Blob Storage. The processor uses Azure Blob Storage client library v12.",
+      "restricted": false,
+      "tags": [
+        "cloud",
+        "blob",
+        "storage",
+        "microsoft",
+        "azure"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.standard.GenerateFlowFile",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-standard-nar",
+        "version": "2.4.0"
+      },
+      "description": "This processor creates FlowFiles with random data or custom content. GenerateFlowFile is useful for load testing, configuration, and simulation. Also see DuplicateFlowFile for additional load testing.",
+      "restricted": false,
+      "tags": [
+        "random",
+        "test",
+        "load",
+        "generate"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.kafka.pubsub.PublishKafka_2_6",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-kafka-2-6-nar",
+        "version": "2.4.0"
+      },
+      "description": "Deprecated Sends the contents of a FlowFile as a message to Apache Kafka using the Kafka 2.6 Producer API.The messages to send may be individual FlowFiles or may be delimited, using a user-specified delimiter, such as a new-line. The complementary NiFi processor for fetching messages is ConsumeKafka_2_6.",
+      "restricted": false,
+      "tags": [
+        "PubSub",
+        "Message",
+        "Kafka",
+        "2.6",
+        "Apache",
+        "Put",
+        "Send"
+      ]
+    },
+    {
+      "type": "com.hxgn.processors.iobox.BODToEAM",
+      "bundle": {
+        "group": "hexagon",
+        "artifact": "nifi-iobox-nar",
+        "version": "2.4.0"
+      },
+      "description": "Connects to HxGN EAM’s Databridge, posting the content from the flowfile received to the EAM Databridge inbound mechanism. Each flowfile is assumed to contain only a single BOD message for the corresponding type specified. The content is not validated or formatted prior to sending to EAM Databridge. This supports one BOD type per instance and multiple instances or usages of this processor is expected. It should be used in each flow where inbound BOD communication to EAM Databridge is required.",
+      "restricted": false,
+      "tags": [
+        "hexagon"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.standard.CountText",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-standard-nar",
+        "version": "2.4.0"
+      },
+      "description": "Counts various metrics on incoming text. The requested results will be recorded as attributes. The resulting flowfile will not have its content modified.",
+      "restricted": false,
+      "tags": [
+        "character",
+        "line",
+        "count",
+        "text",
+        "word"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.standard.ValidateRecord",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-standard-nar",
+        "version": "2.4.0"
+      },
+      "description": "Validates the Records of an incoming FlowFile against a given schema. All records that adhere to the schema are routed to the \"valid\" relationship while records that do not adhere to the schema are routed to the \"invalid\" relationship. It is therefore possible for a single incoming FlowFile to be split into two individual FlowFiles if some records are valid according to the schema and others are not. Any FlowFile that is routed to the \"invalid\" relationship will emit a ROUTE Provenance Event with the Details field populated to explain why records were invalid. In addition, to gain further explanation of why records were invalid, DEBUG-level logging can be enabled for the \"org.apache.nifi.processors.standard.ValidateRecord\" logger.",
+      "restricted": false,
+      "tags": [
+        "schema",
+        "record",
+        "validate"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.standard.CompressContent",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-standard-nar",
+        "version": "2.4.0"
+      },
+      "description": "Compresses or decompresses the contents of FlowFiles using a user-specified compression algorithm and updates the mime.type attribute as appropriate. A common idiom is to precede CompressContent with IdentifyMimeType and configure Mode='decompress' AND Compression Format='use mime.type attribute'. When used in this manner, the MIME type is automatically detected and the data is decompressed, if necessary. If decompression is unnecessary, the data is passed through to the 'success' relationship. This processor operates in a very memory efficient way so very large objects well beyond the heap size are generally fine to process.",
+      "restricted": false,
+      "tags": [
+        "compress",
+        "snappy framed",
+        "brotli",
+        "gzip",
+        "snappy",
+        "bzip2",
+        "content",
+        "lz4-framed",
+        "lzma",
+        "snappy-hadoop",
+        "zstd",
+        "deflate",
+        "decompress",
+        "xz-lzma2"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.standard.UpdateRecord",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-standard-nar",
+        "version": "2.4.0"
+      },
+      "description": "Updates the contents of a FlowFile that contains Record-oriented data (i.e., data that can be read via a RecordReader and written by a RecordWriter). This Processor requires that at least one user-defined Property be added. The name of the Property should indicate a RecordPath that determines the field that should be updated. The value of the Property is either a replacement value (optionally making use of the Expression Language) or is itself a RecordPath that extracts a value from the Record. Whether the Property value is determined to be a RecordPath or a literal value depends on the configuration of the \u003CReplacement Value Strategy\u003E Property.",
+      "restricted": false,
+      "tags": [
+        "schema",
+        "log",
+        "record",
+        "csv",
+        "freeform",
+        "update",
+        "json",
+        "text",
+        "logs",
+        "generic",
+        "avro"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.standard.ConvertCharacterSet",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-standard-nar",
+        "version": "2.4.0"
+      },
+      "description": "Converts a FlowFile's content from one character set to another",
+      "restricted": false,
+      "tags": [
+        "characterset",
+        "character set",
+        "text",
+        "convert"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.box.ListBoxFile",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-box-nar",
+        "version": "2.4.0"
+      },
+      "description": "Lists files in a Box folder. Each listed file may result in one FlowFile, the metadata being written as FlowFile attributes. Or - in case the 'Record Writer' property is set - the entire result is written as records to a single FlowFile. This Processor is designed to run on Primary Node only in a cluster. If the primary node changes, the new Primary Node will pick up where the previous node left off without duplicating all of the data.",
+      "restricted": false,
+      "tags": [
+        "box",
+        "storage"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.kafka.pubsub.ConsumeKafka_2_6",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-kafka-2-6-nar",
+        "version": "2.4.0"
+      },
+      "description": "Deprecated Consumes messages from Apache Kafka specifically built against the Kafka 2.6 Consumer API. The complementary NiFi processor for sending messages is PublishKafka_2_6.",
+      "restricted": false,
+      "tags": [
+        "PubSub",
+        "Consume",
+        "Ingest",
+        "Get",
+        "Kafka",
+        "Ingress",
+        "2.6",
+        "Topic"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.elasticsearch.PutElasticsearchRecord",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-elasticsearch-restapi-nar",
+        "version": "2.4.0"
+      },
+      "description": "A record-aware Elasticsearch put processor that uses the official Elastic REST client libraries. Each Record within the FlowFile is converted into a document to be sent to the Elasticsearch _bulk APi. Multiple documents can be batched into each Request sent to Elasticsearch. Each document's Bulk operation can be configured using Record Path expressions.",
+      "restricted": false,
+      "tags": [
+        "elasticsearch",
+        "record",
+        "elasticsearch7",
+        "json",
+        "elasticsearch8",
+        "index",
+        "elasticsearch5",
+        "elasticsearch6",
+        "put"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.azure.storage.PutAzureDataLakeStorage",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-azure-nar",
+        "version": "2.4.0"
+      },
+      "description": "Writes the contents of a FlowFile as a file on Azure Data Lake Storage Gen 2",
+      "restricted": false,
+      "tags": [
+        "cloud",
+        "datalake",
+        "storage",
+        "microsoft",
+        "adlsgen2",
+        "azure"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.salesforce.QuerySalesforceObject",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-salesforce-nar",
+        "version": "2.4.0"
+      },
+      "description": "Retrieves records from a Salesforce sObject. Users can add arbitrary filter conditions by setting the 'Custom WHERE Condition' property. The processor can also run a custom query, although record processing is not supported in that case. Supports incremental retrieval: users can define a field in the 'Age Field' property that will be used to determine when the record was created. When this property is set the processor will retrieve new records. Incremental loading and record-based processing are only supported in property-based queries. It's also possible to define an initial cutoff value for the age, filtering out all older records even for the first run. In case of 'Property Based Query' this processor should run on the Primary Node only. FlowFile attribute 'record.count' indicates how many records were retrieved and written to the output. The processor can accept an optional input FlowFile and reference the FlowFile attributes in the query. When 'Include Deleted Records' is true, the processor will include deleted records (soft-deletes) in the results by using the 'queryAll' API. The 'IsDeleted' field will be automatically included in the results when querying deleted records.",
+      "restricted": false,
+      "tags": [
+        "salesforce",
+        "soql",
+        "query",
+        "sobject"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.aws.dynamodb.PutDynamoDB",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-aws-nar",
+        "version": "2.4.0"
+      },
+      "description": "Puts a document from DynamoDB based on hash and range key.  The table can have either hash and range or hash key alone. Currently the keys supported are string and number and value can be json document. In case of hash and range keys both key are required for the operation. The FlowFile content must be JSON. FlowFile content is mapped to the specified Json Document attribute in the DynamoDB item.",
+      "restricted": false,
+      "tags": [
+        "DynamoDB",
+        "Amazon",
+        "Insert",
+        "AWS",
+        "Put"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.salesforce.PutSalesforceObject",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-salesforce-nar",
+        "version": "2.4.0"
+      },
+      "description": "Creates new records for the specified Salesforce sObject. The type of the Salesforce object must be set in the input flowfile's 'objectType' attribute. This processor cannot update existing records.",
+      "restricted": false,
+      "tags": [
+        "salesforce",
+        "put",
+        "sobject"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.kafka.pubsub.PublishKafkaRecord_2_6",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-kafka-2-6-nar",
+        "version": "2.4.0"
+      },
+      "description": "Deprecated Sends the contents of a FlowFile as individual records to Apache Kafka using the Kafka 2.6 Producer API. The contents of the FlowFile are expected to be record-oriented data that can be read by the configured Record Reader. The complementary NiFi processor for fetching messages is ConsumeKafkaRecord_2_6.",
+      "restricted": false,
+      "tags": [
+        "PubSub",
+        "Message",
+        "csv",
+        "Kafka",
+        "json",
+        "Record",
+        "2.6",
+        "Apache",
+        "logs",
+        "Put",
+        "avro",
+        "Send"
+      ]
+    },
+    {
+      "type": "com.hxgn.processors.iobox.BODFromEAM_V2",
+      "bundle": {
+        "group": "hexagon",
+        "artifact": "nifi-iobox-nar",
+        "version": "2.4.0"
+      },
+      "description": "Connects to HxGN EAM’s Databridge, reading all outbound BOD messages published for the tenant. A flowfile is created for each message retrieved and the content is not re-formatted or validated during retrieval. This should only be used once within a tenant canvas, as it reads all outbound messages published by EAM Databridge. Multiples instances or uses will cause unintended outcomes and behaviors.",
+      "restricted": false,
+      "tags": [
+        "hexagon"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.standard.DebugFlow",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-standard-nar",
+        "version": "2.4.0"
+      },
+      "description": "The DebugFlow processor aids testing and debugging the FlowFile framework by allowing various responses to be explicitly triggered in response to the receipt of a FlowFile or a timer event without a FlowFile if using timer or cron based scheduling.  It can force responses needed to exercise or test various failure modes that can occur when a processor runs.",
+      "restricted": false,
+      "tags": [
+        "FlowFile",
+        "debug",
+        "test",
+        "utility",
+        "processor",
+        "flow"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.standard.ExtractRecordSchema",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-standard-nar",
+        "version": "2.4.0"
+      },
+      "description": "Extracts the record schema from the FlowFile using the supplied Record Reader and writes it to the `avro.schema` attribute.",
+      "restricted": false,
+      "tags": [
+        "schema",
+        "xml",
+        "record",
+        "csv",
+        "freeform",
+        "json",
+        "text",
+        "generic",
+        "avro"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.elasticsearch.PaginatedJsonQueryElasticsearch",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-elasticsearch-restapi-nar",
+        "version": "2.4.0"
+      },
+      "description": "A processor that allows the user to run a paginated query (with aggregations) written with the Elasticsearch JSON DSL. It will use the flowfile's content for the query unless the QUERY attribute is populated. Search After/Point in Time queries must include a valid \"sort\" field.",
+      "restricted": false,
+      "tags": [
+        "read",
+        "elasticsearch",
+        "query",
+        "elasticsearch7",
+        "scroll",
+        "elasticsearch8",
+        "json",
+        "elasticsearch5",
+        "elasticsearch6",
+        "page"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.standard.PutSQL",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-standard-nar",
+        "version": "2.4.0"
+      },
+      "description": "Executes a SQL UPDATE or INSERT command. The content of an incoming FlowFile is expected to be the SQL command to execute. The SQL command may use the ? to escape parameters. In this case, the parameters to use must exist as FlowFile attributes with the naming convention sql.args.N.type and sql.args.N.value, where N is a positive integer. The sql.args.N.type is expected to be a number indicating the JDBC Type. The content of the FlowFile is expected to be in UTF-8 format.",
+      "restricted": false,
+      "tags": [
+        "database",
+        "rdbms",
+        "update",
+        "insert",
+        "relational",
+        "put",
+        "sql"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.standard.SplitXml",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-standard-nar",
+        "version": "2.4.0"
+      },
+      "description": "Splits an XML File into multiple separate FlowFiles, each comprising a child or descendant of the original root element",
+      "restricted": false,
+      "tags": [
+        "split",
+        "xml"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.aws.dynamodb.DeleteDynamoDB",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-aws-nar",
+        "version": "2.4.0"
+      },
+      "description": "Deletes a document from DynamoDB based on hash and range key. The key can be string or number. The request requires all the primary keys for the operation (hash or hash and range key)",
+      "restricted": false,
+      "tags": [
+        "Delete",
+        "DynamoDB",
+        "Remove",
+        "Amazon",
+        "AWS"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.azure.storage.MoveAzureDataLakeStorage",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-azure-nar",
+        "version": "2.4.0"
+      },
+      "description": "Moves content within an Azure Data Lake Storage Gen 2. After the move, files will be no longer available on source location.",
+      "restricted": false,
+      "tags": [
+        "cloud",
+        "datalake",
+        "storage",
+        "microsoft",
+        "adlsgen2",
+        "azure"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.gcp.storage.PutGCSObject",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-gcp-nar",
+        "version": "2.4.0"
+      },
+      "description": "Writes the contents of a FlowFile as an object in a Google Cloud Storage.",
+      "restricted": false,
+      "tags": [
+        "gcs",
+        "google cloud",
+        "google",
+        "archive",
+        "put"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.standard.ConvertRecord",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-standard-nar",
+        "version": "2.4.0"
+      },
+      "description": "Converts records from one data format to another using configured Record Reader and Record Write Controller Services. The Reader and Writer must be configured with \"matching\" schemas. By this, we mean the schemas must have the same field names. The types of the fields do not have to be the same if a field value can be coerced from one type to another. For instance, if the input schema has a field named \"balance\" of type double, the output schema can have a field named \"balance\" with a type of string, double, or float. If any field is present in the input that is not present in the output, the field will be left out of the output. If any field is specified in the output schema but is not present in the input data/schema, then the field will not be present in the output or will have a null value, depending on the writer.",
+      "restricted": false,
+      "tags": [
+        "schema",
+        "log",
+        "record",
+        "csv",
+        "freeform",
+        "json",
+        "convert",
+        "text",
+        "logs",
+        "generic",
+        "avro"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.aws.sns.PutSNS",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-aws-nar",
+        "version": "2.4.0"
+      },
+      "description": "Sends the content of a FlowFile as a notification to the Amazon Simple Notification Service",
+      "restricted": false,
+      "tags": [
+        "amazon",
+        "publish",
+        "sns",
+        "topic",
+        "aws",
+        "put",
+        "pubsub"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.standard.EvaluateXPath",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-standard-nar",
+        "version": "2.4.0"
+      },
+      "description": "Evaluates one or more XPaths against the content of a FlowFile. The results of those XPaths are assigned to FlowFile Attributes or are written to the content of the FlowFile itself, depending on configuration of the Processor. XPaths are entered by adding user-defined properties; the name of the property maps to the Attribute Name into which the result will be placed (if the Destination is flowfile-attribute; otherwise, the property name is ignored). The value of the property must be a valid XPath expression. If the XPath evaluates to more than one node and the Return Type is set to 'nodeset' (either directly, or via 'auto-detect' with a Destination of 'flowfile-content'), the FlowFile will be unmodified and will be routed to failure. If the XPath does not evaluate to a Node, the FlowFile will be routed to 'unmatched' without having its contents modified. If Destination is flowfile-attribute and the expression matches nothing, attributes will be created with empty strings as the value, and the FlowFile will always be routed to 'matched'",
+      "restricted": false,
+      "tags": [
+        "XPath",
+        "XML",
+        "evaluate"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.standard.QueryDatabaseTableRecord",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-standard-nar",
+        "version": "2.4.0"
+      },
+      "description": "Generates a SQL select query, or uses a provided statement, and executes it to fetch all rows whose values in the specified Maximum Value column(s) are larger than the previously-seen maxima. Query result will be converted to the format specified by the record writer. Expression Language is supported for several properties, but no incoming connections are permitted. The Environment/System properties may be used to provide values for any property containing Expression Language. If it is desired to leverage flow file attributes to perform these queries, the GenerateTableFetch and/or ExecuteSQL processors can be used for this purpose. Streaming is used so arbitrarily large result sets are supported. This processor can be scheduled to run on a timer or cron expression, using the standard scheduling methods. This processor is intended to be run on the Primary Node only. FlowFile attribute 'querydbtable.row.count' indicates how many rows were selected.",
+      "restricted": false,
+      "tags": [
+        "database",
+        "select",
+        "query",
+        "record",
+        "jdbc",
+        "sql"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.standard.SplitRecord",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-standard-nar",
+        "version": "2.4.0"
+      },
+      "description": "Splits up an input FlowFile that is in a record-oriented data format into multiple smaller FlowFiles",
+      "restricted": false,
+      "tags": [
+        "schema",
+        "split",
+        "log",
+        "csv",
+        "freeform",
+        "json",
+        "text",
+        "logs",
+        "generic",
+        "avro"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.snowflake.PutSnowflakeInternalStage",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-snowflake-processors-nar",
+        "version": "2.4.0"
+      },
+      "description": "Puts files into a Snowflake internal stage. The internal stage must be created in the Snowflake account beforehand. This processor can be connected to a StartSnowflakeIngest processor to ingest the file in the internal stage",
+      "restricted": false,
+      "tags": [
+        "snowflake",
+        "database",
+        "jdbc",
+        "connection",
+        "snowpipe"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.jslt.JSLTTransformJSON",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-jslt-nar",
+        "version": "2.4.0"
+      },
+      "description": "Applies a JSLT transformation to the FlowFile JSON payload. A new FlowFile is created with transformed content and is routed to the 'success' relationship. If the JSLT transform fails, the original FlowFile is routed to the 'failure' relationship.",
+      "restricted": false,
+      "tags": [
+        "jslt",
+        "transform",
+        "json"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.amqp.processors.ConsumeAMQP",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-amqp-nar",
+        "version": "2.4.0"
+      },
+      "description": "Consumes AMQP Messages from an AMQP Broker using the AMQP 0.9.1 protocol. Each message that is received from the AMQP Broker will be emitted as its own FlowFile to the 'success' relationship.",
+      "restricted": false,
+      "tags": [
+        "receive",
+        "amqp",
+        "rabbit",
+        "get",
+        "consume",
+        "message"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.aws.dynamodb.GetDynamoDB",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-aws-nar",
+        "version": "2.4.0"
+      },
+      "description": "Retrieves a document from DynamoDB based on hash and range key.  The key can be string or number.For any get request all the primary keys are required (hash or hash and range based on the table keys).A Json Document ('Map') attribute of the DynamoDB item is read into the content of the FlowFile.",
+      "restricted": false,
+      "tags": [
+        "Fetch",
+        "Get",
+        "DynamoDB",
+        "Amazon",
+        "AWS"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.elasticsearch.JsonQueryElasticsearch",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-elasticsearch-restapi-nar",
+        "version": "2.4.0"
+      },
+      "description": "A processor that allows the user to run a query (with aggregations) written with the Elasticsearch JSON DSL. It does not automatically paginate queries for the user. If an incoming relationship is added to this processor, it will use the flowfile's content for the query. Care should be taken on the size of the query because the entire response from Elasticsearch will be loaded into memory all at once and converted into the resulting flowfiles.",
+      "restricted": false,
+      "tags": [
+        "read",
+        "elasticsearch",
+        "query",
+        "get",
+        "elasticsearch7",
+        "elasticsearch8",
+        "json",
+        "elasticsearch5",
+        "elasticsearch6"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.slack.PublishSlack",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-slack-nar",
+        "version": "2.4.0"
+      },
+      "description": "Posts a message to the specified Slack channel. The content of the message can be either a user-defined message that makes use of Expression Language or\nthe contents of the FlowFile can be sent as the message. If sending a user-defined message, the contents of the FlowFile may also be optionally uploaded as\na file attachment.\n",
+      "restricted": false,
+      "tags": [
+        "chat.postMessage",
+        "upload",
+        "slack",
+        "unstructured",
+        "publish",
+        "team",
+        "text",
+        "social media",
+        "write",
+        "send",
+        "conversation"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.standard.AttributesToJSON",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-standard-nar",
+        "version": "2.4.0"
+      },
+      "description": "Generates a JSON representation of the input FlowFile Attributes. The resulting JSON can be written to either a new Attribute 'JSONAttributes' or written to the FlowFile as content. Attributes  which contain nested JSON objects can either be handled as JSON or as escaped JSON depending on the strategy chosen.",
+      "restricted": false,
+      "tags": [
+        "flowfile",
+        "json",
+        "attributes"
+      ]
+    },
+    {
+      "type": "com.hxgn.processors.osi.pi.InvokeOSIPI",
+      "bundle": {
+        "group": "hexagon",
+        "artifact": "dfs-osi-pi-processors-nar",
+        "version": "2.4.0"
+      },
+      "description": "OSI PI processor can interact with the PI Web API RESTful interface, giving client applications read and write access to their AF and PI data over HTTPS. The PI Server URL and HTTP Method are configurable. Create corresponds to POST, read to GET, update to PUT (when the method requires the complete resource definition) or PATCH (when the method accepts a partial resource definition), and delete to DELETE. When the HTTP Method is PUT, POST or PATCH, the FlowFile contents are included as the body of the request and FlowFile attributes are converted to HTTP headers, optionally, based on configuration properties.",
+      "restricted": false,
+      "tags": [
+        "hexagon"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.azure.eventhub.ConsumeAzureEventHub",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-azure-nar",
+        "version": "2.4.0"
+      },
+      "description": "Receives messages from Microsoft Azure Event Hubs with checkpointing to ensure consistent event processing. Checkpoint tracking avoids consuming a message multiple times and enables reliable resumption of processing in the event of intermittent network failures. Checkpoint tracking requires external storage and provides the preferred approach to consuming messages from Azure Event Hubs. In clustered environment, ConsumeAzureEventHub processor instances form a consumer group and the messages are distributed among the cluster nodes (each message is processed on one cluster node only).",
+      "restricted": false,
+      "tags": [
+        "cloud",
+        "streaming",
+        "streams",
+        "eventhub",
+        "microsoft",
+        "events",
+        "azure"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.standard.RetryFlowFile",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-standard-nar",
+        "version": "2.4.0"
+      },
+      "description": "FlowFiles passed to this Processor have a 'Retry Attribute' value checked against a configured 'Maximum Retries' value. If the current attribute value is below the configured maximum, the FlowFile is passed to a retry relationship. The FlowFile may or may not be penalized in that condition. If the FlowFile's attribute value exceeds the configured maximum, the FlowFile will be passed to a 'retries_exceeded' relationship. WARNING: If the incoming FlowFile has a non-numeric value in the configured 'Retry Attribute' attribute, it will be reset to '1'. You may choose to fail the FlowFile instead of performing the reset. Additional dynamic properties can be defined for any attributes you wish to add to the FlowFiles transferred to 'retries_exceeded'. These attributes support attribute expression language.",
+      "restricted": false,
+      "tags": [
+        "FlowFile",
+        "Retry"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.aws.s3.ListS3",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-aws-nar",
+        "version": "2.4.0"
+      },
+      "description": "Retrieves a listing of objects from an S3 bucket. For each object that is listed, creates a FlowFile that represents the object so that it can be fetched in conjunction with FetchS3Object. This Processor is designed to run on Primary Node only in a cluster. If the primary node changes, the new Primary Node will pick up where the previous node left off without duplicating all of the data.",
+      "restricted": false,
+      "tags": [
+        "S3",
+        "Amazon",
+        "list",
+        "AWS"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.standard.EvaluateJsonPath",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-standard-nar",
+        "version": "2.4.0"
+      },
+      "description": "Evaluates one or more JsonPath expressions against the content of a FlowFile. The results of those expressions are assigned to FlowFile Attributes or are written to the content of the FlowFile itself, depending on configuration of the Processor. JsonPaths are entered by adding user-defined properties; the name of the property maps to the Attribute Name into which the result will be placed (if the Destination is flowfile-attribute; otherwise, the property name is ignored). The value of the property must be a valid JsonPath expression. A Return Type of 'auto-detect' will make a determination based off the configured destination. When 'Destination' is set to 'flowfile-attribute,' a return type of 'scalar' will be used. When 'Destination' is set to 'flowfile-content,' a return type of 'JSON' will be used.If the JsonPath evaluates to a JSON array or JSON object and the Return Type is set to 'scalar' the FlowFile will be unmodified and will be routed to failure. A Return Type of JSON can return scalar values if the provided JsonPath evaluates to the specified value and will be routed as a match.If Destination is 'flowfile-content' and the JsonPath does not evaluate to a defined path, the FlowFile will be routed to 'unmatched' without having its contents modified. If Destination is 'flowfile-attribute' and the expression matches nothing, attributes will be created with empty strings as the value unless 'Path Not Found Behaviour' is set to 'skip', and the FlowFile will always be routed to 'matched.'",
+      "restricted": false,
+      "tags": [
+        "JSON",
+        "JsonPath",
+        "evaluate"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.standard.ValidateXml",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-standard-nar",
+        "version": "2.4.0"
+      },
+      "description": "Validates XML contained in a FlowFile. By default, the XML is contained in the FlowFile content. If the 'XML Source Attribute' property is set, the XML to be validated is contained in the specified attribute. It is not recommended to use attributes to hold large XML documents; doing so could adversely affect system performance. Full schema validation is performed if the processor is configured with the XSD schema details. Otherwise, the only validation performed is to ensure the XML syntax is correct and well-formed, e.g. all opening tags are properly closed.",
+      "restricted": true,
+      "explicitRestrictions": [
+        {
+          "requiredPermission": {
+            "id": "reference-remote-resources",
+            "label": "reference remote resources"
+          },
+          "explanation": "Schema configuration can reference resources over HTTP"
+        }
+      ],
+      "tags": [
+        "schema",
+        "xml",
+        "restricted",
+        "xsd",
+        "validation"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.standard.ExecuteSQLRecord",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-standard-nar",
+        "version": "2.4.0"
+      },
+      "description": "Executes provided SQL select query. Query result will be converted to the format specified by a Record Writer. Streaming is used so arbitrarily large result sets are supported. This processor can be scheduled to run on a timer, or cron expression, using the standard scheduling methods, or it can be triggered by an incoming FlowFile. If it is triggered by an incoming FlowFile, then attributes of that FlowFile will be available when evaluating the select query, and the query may use the ? to escape parameters. In this case, the parameters to use must exist as FlowFile attributes with the naming convention sql.args.N.type and sql.args.N.value, where N is a positive integer. The sql.args.N.type is expected to be a number indicating the JDBC Type. The content of the FlowFile is expected to be in UTF-8 format. FlowFile attribute 'executesql.row.count' indicates how many rows were selected.",
+      "restricted": false,
+      "tags": [
+        "database",
+        "select",
+        "query",
+        "record",
+        "jdbc",
+        "sql"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.aws.s3.CopyS3Object",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-aws-nar",
+        "version": "2.4.0"
+      },
+      "description": "Copies a file from one bucket and key to another in AWS S3",
+      "restricted": false,
+      "tags": [
+        "S3",
+        "Archive",
+        "Copy",
+        "Amazon",
+        "AWS"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.standard.FlattenJson",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-standard-nar",
+        "version": "2.4.0"
+      },
+      "description": "Provides the user with the ability to take a nested JSON document and flatten it into a simple key/value pair document. The keys are combined at each level with a user-defined separator that defaults to '.'. This Processor also allows to unflatten back the flattened json. It supports four kinds of flatten mode such as normal, keep-arrays, dot notation for MongoDB query and keep-primitive-arrays. Default flatten mode is 'keep-arrays'.",
+      "restricted": false,
+      "tags": [
+        "flatten",
+        "unflatten",
+        "json"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.standard.UpdateDatabaseTable",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-standard-nar",
+        "version": "2.4.0"
+      },
+      "description": "This processor uses a JDBC connection and incoming records to generate any database table changes needed to support the incoming records. It expects a 'flat' record layout, meaning none of the top-level record fields has nested fields that are intended to become columns themselves.",
+      "restricted": false,
+      "tags": [
+        "metadata",
+        "database",
+        "update",
+        "jdbc",
+        "table",
+        "alter"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.standard.GetSFTP",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-standard-nar",
+        "version": "2.4.0"
+      },
+      "description": "Fetches files from an SFTP Server and creates FlowFiles from them",
+      "restricted": false,
+      "tags": [
+        "input",
+        "get",
+        "fetch",
+        "retrieve",
+        "files",
+        "sftp",
+        "source",
+        "remote",
+        "ingest"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.standard.FetchFTP",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-standard-nar",
+        "version": "2.4.0"
+      },
+      "description": "Fetches the content of a file from a remote FTP server and overwrites the contents of an incoming FlowFile with the content of the remote file.",
+      "restricted": false,
+      "tags": [
+        "input",
+        "ftp",
+        "get",
+        "fetch",
+        "retrieve",
+        "files",
+        "source",
+        "remote",
+        "ingest"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.standard.MergeContent",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-standard-nar",
+        "version": "2.4.0"
+      },
+      "description": "Merges a Group of FlowFiles together based on a user-defined strategy and packages them into a single FlowFile. It is recommended that the Processor be configured with only a single incoming connection, as Group of FlowFiles will not be created from FlowFiles in different connections. This processor updates the mime.type attribute as appropriate. NOTE: this processor should NOT be configured with Cron Driven for the Scheduling Strategy.",
+      "restricted": false,
+      "tags": [
+        "zip",
+        "flowfile-stream-v3",
+        "flowfile-stream",
+        "concatenation",
+        "correlation",
+        "tar",
+        "stream",
+        "merge",
+        "archive",
+        "content"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.workday.GetWorkdayReport",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-workday-processors-nar",
+        "version": "2.4.0"
+      },
+      "description": "A processor which can interact with a configurable Workday Report. The processor can forward the content without modification, or you can transform it by providing the specific Record Reader and Record Writer services based on your needs. You can also remove fields by defining schema in the Record Writer. Supported Workday report formats are: csv, simplexml, json",
+      "restricted": false,
+      "tags": [
+        "report",
+        "Workday"
+      ]
+    },
+    {
+      "type": "com.hxgn.processors.datalake.GetEAMDataLakeMessageProcessor",
+      "bundle": {
+        "group": "hexagon",
+        "artifact": "nifi-datalake-processors-nar",
+        "version": "2.4.0"
+      },
+      "description": "Connects to EAM’s Data Lake Utility tool, retrieving all messages published from the corresponding EAM tenant. A flowfile is created for each message retrieved. An attribute ‘datalake.tag’ is automatically added to each flowfile and includes the EAM table name provided by the Data Lake Utility tool (Ex. datalake.tag = eam_R5USERS). This should only be used once within a tenant canvas, as it reads all messages published by the EAM Data Lake Utility tool. Multiples of this processor will cause unintended outcomes and behaviors.",
+      "restricted": false,
+      "tags": [
+        "hexagon"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.elasticsearch.ConsumeElasticsearch",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-elasticsearch-restapi-nar",
+        "version": "2.4.0"
+      },
+      "description": "A processor that repeatedly runs a paginated query against a field using a Range query to consume new Documents from an Elasticsearch index/query. The processor will retrieve multiple pages of results until either no more results are available or the Pagination Keep Alive expiration is reached, after which the Range query will automatically update the field constraint based on the last retrieved Document value.",
+      "restricted": false,
+      "tags": [
+        "search",
+        "elasticsearch",
+        "query",
+        "elasticsearch7",
+        "scroll",
+        "elasticsearch8",
+        "json",
+        "elasticsearch5",
+        "elasticsearch6",
+        "page"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.standard.ValidateCsv",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-standard-nar",
+        "version": "2.4.0"
+      },
+      "description": "Validates the contents of FlowFiles or a FlowFile attribute value against a user-specified CSV schema. Take a look at the additional documentation of this processor for some schema examples.",
+      "restricted": false,
+      "tags": [
+        "schema",
+        "csv",
+        "validation"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.azure.storage.FetchAzureDataLakeStorage",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-azure-nar",
+        "version": "2.4.0"
+      },
+      "description": "Fetch the specified file from Azure Data Lake Storage",
+      "restricted": false,
+      "tags": [
+        "cloud",
+        "datalake",
+        "storage",
+        "microsoft",
+        "adlsgen2",
+        "azure"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.aws.dynamodb.PutDynamoDBRecord",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-aws-nar",
+        "version": "2.4.0"
+      },
+      "description": "Inserts items into DynamoDB based on record-oriented data. The record fields are mapped into DynamoDB item fields, including partition and sort keys if set. Depending on the number of records the processor might execute the insert in multiple chunks in order to overcome DynamoDB's limitation on batch writing. This might result partially processed FlowFiles in which case the FlowFile will be transferred to the \"unprocessed\" relationship with the necessary attribute to retry later without duplicating the already executed inserts.",
+      "restricted": false,
+      "tags": [
+        "DynamoDB",
+        "Record",
+        "Amazon",
+        "Insert",
+        "AWS",
+        "Put"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.standard.ControlRate",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-standard-nar",
+        "version": "2.4.0"
+      },
+      "description": "Controls the rate at which data is transferred to follow-on processors. If you configure a very small Time Duration, then the accuracy of the throttle gets worse. You can improve this accuracy by decreasing the Yield Duration, at the expense of more Tasks given to the processor.",
+      "restricted": false,
+      "tags": [
+        "throttle",
+        "rate",
+        "rate control",
+        "throughput"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.aws.s3.GetS3ObjectMetadata",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-aws-nar",
+        "version": "2.4.0"
+      },
+      "description": "Check for the existence of an Object in S3 and fetch its Metadata without attempting to download it. This processor can be used as a router for workflows that need to check on an Object in S3 before proceeding with data processing",
+      "restricted": false,
+      "tags": [
+        "S3",
+        "Archive",
+        "Exists",
+        "Amazon",
+        "AWS"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.dropbox.FetchDropbox",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-dropbox-processors-nar",
+        "version": "2.4.0"
+      },
+      "description": "Fetches files from Dropbox. Designed to be used in tandem with ListDropbox.",
+      "restricted": false,
+      "tags": [
+        "dropbox",
+        "fetch",
+        "storage"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.standard.FilterAttribute",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-standard-nar",
+        "version": "2.4.0"
+      },
+      "description": "Filters the attributes of a FlowFile by retaining specified attributes and removing the rest or by removing specified attributes and retaining the rest.",
+      "restricted": false,
+      "tags": [
+        "filter",
+        "regex",
+        "retain",
+        "Attribute Expression Language",
+        "attributes",
+        "regular expression",
+        "modification",
+        "delete",
+        "remove"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.standard.JoinEnrichment",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-standard-nar",
+        "version": "2.4.0"
+      },
+      "description": "Joins together Records from two different FlowFiles where one FlowFile, the 'original' contains arbitrary records and the second FlowFile, the 'enrichment' contains additional data that should be used to enrich the first. See Additional Details for more information on how to configure this processor and the different use cases that it aims to accomplish.",
+      "restricted": false,
+      "tags": [
+        "enrichment",
+        "fork",
+        "record",
+        "merge",
+        "streams",
+        "join",
+        "recordpath",
+        "wrap",
+        "sql",
+        "combine"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.standard.QueryRecord",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-standard-nar",
+        "version": "2.4.0"
+      },
+      "description": "Evaluates one or more SQL queries against the contents of a FlowFile. The result of the SQL query then becomes the content of the output FlowFile. This can be used, for example, for field-specific filtering, transformation, and row-level filtering. Columns can be renamed, simple calculations and aggregations performed, etc. The Processor is configured with a Record Reader Controller Service and a Record Writer service so as to allow flexibility in incoming and outgoing data formats. The Processor must be configured with at least one user-defined property. The name of the Property is the Relationship to route data to, and the value of the Property is a SQL SELECT statement that is used to specify how input data should be transformed/filtered. The SQL statement must be valid ANSI SQL and is powered by Apache Calcite. If the transformation fails, the original FlowFile is routed to the 'failure' relationship. Otherwise, the data selected will be routed to the associated relationship. If the Record Writer chooses to inherit the schema from the Record, it is important to note that the schema that is inherited will be from the ResultSet, rather than the input Record. This allows a single instance of the QueryRecord processor to have multiple queries, each of which returns a different set of columns and aggregations. As a result, though, the schema that is derived will have no schema name, so it is important that the configured Record Writer not attempt to write the Schema Name as an attribute if inheriting the Schema from the Record. See the Processor Usage documentation for more information.",
+      "restricted": false,
+      "tags": [
+        "select",
+        "query",
+        "csv",
+        "update",
+        "calcite",
+        "sql",
+        "aggregate",
+        "filter",
+        "modify",
+        "transform",
+        "route",
+        "record",
+        "json",
+        "text",
+        "etl",
+        "logs",
+        "avro"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.dropbox.ListDropbox",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-dropbox-processors-nar",
+        "version": "2.4.0"
+      },
+      "description": "Retrieves a listing of files from Dropbox (shortcuts are ignored). Each listed file may result in one FlowFile, the metadata being written as FlowFile attributes. When the 'Record Writer' property is set, the entire result is written as records to a single FlowFile. This Processor is designed to run on Primary Node only in a cluster. If the primary node changes, the new Primary Node will pick up where the previous node left off without duplicating all of the data.",
+      "restricted": false,
+      "tags": [
+        "dropbox",
+        "storage"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.standard.GenerateTableFetch",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-standard-nar",
+        "version": "2.4.0"
+      },
+      "description": "Generates SQL select queries that fetch \"pages\" of rows from a table. The partition size property, along with the table's row count, determine the size and number of pages and generated FlowFiles. In addition, incremental fetching can be achieved by setting Maximum-Value Columns, which causes the processor to track the columns' maximum values, thus only fetching rows whose columns' values exceed the observed maximums. This processor is intended to be run on the Primary Node only.\n\nThis processor can accept incoming connections; the behavior of the processor is different whether incoming connections are provided:\n  - If no incoming connection(s) are specified, the processor will generate SQL queries on the specified processor schedule. Expression Language is supported for many fields, but no FlowFile attributes are available. However the properties will be evaluated using the Environment/System properties.\n  - If incoming connection(s) are specified and no FlowFile is available to a processor task, no work will be performed.\n  - If incoming connection(s) are specified and a FlowFile is available to a processor task, the FlowFile's attributes may be used in Expression Language for such fields as Table Name and others. However, the Max-Value Columns and Columns to Return fields must be empty or refer to columns that are available in each specified table.",
+      "restricted": false,
+      "tags": [
+        "database",
+        "select",
+        "query",
+        "fetch",
+        "jdbc",
+        "generate",
+        "sql"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.attributes.UpdateAttribute",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-update-attribute-nar",
+        "version": "2.4.0"
+      },
+      "description": "Updates the Attributes for a FlowFile by using the Attribute Expression Language and/or deletes the attributes based on a regular expression",
+      "restricted": false,
+      "tags": [
+        "Attribute Expression Language",
+        "update",
+        "attributes",
+        "state",
+        "modification",
+        "delete"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.standard.ListFTP",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-standard-nar",
+        "version": "2.4.0"
+      },
+      "description": "Performs a listing of the files residing on an FTP server. For each file that is found on the remote server, a new FlowFile will be created with the filename attribute set to the name of the file on the remote server. This can then be used in conjunction with FetchFTP in order to fetch those files.",
+      "restricted": false,
+      "tags": [
+        "input",
+        "ftp",
+        "files",
+        "source",
+        "list",
+        "remote",
+        "ingest"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.standard.UpdateCounter",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-standard-nar",
+        "version": "2.4.0"
+      },
+      "description": "This processor allows users to set specific counters and key points in their flow. It is useful for debugging and basic counting functions.",
+      "restricted": false,
+      "tags": [
+        "debug",
+        "counter",
+        "instrumentation"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.azure.storage.DeleteAzureDataLakeStorage",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-azure-nar",
+        "version": "2.4.0"
+      },
+      "description": "Deletes the provided file from Azure Data Lake Storage",
+      "restricted": false,
+      "tags": [
+        "cloud",
+        "datalake",
+        "storage",
+        "microsoft",
+        "adlsgen2",
+        "azure"
+      ]
+    },
+    {
+      "type": "com.hxgn.processors.groovyexecutionservice.processor.GroovyExecutionService",
+      "bundle": {
+        "group": "hexagon",
+        "artifact": "nifi-hxgn-nar",
+        "version": "2.4.0"
+      },
+      "description": "Groovy Execution Service script processor.",
+      "restricted": true,
+      "explicitRestrictions": [
+        {
+          "requiredPermission": {
+            "id": "execute-code",
+            "label": "execute code"
+          },
+          "explanation": "Allows execution of arbitrary code."
+        }
+      ],
+      "tags": [
+        "groovy",
+        "restricted",
+        "hexagon",
+        "script"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.kafka.processors.ConsumeKafka",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-kafka-nar",
+        "version": "2.4.0"
+      },
+      "description": "Consumes messages from Apache Kafka Consumer API. The complementary NiFi processor for sending messages is PublishKafka. The Processor supports consumption of Kafka messages, optionally interpreted as NiFi records. Please note that, at this time (in read record mode), the Processor assumes that all records that are retrieved from a given partition have the same schema. For this mode, if any of the Kafka messages are pulled but cannot be parsed or written with the configured Record Reader or Record Writer, the contents of the message will be written to a separate FlowFile, and that FlowFile will be transferred to the 'parse.failure' relationship. Otherwise, each FlowFile is sent to the 'success' relationship and may contain many individual messages within the single FlowFile. A 'record.count' attribute is added to indicate how many messages are contained in the FlowFile. No two Kafka messages will be placed into the same FlowFile if they have different schemas, or if they have different values for a message header that is included by the \u003CHeaders to Add as Attributes\u003E property.",
+      "restricted": false,
+      "tags": [
+        "PubSub",
+        "Consume",
+        "Ingest",
+        "Get",
+        "csv",
+        "Kafka",
+        "json",
+        "Ingress",
+        "Record",
+        "Topic",
+        "avro"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.standard.ExtractText",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-standard-nar",
+        "version": "2.4.0"
+      },
+      "description": "Evaluates one or more Regular Expressions against the content of a FlowFile.  The results of those Regular Expressions are assigned to FlowFile Attributes.  Regular Expressions are entered by adding user-defined properties; the name of the property maps to the Attribute Name into which the result will be placed.  The attributes are generated differently based on the enabling of named capture groups.  If named capture groups are not enabled:  The first capture group, if any found, will be placed into that attribute name.But all capture groups, including the matching string sequence itself will also be provided at that attribute name with an index value provided, with the exception of a capturing group that is optional and does not match - for example, given the attribute name \"regex\" and expression \"abc(def)?(g)\" we would add an attribute \"regex.1\" with a value of \"def\" if the \"def\" matched. If the \"def\" did not match, no attribute named \"regex.1\" would be added but an attribute named \"regex.2\" with a value of \"g\" will be added regardless.If named capture groups are enabled:  Each named capture group, if found will be placed into the attributes name with the name provided.  If enabled the matching string sequence itself will be placed into the attribute name.  If multiple matches are enabled, and index will be applied after the first set of matches. The exception is a capturing group that is optional and does not match  For example, given the attribute name \"regex\" and expression \"abc(?\u003CNAMED\u003Edef)?(?\u003CNAMED-TWO\u003Eg)\"  we would add an attribute \"regex.NAMED\" with the value of \"def\" if the \"def\" matched.  We would   add an attribute \"regex.NAMED-TWO\" with the value of \"g\" if the \"g\" matched regardless.  The value of the property must be a valid Regular Expressions with one or more capturing groups. If named capture groups are enabled, all capture groups must be named.  If they are not, then the  processor configuration will fail validation.  If the Regular Expression matches more than once, only the first match will be used unless the property enabling repeating capture group is set to true. If any provided Regular Expression matches, the FlowFile(s) will be routed to 'matched'. If no provided Regular Expression matches, the FlowFile will be routed to 'unmatched' and no attributes will be applied to the FlowFile.",
+      "restricted": false,
+      "tags": [
+        "Regular Expression",
+        "regex",
+        "extract",
+        "Text",
+        "evaluate"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.azure.cosmos.document.PutAzureCosmosDBRecord",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-azure-nar",
+        "version": "2.4.0"
+      },
+      "description": "This processor is a record-aware processor for inserting data into Cosmos DB with Core SQL API. It uses a configured record reader and schema to read an incoming record set from the body of a Flowfile and then inserts those records into a configured Cosmos DB Container.",
+      "restricted": false,
+      "tags": [
+        "record",
+        "insert",
+        "cosmos",
+        "put",
+        "azure"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.standard.SplitText",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-standard-nar",
+        "version": "2.4.0"
+      },
+      "description": "Splits a text file into multiple smaller text files on line boundaries limited by maximum number of lines or total size of fragment. Each output split file will contain no more than the configured number of lines or bytes. If both Line Split Count and Maximum Fragment Size are specified, the split occurs at whichever limit is reached first. If the first line of a fragment exceeds the Maximum Fragment Size, that line will be output in a single split file which exceeds the configured maximum size limit. This component also allows one to specify that each split should include a header lines. Header lines can be computed by either specifying the amount of lines that should constitute a header or by using header marker to match against the read lines. If such match happens then the corresponding line will be treated as header. Keep in mind that upon the first failure of header marker match, no more matches will be performed and the rest of the data will be parsed as regular lines for a given split. If after computation of the header there are no more data, the resulting split will consists of only header lines.",
+      "restricted": false,
+      "tags": [
+        "split",
+        "text"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.elasticsearch.GetElasticsearch",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-elasticsearch-restapi-nar",
+        "version": "2.4.0"
+      },
+      "description": "Elasticsearch get processor that uses the official Elastic REST client libraries to fetch a single document from Elasticsearch by _id. Note that the full body of the document will be read into memory before being written to a FlowFile for transfer.",
+      "restricted": false,
+      "tags": [
+        "elasticsearch",
+        "record",
+        "elasticsearch7",
+        "json",
+        "elasticsearch8",
+        "index",
+        "elasticsearch5",
+        "elasticsearch6",
+        "put"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.snowflake.GetSnowflakeIngestStatus",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-snowflake-processors-nar",
+        "version": "2.4.0"
+      },
+      "description": "Waits until a file in a Snowflake stage is ingested. The stage must be created in the Snowflake account beforehand. This processor is usually connected to an upstream StartSnowflakeIngest processor to make sure that the file is ingested.",
+      "restricted": false,
+      "tags": [
+        "snowflake",
+        "history",
+        "snowpipe",
+        "ingest"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.standard.ReplaceText",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-standard-nar",
+        "version": "2.4.0"
+      },
+      "description": "Updates the content of a FlowFile by searching for some textual value in the FlowFile content (via Regular Expression/regex, or literal value) and replacing the section of the content that matches with some alternate value. It can also be used to append or prepend text to the contents of a FlowFile.",
+      "restricted": false,
+      "tags": [
+        "Regular Expression",
+        "Replace",
+        "Regex",
+        "Text",
+        "Modify",
+        "Change",
+        "Update"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.standard.ForkRecord",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-standard-nar",
+        "version": "2.4.0"
+      },
+      "description": "This processor allows the user to fork a record into multiple records. The user must specify at least one Record Path, as a dynamic property, pointing to a field of type ARRAY containing RECORD objects. The processor accepts two modes: 'split' and 'extract'. In both modes, there is one record generated per element contained in the designated array. In the 'split' mode, each generated record will preserve the same schema as given in the input but the array will contain only one element. In the 'extract' mode, the element of the array must be of record type and will be the generated record. Additionally, in the 'extract' mode, it is possible to specify if each generated record should contain all the fields of the parent records from the root level to the extracted record. This assumes that the fields to add in the record are defined in the schema of the Record Writer controller service. See examples in the additional details documentation of this processor.",
+      "restricted": false,
+      "tags": [
+        "fork",
+        "array",
+        "stream",
+        "record",
+        "event",
+        "content"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.kafka.processors.PublishKafka",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-kafka-nar",
+        "version": "2.4.0"
+      },
+      "description": "Sends the contents of a FlowFile as either a message or as individual records to Apache Kafka using the Kafka Producer API. The messages to send may be individual FlowFiles, may be delimited using a user-specified delimiter (such as a new-line), or may be record-oriented data that can be read by the configured Record Reader. The complementary NiFi processor for fetching messages is ConsumeKafka. To produce a kafka tombstone message while using PublishStrategy.USE_WRAPPER, simply set the value of a record to 'null'.",
+      "restricted": false,
+      "tags": [
+        "PubSub",
+        "Message",
+        "csv",
+        "Kafka",
+        "json",
+        "Record",
+        "Apache",
+        "logs",
+        "Put",
+        "avro",
+        "Send"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.elasticsearch.UpdateByQueryElasticsearch",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-elasticsearch-restapi-nar",
+        "version": "2.4.0"
+      },
+      "description": "Update documents in an Elasticsearch index using a query. The query can be loaded from a flowfile body or from the Query parameter. The loaded Query can contain any JSON accepted by Elasticsearch's _update_by_query API, for example a \"query\" object to identify what documents are to be updated, plus a \"script\" to define the updates to perform.",
+      "restricted": false,
+      "tags": [
+        "elasticsearch",
+        "query",
+        "elastic",
+        "elasticsearch7",
+        "elasticsearch8",
+        "update",
+        "elasticsearch5",
+        "elasticsearch6"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.aws.s3.FetchS3Object",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-aws-nar",
+        "version": "2.4.0"
+      },
+      "description": "Retrieves the contents of an S3 Object and writes it to the content of a FlowFile",
+      "restricted": false,
+      "tags": [
+        "S3",
+        "Fetch",
+        "Get",
+        "Amazon",
+        "AWS"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.standard.LookupAttribute",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-standard-nar",
+        "version": "2.4.0"
+      },
+      "description": "Lookup attributes from a lookup service",
+      "restricted": false,
+      "tags": [
+        "lookup",
+        "cache",
+        "Attribute Expression Language",
+        "enrich",
+        "attributes",
+        "join"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.standard.CalculateRecordStats",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-standard-nar",
+        "version": "2.4.0"
+      },
+      "description": "Counts the number of Records in a record set, optionally counting the number of elements per category, where the categories are defined by user-defined properties.",
+      "restricted": false,
+      "tags": [
+        "stats",
+        "record",
+        "metrics"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.standard.DistributeLoad",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-standard-nar",
+        "version": "2.4.0"
+      },
+      "description": "Distributes FlowFiles to downstream processors based on a Distribution Strategy. If using the Round Robin strategy, the default is to assign each destination a weighting of 1 (evenly distributed). However, optional properties can be added to the change this; adding a property with the name '5' and value '10' means that the relationship with name '5' will be receive 10 FlowFiles in each iteration instead of 1.",
+      "restricted": false,
+      "tags": [
+        "route",
+        "round robin",
+        "load balance",
+        "distribute",
+        "weighted"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.standard.ExecuteSQL",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-standard-nar",
+        "version": "2.4.0"
+      },
+      "description": "Executes provided SQL select query. Query result will be converted to Avro format. Streaming is used so arbitrarily large result sets are supported. This processor can be scheduled to run on a timer, or cron expression, using the standard scheduling methods, or it can be triggered by an incoming FlowFile. If it is triggered by an incoming FlowFile, then attributes of that FlowFile will be available when evaluating the select query, and the query may use the ? to escape parameters. In this case, the parameters to use must exist as FlowFile attributes with the naming convention sql.args.N.type and sql.args.N.value, where N is a positive integer. The sql.args.N.type is expected to be a number indicating the JDBC Type. The content of the FlowFile is expected to be in UTF-8 format. FlowFile attribute 'executesql.row.count' indicates how many rows were selected.",
+      "restricted": false,
+      "tags": [
+        "database",
+        "select",
+        "query",
+        "jdbc",
+        "sql"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.standard.RouteOnContent",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-standard-nar",
+        "version": "2.4.0"
+      },
+      "description": "Applies Regular Expressions to the content of a FlowFile and routes a copy of the FlowFile to each destination whose Regular Expression matches. Regular Expressions are added as User-Defined Properties where the name of the property is the name of the relationship and the value is a Regular Expression to match against the FlowFile content. User-Defined properties do support the Attribute Expression Language, but the results are interpreted as literal values, not Regular Expressions",
+      "restricted": false,
+      "tags": [
+        "filter",
+        "regexp",
+        "regex",
+        "search",
+        "route",
+        "string",
+        "find",
+        "detect",
+        "regular expression",
+        "text",
+        "content"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.standard.ReplaceTextWithMapping",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-standard-nar",
+        "version": "2.4.0"
+      },
+      "description": "Updates the content of a FlowFile by evaluating a Regular Expression against it and replacing the section of the content that matches the Regular Expression with some alternate value provided in a mapping file.",
+      "restricted": false,
+      "tags": [
+        "Regular Expression",
+        "Replace",
+        "Regex",
+        "Text",
+        "Modify",
+        "Mapping",
+        "Change",
+        "Update"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.gcp.storage.ListGCSBucket",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-gcp-nar",
+        "version": "2.4.0"
+      },
+      "description": "Retrieves a listing of objects from a GCS bucket. For each object that is listed, creates a FlowFile that represents the object so that it can be fetched in conjunction with FetchGCSObject. This Processor is designed to run on Primary Node only in a cluster. If the primary node changes, the new Primary Node will pick up where the previous node left off without duplicating all of the data.",
+      "restricted": false,
+      "tags": [
+        "gcs",
+        "google cloud",
+        "google",
+        "storage",
+        "list"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.azure.storage.ListAzureDataLakeStorage",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-azure-nar",
+        "version": "2.4.0"
+      },
+      "description": "Lists directory in an Azure Data Lake Storage Gen 2 filesystem",
+      "restricted": false,
+      "tags": [
+        "cloud",
+        "datalake",
+        "storage",
+        "microsoft",
+        "adlsgen2",
+        "azure"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.gcp.bigquery.PutBigQuery",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-gcp-nar",
+        "version": "2.4.0"
+      },
+      "description": "Writes the contents of a FlowFile to a Google BigQuery table. The processor is record based so the schema that is used is driven by the RecordReader. Attributes that are not matched to the target schema are skipped. Exactly once delivery semantics are achieved via stream offsets.",
+      "restricted": false,
+      "tags": [
+        "google cloud",
+        "google",
+        "bigquery",
+        "bq"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.standard.PutRecord",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-standard-nar",
+        "version": "2.4.0"
+      },
+      "description": "The PutRecord processor uses a specified RecordReader to input (possibly multiple) records from an incoming flow file, and sends them to a destination specified by a Record Destination Service (i.e. record sink).",
+      "restricted": false,
+      "tags": [
+        "sink",
+        "record",
+        "put"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.standard.UnpackContent",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-standard-nar",
+        "version": "2.4.0"
+      },
+      "description": "Unpacks the content of FlowFiles that have been packaged with one of several different Packaging Formats, emitting one to many FlowFiles for each input FlowFile. Supported formats are TAR, ZIP, and FlowFile Stream packages.",
+      "restricted": false,
+      "tags": [
+        "zip",
+        "flowfile-stream-v3",
+        "flowfile-stream",
+        "un-merge",
+        "tar",
+        "archive",
+        "Unpack"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.standard.SplitContent",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-standard-nar",
+        "version": "2.4.0"
+      },
+      "description": "Splits incoming FlowFiles by a specified byte sequence",
+      "restricted": false,
+      "tags": [
+        "split",
+        "binary",
+        "content"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.standard.LogAttribute",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-standard-nar",
+        "version": "2.4.0"
+      },
+      "description": "Emits attributes of the FlowFile at the specified log level",
+      "restricted": false,
+      "tags": [
+        "logging",
+        "attributes"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.aws.kinesis.stream.ConsumeKinesisStream",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-aws-nar",
+        "version": "2.4.0"
+      },
+      "description": "Reads data from the specified AWS Kinesis stream and outputs a FlowFile for every processed Record (raw)  or a FlowFile for a batch of processed records if a Record Reader and Record Writer are configured. At-least-once delivery of all Kinesis Records within the Stream while the processor is running. AWS Kinesis Client Library can take several seconds to initialise before starting to fetch data. Uses DynamoDB for check pointing and CloudWatch (optional) for metrics. Ensure that the credentials provided have access to DynamoDB and CloudWatch (optional) along with Kinesis.",
+      "restricted": false,
+      "tags": [
+        "amazon",
+        "stream",
+        "consume",
+        "aws",
+        "kinesis"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.groovyx.ExecuteGroovyScript",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-groovyx-nar",
+        "version": "2.4.0"
+      },
+      "description": "Experimental Extended Groovy script processor. The script is responsible for handling the incoming flow file (transfer to SUCCESS or remove, e.g.) as well as any flow files created by the script. If the handling is incomplete or incorrect, the session will be rolled back.",
+      "restricted": true,
+      "explicitRestrictions": [
+        {
+          "requiredPermission": {
+            "id": "execute-code",
+            "label": "execute code"
+          },
+          "explanation": "Provides operator the ability to execute arbitrary code assuming all permissions that NiFi has."
+        }
+      ],
+      "tags": [
+        "groovyx",
+        "groovy",
+        "restricted",
+        "script"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.kafka.pubsub.ConsumeKafkaRecord_2_6",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-kafka-2-6-nar",
+        "version": "2.4.0"
+      },
+      "description": "Deprecated Consumes messages from Apache Kafka specifically built against the Kafka 2.6 Consumer API. The complementary NiFi processor for sending messages is PublishKafkaRecord_2_6. Please note that, at this time, the Processor assumes that all records that are retrieved from a given partition have the same schema. If any of the Kafka messages are pulled but cannot be parsed or written with the configured Record Reader or Record Writer, the contents of the message will be written to a separate FlowFile, and that FlowFile will be transferred to the 'parse.failure' relationship. Otherwise, each FlowFile is sent to the 'success' relationship and may contain many individual messages within the single FlowFile. A 'record.count' attribute is added to indicate how many messages are contained in the FlowFile. No two Kafka messages will be placed into the same FlowFile if they have different schemas, or if they have different values for a message header that is included by the \u003CHeaders to Add as Attributes\u003E property.",
+      "restricted": false,
+      "tags": [
+        "PubSub",
+        "Consume",
+        "Ingest",
+        "Get",
+        "csv",
+        "Kafka",
+        "json",
+        "Ingress",
+        "Record",
+        "2.6",
+        "Topic",
+        "avro"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.standard.GenerateRecord",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-standard-nar",
+        "version": "2.4.0"
+      },
+      "description": "This processor creates FlowFiles with records having random value for the specified fields. GenerateRecord is useful for testing, configuration, and simulation. It uses either user-defined properties to define a record schema or a provided schema and generates the specified number of records using random data for the fields in the schema.",
+      "restricted": false,
+      "tags": [
+        "random",
+        "test",
+        "fake",
+        "generate"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.standard.EvaluateXQuery",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-standard-nar",
+        "version": "2.4.0"
+      },
+      "description": "Evaluates one or more XQueries against the content of a FlowFile.  The results of those XQueries are assigned to FlowFile Attributes or are written to the content of the FlowFile itself, depending on configuration of the Processor.  XQueries are entered by adding user-defined properties; the name of the property maps to the Attribute Name into which the result will be placed (if the Destination is 'flowfile-attribute'; otherwise, the property name is ignored).  The value of the property must be a valid XQuery.  If the XQuery returns more than one result, new attributes or FlowFiles (for Destinations of 'flowfile-attribute' or 'flowfile-content' respectively) will be created for each result (attributes will have a '.n' one-up number appended to the specified attribute name).  If any provided XQuery returns a result, the FlowFile(s) will be routed to 'matched'. If no provided XQuery returns a result, the FlowFile will be routed to 'unmatched'.  If the Destination is 'flowfile-attribute' and the XQueries matche nothing, no attributes will be applied to the FlowFile.",
+      "restricted": false,
+      "tags": [
+        "XPath",
+        "XML",
+        "XQuery",
+        "evaluate"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.snowflake.StartSnowflakeIngest",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-snowflake-processors-nar",
+        "version": "2.4.0"
+      },
+      "description": "Ingests files from a Snowflake internal or external stage into a Snowflake table. The stage must be created in the Snowflake account beforehand. The result of the ingestion is not available immediately, so this processor can be connected to an GetSnowflakeIngestStatus processor to wait for the results",
+      "restricted": false,
+      "tags": [
+        "snowflake",
+        "snowpipe",
+        "ingest"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.standard.TransformXml",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-standard-nar",
+        "version": "2.4.0"
+      },
+      "description": "Applies the provided XSLT file to the FlowFile XML payload. A new FlowFile is created with transformed content and is routed to the 'success' relationship. If the XSL transform fails, the original FlowFile is routed to the 'failure' relationship",
+      "restricted": false,
+      "tags": [
+        "transform",
+        "xml",
+        "xslt"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.gcp.storage.FetchGCSObject",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-gcp-nar",
+        "version": "2.4.0"
+      },
+      "description": "Fetches a file from a Google Cloud Bucket. Designed to be used in tandem with ListGCSBucket.",
+      "restricted": false,
+      "tags": [
+        "gcs",
+        "google cloud",
+        "fetch",
+        "google",
+        "storage"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.azure.eventhub.GetAzureEventHub",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-azure-nar",
+        "version": "2.4.0"
+      },
+      "description": "Receives messages from Microsoft Azure Event Hubs without reliable checkpoint tracking. In clustered environment, GetAzureEventHub processor instances work independently and all cluster nodes process all messages (unless running the processor in Primary Only mode). ConsumeAzureEventHub offers the recommended approach to receiving messages from Azure Event Hubs. This processor creates a thread pool for connections to Azure Event Hubs.",
+      "restricted": false,
+      "tags": [
+        "cloud",
+        "streaming",
+        "streams",
+        "eventhub",
+        "microsoft",
+        "events",
+        "azure"
+      ]
+    },
+    {
+      "type": "com.hxgn.processors.im.InboundMessagesProcessor",
+      "bundle": {
+        "group": "hexagon",
+        "artifact": "nifi-inbound-messages-nar",
+        "version": "2.4.0"
+      },
+      "description": "Retrieves messages from the tenant’s inbound message queue. A flowfile is created for each message retrieved. The flowfile content is not reformatted or validated during retrieval and processing. To assist with routing incoming messages, an attribute ‘im.tag’ is added to each flowfile. The tag value must be provided from the sending application or system (via the Inbound Messages API); else, it will be blank. This should only be used once within a tenant canvas, as it reads all messages within the tenant’s inbound message queue. Multiples of this processor will cause unintended outcomes and behaviors.",
+      "restricted": false,
+      "tags": [
+        "hexagon"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.avro.SplitAvro",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-avro-nar",
+        "version": "2.4.0"
+      },
+      "description": "Splits a binary encoded Avro datafile into smaller files based on the configured Output Size. The Output Strategy determines if the smaller files will be Avro datafiles, or bare Avro records with metadata in the FlowFile attributes. The output will always be binary encoded.",
+      "restricted": false,
+      "tags": [
+        "split",
+        "avro"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.box.PutBoxFile",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-box-nar",
+        "version": "2.4.0"
+      },
+      "description": "Puts content to a Box folder.",
+      "restricted": false,
+      "tags": [
+        "box",
+        "storage",
+        "put"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.excel.SplitExcel",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-poi-nar",
+        "version": "2.4.0"
+      },
+      "description": "This processor splits a multi sheet Microsoft Excel spreadsheet into multiple Microsoft Excel spreadsheets where each sheet from the original file is converted to an individual spreadsheet in its own flow file. Currently this processor is only capable of processing .xlsx (XSSF 2007 OOXML file format) Excel documents and not older .xls (HSSF '97(-2007) file format) documents. Please note all original cell styles are dropped and formulas are removed leaving only the calculated values. Even a single sheet Microsoft Excel spreadsheet is converted to its own flow file with all the original cell styles dropped and formulas removed.",
+      "restricted": false,
+      "tags": [
+        "split",
+        "text"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.azure.storage.PutAzureBlobStorage_v12",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-azure-nar",
+        "version": "2.4.0"
+      },
+      "description": "Puts content into a blob on Azure Blob Storage. The processor uses Azure Blob Storage client library v12.",
+      "restricted": false,
+      "tags": [
+        "cloud",
+        "blob",
+        "storage",
+        "microsoft",
+        "azure"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.aws.s3.DeleteS3Object",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-aws-nar",
+        "version": "2.4.0"
+      },
+      "description": "Deletes a file from an Amazon S3 Bucket. If attempting to delete a file that does not exist, FlowFile is routed to success.",
+      "restricted": false,
+      "tags": [
+        "S3",
+        "Delete",
+        "Archive",
+        "Amazon",
+        "AWS"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.standard.ListDatabaseTables",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-standard-nar",
+        "version": "2.4.0"
+      },
+      "description": "Generates a set of flow files, each containing attributes corresponding to metadata about a table from a database connection. Once metadata about a table has been fetched, it will not be fetched again until the Refresh Interval (if set) has elapsed, or until state has been manually cleared.",
+      "restricted": false,
+      "tags": [
+        "database",
+        "jdbc",
+        "list",
+        "table",
+        "sql"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.standard.QueryDatabaseTable",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-standard-nar",
+        "version": "2.4.0"
+      },
+      "description": "Generates a SQL select query, or uses a provided statement, and executes it to fetch all rows whose values in the specified Maximum Value column(s) are larger than the previously-seen maxima. Query result will be converted to Avro format. Expression Language is supported for several properties, but no incoming connections are permitted. The Environment/System properties may be used to provide values for any property containing Expression Language. If it is desired to leverage flow file attributes to perform these queries, the GenerateTableFetch and/or ExecuteSQL processors can be used for this purpose. Streaming is used so arbitrarily large result sets are supported. This processor can be scheduled to run on a timer or cron expression, using the standard scheduling methods. This processor is intended to be run on the Primary Node only. FlowFile attribute 'querydbtable.row.count' indicates how many rows were selected.",
+      "restricted": false,
+      "tags": [
+        "database",
+        "select",
+        "query",
+        "jdbc",
+        "sql"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.standard.RouteOnAttribute",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-standard-nar",
+        "version": "2.4.0"
+      },
+      "description": "Routes FlowFiles based on their Attributes using the Attribute Expression Language",
+      "restricted": false,
+      "tags": [
+        "regexp",
+        "string",
+        "Attribute Expression Language",
+        "detect",
+        "Regular Expression",
+        "filter",
+        "routing",
+        "regex",
+        "Expression Language",
+        "search",
+        "find",
+        "attributes",
+        "text"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.standard.EncodeContent",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-standard-nar",
+        "version": "2.4.0"
+      },
+      "description": "Encode or decode the contents of a FlowFile using Base64, Base32, or hex encoding schemes",
+      "restricted": false,
+      "tags": [
+        "encode",
+        "base32",
+        "base64",
+        "hex",
+        "decode"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.mqtt.PublishMQTT",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-mqtt-nar",
+        "version": "2.4.0"
+      },
+      "description": "Publishes a message to an MQTT topic",
+      "restricted": false,
+      "tags": [
+        "MQTT",
+        "publish",
+        "IOT"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.standard.LogMessage",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-standard-nar",
+        "version": "2.4.0"
+      },
+      "description": "Emits a log message at the specified log level",
+      "restricted": false,
+      "tags": [
+        "logging",
+        "attributes"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.compress.ModifyCompression",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-compress-nar",
+        "version": "2.4.0"
+      },
+      "description": "Changes the compression algorithm used to compress the contents of a FlowFile by decompressing the contents of FlowFiles using a user-specified compression algorithm and recompressing the contents using the specified compression format properties. This processor operates in a very memory efficient way so very large objects well beyond the heap size are generally fine to process",
+      "restricted": false,
+      "tags": [
+        "compress",
+        "snappy framed",
+        "brotli",
+        "recompress",
+        "gzip",
+        "snappy",
+        "bzip2",
+        "content",
+        "lz4-framed",
+        "lzma",
+        "snappy-hadoop",
+        "zstd",
+        "deflate",
+        "xz-lzma2"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.standard.PutFTP",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-standard-nar",
+        "version": "2.4.0"
+      },
+      "description": "Sends FlowFiles to an FTP Server",
+      "restricted": false,
+      "tags": [
+        "ftp",
+        "files",
+        "archive",
+        "copy",
+        "remote",
+        "put",
+        "egress"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.aws.s3.TagS3Object",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-aws-nar",
+        "version": "2.4.0"
+      },
+      "description": "Adds or updates a tag on an Amazon S3 Object.",
+      "restricted": false,
+      "tags": [
+        "S3",
+        "Archive",
+        "Tag",
+        "Amazon",
+        "AWS"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.standard.SampleRecord",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-standard-nar",
+        "version": "2.4.0"
+      },
+      "description": "Samples the records of a FlowFile based on a specified sampling strategy (such as Reservoir Sampling). The resulting FlowFile may be of a fixed number of records (in the case of reservoir-based algorithms) or some subset of the total number of records (in the case of probabilistic sampling), or a deterministic number of records (in the case of interval sampling).",
+      "restricted": false,
+      "tags": [
+        "record",
+        "range",
+        "interval",
+        "reservoir",
+        "sample"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.standard.PutSFTP",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-standard-nar",
+        "version": "2.4.0"
+      },
+      "description": "Sends FlowFiles to an SFTP Server",
+      "restricted": false,
+      "tags": [
+        "files",
+        "sftp",
+        "archive",
+        "copy",
+        "remote",
+        "put",
+        "egress"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.aws.kinesis.firehose.PutKinesisFirehose",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-aws-nar",
+        "version": "2.4.0"
+      },
+      "description": "Sends the contents to a specified Amazon Kinesis Firehose. In order to send data to firehose, the firehose delivery stream name has to be specified.",
+      "restricted": false,
+      "tags": [
+        "amazon",
+        "firehose",
+        "stream",
+        "aws",
+        "kinesis",
+        "put"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.azure.eventhub.PutAzureEventHub",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-azure-nar",
+        "version": "2.4.0"
+      },
+      "description": "Send FlowFile contents to Azure Event Hubs",
+      "restricted": false,
+      "tags": [
+        "cloud",
+        "streaming",
+        "streams",
+        "eventhub",
+        "microsoft",
+        "events",
+        "azure"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.standard.DeleteSFTP",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-standard-nar",
+        "version": "2.4.0"
+      },
+      "description": "Deletes a file residing on an SFTP server.",
+      "restricted": false,
+      "tags": [
+        "sftp",
+        "remote",
+        "delete",
+        "remove"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.standard.DuplicateFlowFile",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-standard-nar",
+        "version": "2.4.0"
+      },
+      "description": "Intended for load testing, this processor will create the configured number of copies of each incoming FlowFile. The original FlowFile as well as all generated copies are sent to the 'success' relationship. In addition, each FlowFile gets an attribute 'copy.index' set to the copy number, where the original FlowFile gets a value of zero, and all copies receive incremented integer values.",
+      "restricted": false,
+      "tags": [
+        "test",
+        "load",
+        "duplicate"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.azure.storage.FetchAzureBlobStorage_v12",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-azure-nar",
+        "version": "2.4.0"
+      },
+      "description": "Retrieves the specified blob from Azure Blob Storage and writes its content to the content of the FlowFile. The processor uses Azure Blob Storage client library v12.",
+      "restricted": false,
+      "tags": [
+        "cloud",
+        "blob",
+        "storage",
+        "microsoft",
+        "azure"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.elasticsearch.DeleteByQueryElasticsearch",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-elasticsearch-restapi-nar",
+        "version": "2.4.0"
+      },
+      "description": "Delete from an Elasticsearch index using a query. The query can be loaded from a flowfile body or from the Query parameter.",
+      "restricted": false,
+      "tags": [
+        "elasticsearch",
+        "query",
+        "elastic",
+        "elasticsearch7",
+        "elasticsearch8",
+        "elasticsearch5",
+        "elasticsearch6",
+        "delete"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.standard.SegmentContent",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-standard-nar",
+        "version": "2.4.0"
+      },
+      "description": "Segments a FlowFile into multiple smaller segments on byte boundaries. Each segment is given the following attributes: fragment.identifier, fragment.index, fragment.count, segment.original.filename; these attributes can then be used by the MergeContent processor in order to reconstitute the original FlowFile",
+      "restricted": false,
+      "tags": [
+        "split",
+        "segment"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.standard.PutDatabaseRecord",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-standard-nar",
+        "version": "2.4.0"
+      },
+      "description": "The PutDatabaseRecord processor uses a specified RecordReader to input (possibly multiple) records from an incoming flow file. These records are translated to SQL statements and executed as a single transaction. If any errors occur, the flow file is routed to failure or retry, and if the records are transmitted successfully, the incoming flow file is routed to success.  The type of statement executed by the processor is specified via the Statement Type property, which accepts some hard-coded values such as INSERT, UPDATE, and DELETE, as well as 'Use statement.type Attribute', which causes the processor to get the statement type from a flow file attribute.  IMPORTANT: If the Statement Type is UPDATE, then the incoming records must not alter the value(s) of the primary keys (or user-specified Update Keys). If such records are encountered, the UPDATE statement issued to the database may do nothing (if no existing records with the new primary key values are found), or could inadvertently corrupt the existing data (by changing records for which the new values of the primary keys exist).",
+      "restricted": false,
+      "tags": [
+        "database",
+        "record",
+        "update",
+        "insert",
+        "jdbc",
+        "delete",
+        "put",
+        "sql"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.standard.SplitJson",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-standard-nar",
+        "version": "2.4.0"
+      },
+      "description": "Splits a JSON File into multiple, separate FlowFiles for an array element specified by a JsonPath expression. Each generated FlowFile is comprised of an element of the specified array and transferred to relationship 'split,' with the original file transferred to the 'original' relationship. If the specified JsonPath is not found or does not evaluate to an array element, the original file is routed to 'failure' and no files are generated.",
+      "restricted": false,
+      "tags": [
+        "split",
+        "jsonpath",
+        "json"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.standard.MonitorActivity",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-standard-nar",
+        "version": "2.4.0"
+      },
+      "description": "Monitors the flow for activity and sends out an indicator when the flow has not had any data for some specified amount of time and again when the flow's activity is restored",
+      "restricted": false,
+      "tags": [
+        "detection",
+        "inactive",
+        "activity",
+        "active",
+        "monitor",
+        "flow"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.standard.DeduplicateRecord",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-standard-nar",
+        "version": "2.4.0"
+      },
+      "description": "This processor de-duplicates individual records within a record set. It can operate on a per-file basis using an in-memory hashset or bloom filter. When configured with a distributed map cache, it de-duplicates records across multiple files.",
+      "restricted": false,
+      "tags": [
+        "dedupe",
+        "change",
+        "replace",
+        "update",
+        "distinct",
+        "dupe",
+        "duplicate",
+        "filter",
+        "modify",
+        "record",
+        "unique",
+        "text",
+        "hash"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.gcp.storage.DeleteGCSObject",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-gcp-nar",
+        "version": "2.4.0"
+      },
+      "description": "Deletes objects from a Google Cloud Bucket. If attempting to delete a file that does not exist, FlowFile is routed to success.",
+      "restricted": false,
+      "tags": [
+        "gcs",
+        "google cloud",
+        "google",
+        "storage",
+        "delete"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.aws.s3.PutS3Object",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-aws-nar",
+        "version": "2.4.0"
+      },
+      "description": "Writes the contents of a FlowFile as an S3 Object to an Amazon S3 Bucket.",
+      "restricted": false,
+      "tags": [
+        "S3",
+        "Archive",
+        "Amazon",
+        "AWS",
+        "Put"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.standard.ListSFTP",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-standard-nar",
+        "version": "2.4.0"
+      },
+      "description": "Performs a listing of the files residing on an SFTP server. For each file that is found on the remote server, a new FlowFile will be created with the filename attribute set to the name of the file on the remote server. This can then be used in conjunction with FetchSFTP in order to fetch those files.",
+      "restricted": false,
+      "tags": [
+        "input",
+        "files",
+        "sftp",
+        "source",
+        "list",
+        "remote",
+        "ingest"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.azure.storage.ListAzureBlobStorage_v12",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-azure-nar",
+        "version": "2.4.0"
+      },
+      "description": "Lists blobs in an Azure Blob Storage container. Listing details are attached to an empty FlowFile for use with FetchAzureBlobStorage. This Processor is designed to run on Primary Node only in a cluster. If the primary node changes, the new Primary Node will pick up where the previous node left off without duplicating all of the data. The processor uses Azure Blob Storage client library v12.",
+      "restricted": false,
+      "tags": [
+        "cloud",
+        "blob",
+        "storage",
+        "microsoft",
+        "azure"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.aws.kinesis.stream.PutKinesisStream",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-aws-nar",
+        "version": "2.4.0"
+      },
+      "description": "Sends the contents to a specified Amazon Kinesis. In order to send data to Kinesis, the stream name has to be specified.",
+      "restricted": false,
+      "tags": [
+        "amazon",
+        "stream",
+        "aws",
+        "kinesis",
+        "put"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.stateful.analysis.AttributeRollingWindow",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-stateful-analysis-nar",
+        "version": "2.4.0"
+      },
+      "description": "Track a Rolling Window based on evaluating an Expression Language expression on each FlowFile and add that value to the processor's state. Each FlowFile will be emitted with the count of FlowFiles and total aggregate value of values processed in the current time window.",
+      "restricted": false,
+      "tags": [
+        "rolling",
+        "data science",
+        "Attribute Expression Language",
+        "state",
+        "window"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.dropbox.PutDropbox",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-dropbox-processors-nar",
+        "version": "2.4.0"
+      },
+      "description": "Puts content to a Dropbox folder.",
+      "restricted": false,
+      "tags": [
+        "dropbox",
+        "storage",
+        "put"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.box.FetchBoxFile",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-box-nar",
+        "version": "2.4.0"
+      },
+      "description": "Fetches files from a Box Folder. Designed to be used in tandem with ListBoxFile.",
+      "restricted": false,
+      "tags": [
+        "fetch",
+        "box",
+        "storage"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.jolt.JoltTransformJSON",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-jolt-nar",
+        "version": "2.4.0"
+      },
+      "description": "Applies a list of Jolt specifications to either the FlowFile JSON content or a specified FlowFile JSON attribute. If the JSON transform fails, the original FlowFile is routed to the 'failure' relationship.",
+      "restricted": false,
+      "tags": [
+        "transform",
+        "chainr",
+        "defaultr",
+        "shiftr",
+        "json",
+        "removr",
+        "sort",
+        "jolt",
+        "cardinality"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.elasticsearch.SearchElasticsearch",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-elasticsearch-restapi-nar",
+        "version": "2.4.0"
+      },
+      "description": "A processor that allows the user to repeatedly run a paginated query (with aggregations) written with the Elasticsearch JSON DSL. Search After/Point in Time queries must include a valid \"sort\" field. The processor will retrieve multiple pages of results until either no more results are available or the Pagination Keep Alive expiration is reached, after which the query will restart with the first page of results being retrieved.",
+      "restricted": false,
+      "tags": [
+        "search",
+        "elasticsearch",
+        "query",
+        "elasticsearch7",
+        "scroll",
+        "elasticsearch8",
+        "json",
+        "elasticsearch5",
+        "elasticsearch6",
+        "page"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.processors.standard.ForkEnrichment",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-standard-nar",
+        "version": "2.4.0"
+      },
+      "description": "Used in conjunction with the JoinEnrichment processor, this processor is responsible for adding the attributes that are necessary for the JoinEnrichment processor to perform its function. Each incoming FlowFile will be cloned. The original FlowFile will have appropriate attributes added and then be transferred to the 'original' relationship. The clone will have appropriate attributes added and then be routed to the 'enrichment' relationship. See the documentation for the JoinEnrichment processor (and especially its Additional Details) for more information on how these Processors work together and how to perform enrichment tasks in NiFi by using these Processors.",
+      "restricted": false,
+      "tags": [
+        "fork",
+        "record",
+        "enrich",
+        "join"
+      ]
+    }
+  ]
+}

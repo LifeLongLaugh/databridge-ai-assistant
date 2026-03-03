@@ -1,0 +1,58 @@
+{
+  "parameterProviderTypes": [
+    {
+      "type": "org.apache.nifi.vault.hashicorp.HashiCorpVaultParameterProvider",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-hashicorp-vault-nar",
+        "version": "2.4.0"
+      },
+      "description": "Provides parameters from HashiCorp Vault Key/Value Version 1 and Version 2 Secrets.  Each Secret represents a parameter group, which will map to a Parameter Context.  The keys and values in the Secret map to Parameters.",
+      "restricted": false,
+      "tags": [
+        "secret",
+        "vault",
+        "hashicorp"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.parameter.EnvironmentVariableParameterProvider",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-standard-nar",
+        "version": "2.4.0"
+      },
+      "description": "Fetches parameters from environment variables",
+      "restricted": true,
+      "explicitRestrictions": [
+        {
+          "requiredPermission": {
+            "id": "access-environment-credentials",
+            "label": "access environment credentials"
+          },
+          "explanation": "Provides operator the ability to read environment variables, which may contain environment credentials."
+        }
+      ],
+      "tags": [
+        "environment",
+        "restricted",
+        "variable"
+      ]
+    },
+    {
+      "type": "org.apache.nifi.parameter.gcp.GcpSecretManagerParameterProvider",
+      "bundle": {
+        "group": "org.apache.nifi",
+        "artifact": "nifi-gcp-nar",
+        "version": "2.4.0"
+      },
+      "description": "Fetches parameters from GCP Secret Manager.  Each secret becomes a Parameter, which can be mapped to a Parameter Group by adding a GCP label named 'group-name'.",
+      "restricted": false,
+      "tags": [
+        "manager",
+        "gcp",
+        "secret"
+      ]
+    }
+  ]
+}
