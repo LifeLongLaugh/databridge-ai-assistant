@@ -69,9 +69,10 @@ if __name__ == "__main__":
 
     #Loop through all markdown files in the Doc folder
     for filename in os.listdir(DOCS_DIR):
-        if filename.endswith(".md") or filename.endswith(".json"):
+        if filename.endswith(".md") or filename.endswith(".txt"):
             filepath= os.path.join(DOCS_DIR, filename)
             with open(filepath, "r", encoding="utf-8") as f:
                 content = f.read()
         sync_document(filename, content, existing_docs)
+
 
