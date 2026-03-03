@@ -1,0 +1,30 @@
+parameterProviderTypes.0.type: org.apache.nifi.vault.hashicorp.HashiCorpVaultParameterProvider
+parameterProviderTypes.0.bundle.group: org.apache.nifi
+parameterProviderTypes.0.bundle.artifact: nifi-hashicorp-vault-nar
+parameterProviderTypes.0.bundle.version: 2.4.0
+parameterProviderTypes.0.description: Provides parameters from HashiCorp Vault Key/Value Version 1 and Version 2 Secrets.  Each Secret represents a parameter group, which will map to a Parameter Context.  The keys and values in the Secret map to Parameters.
+parameterProviderTypes.0.restricted: False
+parameterProviderTypes.0.tags.0: secret
+parameterProviderTypes.0.tags.1: vault
+parameterProviderTypes.0.tags.2: hashicorp
+parameterProviderTypes.1.type: org.apache.nifi.parameter.EnvironmentVariableParameterProvider
+parameterProviderTypes.1.bundle.group: org.apache.nifi
+parameterProviderTypes.1.bundle.artifact: nifi-standard-nar
+parameterProviderTypes.1.bundle.version: 2.4.0
+parameterProviderTypes.1.description: Fetches parameters from environment variables
+parameterProviderTypes.1.restricted: True
+parameterProviderTypes.1.explicitRestrictions.0.requiredPermission.id: access-environment-credentials
+parameterProviderTypes.1.explicitRestrictions.0.requiredPermission.label: access environment credentials
+parameterProviderTypes.1.explicitRestrictions.0.explanation: Provides operator the ability to read environment variables, which may contain environment credentials.
+parameterProviderTypes.1.tags.0: environment
+parameterProviderTypes.1.tags.1: restricted
+parameterProviderTypes.1.tags.2: variable
+parameterProviderTypes.2.type: org.apache.nifi.parameter.gcp.GcpSecretManagerParameterProvider
+parameterProviderTypes.2.bundle.group: org.apache.nifi
+parameterProviderTypes.2.bundle.artifact: nifi-gcp-nar
+parameterProviderTypes.2.bundle.version: 2.4.0
+parameterProviderTypes.2.description: Fetches parameters from GCP Secret Manager.  Each secret becomes a Parameter, which can be mapped to a Parameter Group by adding a GCP label named 'group-name'.
+parameterProviderTypes.2.restricted: False
+parameterProviderTypes.2.tags.0: manager
+parameterProviderTypes.2.tags.1: gcp
+parameterProviderTypes.2.tags.2: secret

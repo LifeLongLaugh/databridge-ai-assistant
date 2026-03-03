@@ -1,0 +1,11 @@
+reportingTaskTypes.0.type: com.hxgn.reporting.TenantUsageReportingTask
+reportingTaskTypes.0.bundle.group: hexagon
+reportingTaskTypes.0.bundle.artifact: dbpro-tenant-usage-reporting-nar
+reportingTaskTypes.0.bundle.version: 2.4.0
+reportingTaskTypes.0.description: Logs per-tenant usage for selected processors and SEND/RECEIVE/FETCH events.
+reportingTaskTypes.0.restricted: False
+reportingTaskTypes.0.tags.0: provenance
+reportingTaskTypes.0.tags.1: usage
+reportingTaskTypes.0.tags.2: tracking
+reportingTaskTypes.0.tags.3: tenant
+reportingTaskTypes.0.tags.4: reporting

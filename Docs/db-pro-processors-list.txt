@@ -1,0 +1,1910 @@
+processorTypes.0.type: org.apache.nifi.processors.avro.ExtractAvroMetadata
+processorTypes.0.bundle.group: org.apache.nifi
+processorTypes.0.bundle.artifact: nifi-avro-nar
+processorTypes.0.bundle.version: 2.4.0
+processorTypes.0.description: Extracts metadata from the header of an Avro datafile.
+processorTypes.0.restricted: False
+processorTypes.0.tags.0: schema
+processorTypes.0.tags.1: metadata
+processorTypes.0.tags.2: avro
+processorTypes.1.type: org.apache.nifi.processors.standard.RemoveRecordField
+processorTypes.1.bundle.group: org.apache.nifi
+processorTypes.1.bundle.artifact: nifi-standard-nar
+processorTypes.1.bundle.version: 2.4.0
+processorTypes.1.description: Modifies the contents of a FlowFile that contains Record-oriented data (i.e. data that can be read via a RecordReader and written by a RecordWriter) by removing selected fields. This Processor requires that at least one user-defined Property be added. The name of the property is ignored by the processor, but could be a meaningful identifier for the user. The value of the property should indicate a RecordPath that determines the field to be removed. The processor executes the removal in the order in which these properties are added to the processor. Set the "Record Writer" to "Inherit Record Schema" in order to use the updated Record Schema modified when removing Fields.
+processorTypes.1.restricted: False
+processorTypes.1.tags.0: schema
+processorTypes.1.tags.1: record
+processorTypes.1.tags.2: csv
+processorTypes.1.tags.3: freeform
+processorTypes.1.tags.4: update
+processorTypes.1.tags.5: json
+processorTypes.1.tags.6: text
+processorTypes.1.tags.7: delete
+processorTypes.1.tags.8: generic
+processorTypes.1.tags.9: remove
+processorTypes.1.tags.10: avro
+processorTypes.2.type: org.apache.nifi.processors.standard.ValidateJson
+processorTypes.2.bundle.group: org.apache.nifi
+processorTypes.2.bundle.artifact: nifi-standard-nar
+processorTypes.2.bundle.version: 2.4.0
+processorTypes.2.description: Validates the contents of FlowFiles against a configurable JSON Schema. See json-schema.org for specification standards. This Processor does not support input containing multiple JSON objects, such as newline-delimited JSON. If the input FlowFile contains newline-delimited JSON, only the first line will be validated.
+processorTypes.2.restricted: True
+processorTypes.2.explicitRestrictions.0.requiredPermission.id: reference-remote-resources
+processorTypes.2.explicitRestrictions.0.requiredPermission.label: reference remote resources
+processorTypes.2.explicitRestrictions.0.explanation: Schema configuration can reference resources over HTTP
+processorTypes.2.tags.0: schema
+processorTypes.2.tags.1: restricted
+processorTypes.2.tags.2: JSON
+processorTypes.2.tags.3: validation
+processorTypes.3.type: org.apache.nifi.processors.mqtt.ConsumeMQTT
+processorTypes.3.bundle.group: org.apache.nifi
+processorTypes.3.bundle.artifact: nifi-mqtt-nar
+processorTypes.3.bundle.version: 2.4.0
+processorTypes.3.description: Subscribes to a topic and receives messages from an MQTT broker
+processorTypes.3.restricted: False
+processorTypes.3.tags.0: MQTT
+processorTypes.3.tags.1: subscribe
+processorTypes.3.tags.2: consume
+processorTypes.3.tags.3: listen
+processorTypes.3.tags.4: IOT
+processorTypes.4.type: org.apache.nifi.amqp.processors.PublishAMQP
+processorTypes.4.bundle.group: org.apache.nifi
+processorTypes.4.bundle.artifact: nifi-amqp-nar
+processorTypes.4.bundle.version: 2.4.0
+processorTypes.4.description: Creates an AMQP Message from the contents of a FlowFile and sends the message to an AMQP Exchange. In a typical AMQP exchange model, the message that is sent to the AMQP Exchange will be routed based on the 'Routing Key' to its final destination in the queue (the binding). If due to some misconfiguration the binding between the Exchange, Routing Key and Queue is not set up, the message will have no final destination and will return (i.e., the data will not make it to the queue). If that happens you will see a log in both app-log and bulletin stating to that effect, and the FlowFile will be routed to the 'failure' relationship.
+processorTypes.4.restricted: False
+processorTypes.4.tags.0: amqp
+processorTypes.4.tags.1: rabbit
+processorTypes.4.tags.2: publish
+processorTypes.4.tags.3: message
+processorTypes.4.tags.4: send
+processorTypes.4.tags.5: put
+processorTypes.5.type: org.apache.nifi.processors.standard.RouteText
+processorTypes.5.bundle.group: org.apache.nifi
+processorTypes.5.bundle.artifact: nifi-standard-nar
+processorTypes.5.bundle.version: 2.4.0
+processorTypes.5.description: Routes textual data based on a set of user-defined rules. Each line in an incoming FlowFile is compared against the values specified by user-defined Properties. The mechanism by which the text is compared to these user-defined properties is defined by the 'Matching Strategy'. The data is then routed according to these rules, routing each line of the text individually.
+processorTypes.5.restricted: False
+processorTypes.5.tags.0: regexp
+processorTypes.5.tags.1: string
+processorTypes.5.tags.2: csv
+processorTypes.5.tags.3: delimited
+processorTypes.5.tags.4: detect
+processorTypes.5.tags.5: Regular Expression
+processorTypes.5.tags.6: filter
+processorTypes.5.tags.7: routing
+processorTypes.5.tags.8: regex
+processorTypes.5.tags.9: Expression Language
+processorTypes.5.tags.10: search
+processorTypes.5.tags.11: find
+processorTypes.5.tags.12: attributes
+processorTypes.5.tags.13: text
+processorTypes.5.tags.14: logs
+processorTypes.6.type: org.apache.nifi.processors.standard.AttributesToCSV
+processorTypes.6.bundle.group: org.apache.nifi
+processorTypes.6.bundle.artifact: nifi-standard-nar
+processorTypes.6.bundle.version: 2.4.0
+processorTypes.6.description: Generates a CSV representation of the input FlowFile Attributes. The resulting CSV can be written to either a newly generated attribute named 'CSVAttributes' or written to the FlowFile as content.  If the attribute value contains a comma, newline or double quote, then the attribute value will be escaped with double quotes.  Any double quote characters in the attribute value are escaped with another double quote.
+processorTypes.6.restricted: False
+processorTypes.6.tags.0: flowfile
+processorTypes.6.tags.1: csv
+processorTypes.6.tags.2: attributes
+processorTypes.7.type: org.apache.nifi.processors.standard.GetFTP
+processorTypes.7.bundle.group: org.apache.nifi
+processorTypes.7.bundle.artifact: nifi-standard-nar
+processorTypes.7.bundle.version: 2.4.0
+processorTypes.7.description: Fetches files from an FTP Server and creates FlowFiles from them
+processorTypes.7.restricted: False
+processorTypes.7.tags.0: input
+processorTypes.7.tags.1: FTP
+processorTypes.7.tags.2: get
+processorTypes.7.tags.3: fetch
+processorTypes.7.tags.4: retrieve
+processorTypes.7.tags.5: files
+processorTypes.7.tags.6: source
+processorTypes.7.tags.7: remote
+processorTypes.7.tags.8: ingest
+processorTypes.8.type: org.apache.nifi.processors.standard.InvokeHTTP
+processorTypes.8.bundle.group: org.apache.nifi
+processorTypes.8.bundle.artifact: nifi-standard-nar
+processorTypes.8.bundle.version: 2.4.0
+processorTypes.8.description: An HTTP client processor which can interact with a configurable HTTP Endpoint. The destination URL and HTTP Method are configurable. When the HTTP Method is PUT, POST or PATCH, the FlowFile contents are included as the body of the request and FlowFile attributes are converted to HTTP headers, optionally, based on configuration properties.
+processorTypes.8.restricted: False
+processorTypes.8.tags.0: rest
+processorTypes.8.tags.1: http
+processorTypes.8.tags.2: client
+processorTypes.8.tags.3: https
+processorTypes.9.type: org.apache.nifi.processors.standard.PartitionRecord
+processorTypes.9.bundle.group: org.apache.nifi
+processorTypes.9.bundle.artifact: nifi-standard-nar
+processorTypes.9.bundle.version: 2.4.0
+processorTypes.9.description: Splits, or partitions, record-oriented data based on the configured fields in the data. One or more properties must be added. The name of the property is the name of an attribute to add. The value of the property is a RecordPath to evaluate against each Record. Two records will go to the same outbound FlowFile only if they have the same value for each of the given RecordPaths. Because we know that all records in a given output FlowFile have the same value for the fields that are specified by the RecordPath, an attribute is added for each field. See Additional Details on the Usage page for more information and examples.
+processorTypes.9.restricted: False
+processorTypes.9.tags.0: partition
+processorTypes.9.tags.1: split
+processorTypes.9.tags.2: organize
+processorTypes.9.tags.3: bin
+processorTypes.9.tags.4: record
+processorTypes.9.tags.5: segment
+processorTypes.9.tags.6: recordpath
+processorTypes.9.tags.7: rpath
+processorTypes.9.tags.8: group
+processorTypes.10.type: org.apache.nifi.processors.standard.EnforceOrder
+processorTypes.10.bundle.group: org.apache.nifi
+processorTypes.10.bundle.artifact: nifi-standard-nar
+processorTypes.10.bundle.version: 2.4.0
+processorTypes.10.description: Enforces expected ordering of FlowFiles that belong to the same data group within a single node.  Although PriorityAttributePrioritizer can be used on a connection to ensure that flow files going through that connection are in priority order, depending on error-handling, branching, and other flow designs, it is possible for FlowFiles to get out-of-order. EnforceOrder can be used to enforce original ordering for those FlowFiles. [IMPORTANT] In order to take effect of EnforceOrder, FirstInFirstOutPrioritizer should be used at EVERY downstream relationship UNTIL the order of FlowFiles physically get FIXED by operation such as MergeContent or being stored to the final destination.
+processorTypes.10.restricted: False
+processorTypes.10.tags.0: sort
+processorTypes.10.tags.1: order
+processorTypes.11.type: org.apache.nifi.processors.standard.LookupRecord
+processorTypes.11.bundle.group: org.apache.nifi
+processorTypes.11.bundle.artifact: nifi-standard-nar
+processorTypes.11.bundle.version: 2.4.0
+processorTypes.11.description: Extracts one or more fields from a Record and looks up a value for those fields in a LookupService. If a result is returned by the LookupService, that result is optionally added to the Record. In this case, the processor functions as an Enrichment processor. Regardless, the Record is then routed to either the 'matched' relationship or 'unmatched' relationship (if the 'Routing Strategy' property is configured to do so), indicating whether or not a result was returned by the LookupService, allowing the processor to also function as a Routing processor. The "coordinates" to use for looking up a value in the Lookup Service are defined by adding a user-defined property. Each property that is added will have an entry added to a Map, where the name of the property becomes the Map Key and the value returned by the RecordPath becomes the value for that key. If multiple values are returned by the RecordPath, then the Record will be routed to the 'unmatched' relationship (or 'success', depending on the 'Routing Strategy' property's configuration). If one or more fields match the Result RecordPath, all fields that match will be updated. If there is no match in the configured LookupService, then no fields will be updated. I.e., it will not overwrite an existing value in the Record with a null value. Please note, however, that if the results returned by the LookupService are not accounted for in your schema (specifically, the schema that is configured for your Record Writer) then the fields will not be written out to the FlowFile.
+processorTypes.11.restricted: False
+processorTypes.11.tags.0: filter
+processorTypes.11.tags.1: lookup
+processorTypes.11.tags.2: enrichment
+processorTypes.11.tags.3: database
+processorTypes.11.tags.4: route
+processorTypes.11.tags.5: record
+processorTypes.11.tags.6: csv
+processorTypes.11.tags.7: json
+processorTypes.11.tags.8: convert
+processorTypes.11.tags.9: logs
+processorTypes.11.tags.10: db
+processorTypes.11.tags.11: avro
+processorTypes.12.type: org.apache.nifi.processors.standard.MergeRecord
+processorTypes.12.bundle.group: org.apache.nifi
+processorTypes.12.bundle.artifact: nifi-standard-nar
+processorTypes.12.bundle.version: 2.4.0
+processorTypes.12.description: This Processor merges together multiple record-oriented FlowFiles into a single FlowFile that contains all of the Records of the input FlowFiles. This Processor works by creating 'bins' and then adding FlowFiles to these bins until they are full. Once a bin is full, all of the FlowFiles will be combined into a single output FlowFile, and that FlowFile will be routed to the 'merged' Relationship. A bin will consist of potentially many 'like FlowFiles'. In order for two FlowFiles to be considered 'like FlowFiles', they must have the same Schema (as identified by the Record Reader) and, if the <Correlation Attribute Name> property is set, the same value for the specified attribute. See Processor Usage and Additional Details for more information. NOTE: this processor should NOT be configured with Cron Driven for the Scheduling Strategy.
+processorTypes.12.restricted: False
+processorTypes.12.tags.0: correlation
+processorTypes.12.tags.1: stream
+processorTypes.12.tags.2: merge
+processorTypes.12.tags.3: record
+processorTypes.12.tags.4: event
+processorTypes.12.tags.5: content
+processorTypes.13.type: org.apache.nifi.processors.elasticsearch.PutElasticsearchJson
+processorTypes.13.bundle.group: org.apache.nifi
+processorTypes.13.bundle.artifact: nifi-elasticsearch-restapi-nar
+processorTypes.13.bundle.version: 2.4.0
+processorTypes.13.description: An Elasticsearch put processor that uses the official Elastic REST client libraries. Each FlowFile is treated as a document to be sent to the Elasticsearch _bulk API. Multiple FlowFiles can be batched together into each Request sent to Elasticsearch.
+processorTypes.13.restricted: False
+processorTypes.13.tags.0: elasticsearch
+processorTypes.13.tags.1: elasticsearch7
+processorTypes.13.tags.2: json
+processorTypes.13.tags.3: elasticsearch8
+processorTypes.13.tags.4: index
+processorTypes.13.tags.5: elasticsearch5
+processorTypes.13.tags.6: elasticsearch6
+processorTypes.13.tags.7: put
+processorTypes.14.type: org.apache.nifi.processors.standard.PutEmail
+processorTypes.14.bundle.group: org.apache.nifi
+processorTypes.14.bundle.artifact: nifi-standard-nar
+processorTypes.14.bundle.version: 2.4.0
+processorTypes.14.description: Sends an e-mail to configured recipients for each incoming FlowFile
+processorTypes.14.restricted: False
+processorTypes.14.tags.0: smtp
+processorTypes.14.tags.1: email
+processorTypes.14.tags.2: put
+processorTypes.14.tags.3: notify
+processorTypes.15.type: org.apache.nifi.processors.standard.FetchSFTP
+processorTypes.15.bundle.group: org.apache.nifi
+processorTypes.15.bundle.artifact: nifi-standard-nar
+processorTypes.15.bundle.version: 2.4.0
+processorTypes.15.description: Fetches the content of a file from a remote SFTP server and overwrites the contents of an incoming FlowFile with the content of the remote file.
+processorTypes.15.restricted: False
+processorTypes.15.tags.0: input
+processorTypes.15.tags.1: get
+processorTypes.15.tags.2: fetch
+processorTypes.15.tags.3: retrieve
+processorTypes.15.tags.4: files
+processorTypes.15.tags.5: sftp
+processorTypes.15.tags.6: source
+processorTypes.15.tags.7: remote
+processorTypes.15.tags.8: ingest
+processorTypes.16.type: org.apache.nifi.processors.jolt.JoltTransformRecord
+processorTypes.16.bundle.group: org.apache.nifi
+processorTypes.16.bundle.artifact: nifi-jolt-nar
+processorTypes.16.bundle.version: 2.4.0
+processorTypes.16.description: Applies a JOLT specification to each record in the FlowFile payload. A new FlowFile is created with transformed content and is routed to the 'success' relationship. If the transform fails, the original FlowFile is routed to the 'failure' relationship.
+processorTypes.16.restricted: False
+processorTypes.16.tags.0: transform
+processorTypes.16.tags.1: chainr
+processorTypes.16.tags.2: record
+processorTypes.16.tags.3: defaultr
+processorTypes.16.tags.4: shiftr
+processorTypes.16.tags.5: removr
+processorTypes.16.tags.6: sort
+processorTypes.16.tags.7: jolt
+processorTypes.16.tags.8: cardinality
+processorTypes.17.type: org.apache.nifi.processors.azure.storage.DeleteAzureBlobStorage_v12
+processorTypes.17.bundle.group: org.apache.nifi
+processorTypes.17.bundle.artifact: nifi-azure-nar
+processorTypes.17.bundle.version: 2.4.0
+processorTypes.17.description: Deletes the specified blob from Azure Blob Storage. The processor uses Azure Blob Storage client library v12.
+processorTypes.17.restricted: False
+processorTypes.17.tags.0: cloud
+processorTypes.17.tags.1: blob
+processorTypes.17.tags.2: storage
+processorTypes.17.tags.3: microsoft
+processorTypes.17.tags.4: azure
+processorTypes.18.type: org.apache.nifi.processors.standard.GenerateFlowFile
+processorTypes.18.bundle.group: org.apache.nifi
+processorTypes.18.bundle.artifact: nifi-standard-nar
+processorTypes.18.bundle.version: 2.4.0
+processorTypes.18.description: This processor creates FlowFiles with random data or custom content. GenerateFlowFile is useful for load testing, configuration, and simulation. Also see DuplicateFlowFile for additional load testing.
+processorTypes.18.restricted: False
+processorTypes.18.tags.0: random
+processorTypes.18.tags.1: test
+processorTypes.18.tags.2: load
+processorTypes.18.tags.3: generate
+processorTypes.19.type: org.apache.nifi.processors.kafka.pubsub.PublishKafka_2_6
+processorTypes.19.bundle.group: org.apache.nifi
+processorTypes.19.bundle.artifact: nifi-kafka-2-6-nar
+processorTypes.19.bundle.version: 2.4.0
+processorTypes.19.description: Deprecated Sends the contents of a FlowFile as a message to Apache Kafka using the Kafka 2.6 Producer API.The messages to send may be individual FlowFiles or may be delimited, using a user-specified delimiter, such as a new-line. The complementary NiFi processor for fetching messages is ConsumeKafka_2_6.
+processorTypes.19.restricted: False
+processorTypes.19.tags.0: PubSub
+processorTypes.19.tags.1: Message
+processorTypes.19.tags.2: Kafka
+processorTypes.19.tags.3: 2.6
+processorTypes.19.tags.4: Apache
+processorTypes.19.tags.5: Put
+processorTypes.19.tags.6: Send
+processorTypes.20.type: com.hxgn.processors.iobox.BODToEAM
+processorTypes.20.bundle.group: hexagon
+processorTypes.20.bundle.artifact: nifi-iobox-nar
+processorTypes.20.bundle.version: 2.4.0
+processorTypes.20.description: Connects to HxGN EAM’s Databridge, posting the content from the flowfile received to the EAM Databridge inbound mechanism. Each flowfile is assumed to contain only a single BOD message for the corresponding type specified. The content is not validated or formatted prior to sending to EAM Databridge. This supports one BOD type per instance and multiple instances or usages of this processor is expected. It should be used in each flow where inbound BOD communication to EAM Databridge is required.
+processorTypes.20.restricted: False
+processorTypes.20.tags.0: hexagon
+processorTypes.21.type: org.apache.nifi.processors.standard.CountText
+processorTypes.21.bundle.group: org.apache.nifi
+processorTypes.21.bundle.artifact: nifi-standard-nar
+processorTypes.21.bundle.version: 2.4.0
+processorTypes.21.description: Counts various metrics on incoming text. The requested results will be recorded as attributes. The resulting flowfile will not have its content modified.
+processorTypes.21.restricted: False
+processorTypes.21.tags.0: character
+processorTypes.21.tags.1: line
+processorTypes.21.tags.2: count
+processorTypes.21.tags.3: text
+processorTypes.21.tags.4: word
+processorTypes.22.type: org.apache.nifi.processors.standard.ValidateRecord
+processorTypes.22.bundle.group: org.apache.nifi
+processorTypes.22.bundle.artifact: nifi-standard-nar
+processorTypes.22.bundle.version: 2.4.0
+processorTypes.22.description: Validates the Records of an incoming FlowFile against a given schema. All records that adhere to the schema are routed to the "valid" relationship while records that do not adhere to the schema are routed to the "invalid" relationship. It is therefore possible for a single incoming FlowFile to be split into two individual FlowFiles if some records are valid according to the schema and others are not. Any FlowFile that is routed to the "invalid" relationship will emit a ROUTE Provenance Event with the Details field populated to explain why records were invalid. In addition, to gain further explanation of why records were invalid, DEBUG-level logging can be enabled for the "org.apache.nifi.processors.standard.ValidateRecord" logger.
+processorTypes.22.restricted: False
+processorTypes.22.tags.0: schema
+processorTypes.22.tags.1: record
+processorTypes.22.tags.2: validate
+processorTypes.23.type: org.apache.nifi.processors.standard.CompressContent
+processorTypes.23.bundle.group: org.apache.nifi
+processorTypes.23.bundle.artifact: nifi-standard-nar
+processorTypes.23.bundle.version: 2.4.0
+processorTypes.23.description: Compresses or decompresses the contents of FlowFiles using a user-specified compression algorithm and updates the mime.type attribute as appropriate. A common idiom is to precede CompressContent with IdentifyMimeType and configure Mode='decompress' AND Compression Format='use mime.type attribute'. When used in this manner, the MIME type is automatically detected and the data is decompressed, if necessary. If decompression is unnecessary, the data is passed through to the 'success' relationship. This processor operates in a very memory efficient way so very large objects well beyond the heap size are generally fine to process.
+processorTypes.23.restricted: False
+processorTypes.23.tags.0: compress
+processorTypes.23.tags.1: snappy framed
+processorTypes.23.tags.2: brotli
+processorTypes.23.tags.3: gzip
+processorTypes.23.tags.4: snappy
+processorTypes.23.tags.5: bzip2
+processorTypes.23.tags.6: content
+processorTypes.23.tags.7: lz4-framed
+processorTypes.23.tags.8: lzma
+processorTypes.23.tags.9: snappy-hadoop
+processorTypes.23.tags.10: zstd
+processorTypes.23.tags.11: deflate
+processorTypes.23.tags.12: decompress
+processorTypes.23.tags.13: xz-lzma2
+processorTypes.24.type: org.apache.nifi.processors.standard.UpdateRecord
+processorTypes.24.bundle.group: org.apache.nifi
+processorTypes.24.bundle.artifact: nifi-standard-nar
+processorTypes.24.bundle.version: 2.4.0
+processorTypes.24.description: Updates the contents of a FlowFile that contains Record-oriented data (i.e., data that can be read via a RecordReader and written by a RecordWriter). This Processor requires that at least one user-defined Property be added. The name of the Property should indicate a RecordPath that determines the field that should be updated. The value of the Property is either a replacement value (optionally making use of the Expression Language) or is itself a RecordPath that extracts a value from the Record. Whether the Property value is determined to be a RecordPath or a literal value depends on the configuration of the <Replacement Value Strategy> Property.
+processorTypes.24.restricted: False
+processorTypes.24.tags.0: schema
+processorTypes.24.tags.1: log
+processorTypes.24.tags.2: record
+processorTypes.24.tags.3: csv
+processorTypes.24.tags.4: freeform
+processorTypes.24.tags.5: update
+processorTypes.24.tags.6: json
+processorTypes.24.tags.7: text
+processorTypes.24.tags.8: logs
+processorTypes.24.tags.9: generic
+processorTypes.24.tags.10: avro
+processorTypes.25.type: org.apache.nifi.processors.standard.ConvertCharacterSet
+processorTypes.25.bundle.group: org.apache.nifi
+processorTypes.25.bundle.artifact: nifi-standard-nar
+processorTypes.25.bundle.version: 2.4.0
+processorTypes.25.description: Converts a FlowFile's content from one character set to another
+processorTypes.25.restricted: False
+processorTypes.25.tags.0: characterset
+processorTypes.25.tags.1: character set
+processorTypes.25.tags.2: text
+processorTypes.25.tags.3: convert
+processorTypes.26.type: org.apache.nifi.processors.box.ListBoxFile
+processorTypes.26.bundle.group: org.apache.nifi
+processorTypes.26.bundle.artifact: nifi-box-nar
+processorTypes.26.bundle.version: 2.4.0
+processorTypes.26.description: Lists files in a Box folder. Each listed file may result in one FlowFile, the metadata being written as FlowFile attributes. Or - in case the 'Record Writer' property is set - the entire result is written as records to a single FlowFile. This Processor is designed to run on Primary Node only in a cluster. If the primary node changes, the new Primary Node will pick up where the previous node left off without duplicating all of the data.
+processorTypes.26.restricted: False
+processorTypes.26.tags.0: box
+processorTypes.26.tags.1: storage
+processorTypes.27.type: org.apache.nifi.processors.kafka.pubsub.ConsumeKafka_2_6
+processorTypes.27.bundle.group: org.apache.nifi
+processorTypes.27.bundle.artifact: nifi-kafka-2-6-nar
+processorTypes.27.bundle.version: 2.4.0
+processorTypes.27.description: Deprecated Consumes messages from Apache Kafka specifically built against the Kafka 2.6 Consumer API. The complementary NiFi processor for sending messages is PublishKafka_2_6.
+processorTypes.27.restricted: False
+processorTypes.27.tags.0: PubSub
+processorTypes.27.tags.1: Consume
+processorTypes.27.tags.2: Ingest
+processorTypes.27.tags.3: Get
+processorTypes.27.tags.4: Kafka
+processorTypes.27.tags.5: Ingress
+processorTypes.27.tags.6: 2.6
+processorTypes.27.tags.7: Topic
+processorTypes.28.type: org.apache.nifi.processors.elasticsearch.PutElasticsearchRecord
+processorTypes.28.bundle.group: org.apache.nifi
+processorTypes.28.bundle.artifact: nifi-elasticsearch-restapi-nar
+processorTypes.28.bundle.version: 2.4.0
+processorTypes.28.description: A record-aware Elasticsearch put processor that uses the official Elastic REST client libraries. Each Record within the FlowFile is converted into a document to be sent to the Elasticsearch _bulk APi. Multiple documents can be batched into each Request sent to Elasticsearch. Each document's Bulk operation can be configured using Record Path expressions.
+processorTypes.28.restricted: False
+processorTypes.28.tags.0: elasticsearch
+processorTypes.28.tags.1: record
+processorTypes.28.tags.2: elasticsearch7
+processorTypes.28.tags.3: json
+processorTypes.28.tags.4: elasticsearch8
+processorTypes.28.tags.5: index
+processorTypes.28.tags.6: elasticsearch5
+processorTypes.28.tags.7: elasticsearch6
+processorTypes.28.tags.8: put
+processorTypes.29.type: org.apache.nifi.processors.azure.storage.PutAzureDataLakeStorage
+processorTypes.29.bundle.group: org.apache.nifi
+processorTypes.29.bundle.artifact: nifi-azure-nar
+processorTypes.29.bundle.version: 2.4.0
+processorTypes.29.description: Writes the contents of a FlowFile as a file on Azure Data Lake Storage Gen 2
+processorTypes.29.restricted: False
+processorTypes.29.tags.0: cloud
+processorTypes.29.tags.1: datalake
+processorTypes.29.tags.2: storage
+processorTypes.29.tags.3: microsoft
+processorTypes.29.tags.4: adlsgen2
+processorTypes.29.tags.5: azure
+processorTypes.30.type: org.apache.nifi.processors.salesforce.QuerySalesforceObject
+processorTypes.30.bundle.group: org.apache.nifi
+processorTypes.30.bundle.artifact: nifi-salesforce-nar
+processorTypes.30.bundle.version: 2.4.0
+processorTypes.30.description: Retrieves records from a Salesforce sObject. Users can add arbitrary filter conditions by setting the 'Custom WHERE Condition' property. The processor can also run a custom query, although record processing is not supported in that case. Supports incremental retrieval: users can define a field in the 'Age Field' property that will be used to determine when the record was created. When this property is set the processor will retrieve new records. Incremental loading and record-based processing are only supported in property-based queries. It's also possible to define an initial cutoff value for the age, filtering out all older records even for the first run. In case of 'Property Based Query' this processor should run on the Primary Node only. FlowFile attribute 'record.count' indicates how many records were retrieved and written to the output. The processor can accept an optional input FlowFile and reference the FlowFile attributes in the query. When 'Include Deleted Records' is true, the processor will include deleted records (soft-deletes) in the results by using the 'queryAll' API. The 'IsDeleted' field will be automatically included in the results when querying deleted records.
+processorTypes.30.restricted: False
+processorTypes.30.tags.0: salesforce
+processorTypes.30.tags.1: soql
+processorTypes.30.tags.2: query
+processorTypes.30.tags.3: sobject
+processorTypes.31.type: org.apache.nifi.processors.aws.dynamodb.PutDynamoDB
+processorTypes.31.bundle.group: org.apache.nifi
+processorTypes.31.bundle.artifact: nifi-aws-nar
+processorTypes.31.bundle.version: 2.4.0
+processorTypes.31.description: Puts a document from DynamoDB based on hash and range key.  The table can have either hash and range or hash key alone. Currently the keys supported are string and number and value can be json document. In case of hash and range keys both key are required for the operation. The FlowFile content must be JSON. FlowFile content is mapped to the specified Json Document attribute in the DynamoDB item.
+processorTypes.31.restricted: False
+processorTypes.31.tags.0: DynamoDB
+processorTypes.31.tags.1: Amazon
+processorTypes.31.tags.2: Insert
+processorTypes.31.tags.3: AWS
+processorTypes.31.tags.4: Put
+processorTypes.32.type: org.apache.nifi.processors.salesforce.PutSalesforceObject
+processorTypes.32.bundle.group: org.apache.nifi
+processorTypes.32.bundle.artifact: nifi-salesforce-nar
+processorTypes.32.bundle.version: 2.4.0
+processorTypes.32.description: Creates new records for the specified Salesforce sObject. The type of the Salesforce object must be set in the input flowfile's 'objectType' attribute. This processor cannot update existing records.
+processorTypes.32.restricted: False
+processorTypes.32.tags.0: salesforce
+processorTypes.32.tags.1: put
+processorTypes.32.tags.2: sobject
+processorTypes.33.type: org.apache.nifi.processors.kafka.pubsub.PublishKafkaRecord_2_6
+processorTypes.33.bundle.group: org.apache.nifi
+processorTypes.33.bundle.artifact: nifi-kafka-2-6-nar
+processorTypes.33.bundle.version: 2.4.0
+processorTypes.33.description: Deprecated Sends the contents of a FlowFile as individual records to Apache Kafka using the Kafka 2.6 Producer API. The contents of the FlowFile are expected to be record-oriented data that can be read by the configured Record Reader. The complementary NiFi processor for fetching messages is ConsumeKafkaRecord_2_6.
+processorTypes.33.restricted: False
+processorTypes.33.tags.0: PubSub
+processorTypes.33.tags.1: Message
+processorTypes.33.tags.2: csv
+processorTypes.33.tags.3: Kafka
+processorTypes.33.tags.4: json
+processorTypes.33.tags.5: Record
+processorTypes.33.tags.6: 2.6
+processorTypes.33.tags.7: Apache
+processorTypes.33.tags.8: logs
+processorTypes.33.tags.9: Put
+processorTypes.33.tags.10: avro
+processorTypes.33.tags.11: Send
+processorTypes.34.type: com.hxgn.processors.iobox.BODFromEAM_V2
+processorTypes.34.bundle.group: hexagon
+processorTypes.34.bundle.artifact: nifi-iobox-nar
+processorTypes.34.bundle.version: 2.4.0
+processorTypes.34.description: Connects to HxGN EAM’s Databridge, reading all outbound BOD messages published for the tenant. A flowfile is created for each message retrieved and the content is not re-formatted or validated during retrieval. This should only be used once within a tenant canvas, as it reads all outbound messages published by EAM Databridge. Multiples instances or uses will cause unintended outcomes and behaviors.
+processorTypes.34.restricted: False
+processorTypes.34.tags.0: hexagon
+processorTypes.35.type: org.apache.nifi.processors.standard.DebugFlow
+processorTypes.35.bundle.group: org.apache.nifi
+processorTypes.35.bundle.artifact: nifi-standard-nar
+processorTypes.35.bundle.version: 2.4.0
+processorTypes.35.description: The DebugFlow processor aids testing and debugging the FlowFile framework by allowing various responses to be explicitly triggered in response to the receipt of a FlowFile or a timer event without a FlowFile if using timer or cron based scheduling.  It can force responses needed to exercise or test various failure modes that can occur when a processor runs.
+processorTypes.35.restricted: False
+processorTypes.35.tags.0: FlowFile
+processorTypes.35.tags.1: debug
+processorTypes.35.tags.2: test
+processorTypes.35.tags.3: utility
+processorTypes.35.tags.4: processor
+processorTypes.35.tags.5: flow
+processorTypes.36.type: org.apache.nifi.processors.standard.ExtractRecordSchema
+processorTypes.36.bundle.group: org.apache.nifi
+processorTypes.36.bundle.artifact: nifi-standard-nar
+processorTypes.36.bundle.version: 2.4.0
+processorTypes.36.description: Extracts the record schema from the FlowFile using the supplied Record Reader and writes it to the `avro.schema` attribute.
+processorTypes.36.restricted: False
+processorTypes.36.tags.0: schema
+processorTypes.36.tags.1: xml
+processorTypes.36.tags.2: record
+processorTypes.36.tags.3: csv
+processorTypes.36.tags.4: freeform
+processorTypes.36.tags.5: json
+processorTypes.36.tags.6: text
+processorTypes.36.tags.7: generic
+processorTypes.36.tags.8: avro
+processorTypes.37.type: org.apache.nifi.processors.elasticsearch.PaginatedJsonQueryElasticsearch
+processorTypes.37.bundle.group: org.apache.nifi
+processorTypes.37.bundle.artifact: nifi-elasticsearch-restapi-nar
+processorTypes.37.bundle.version: 2.4.0
+processorTypes.37.description: A processor that allows the user to run a paginated query (with aggregations) written with the Elasticsearch JSON DSL. It will use the flowfile's content for the query unless the QUERY attribute is populated. Search After/Point in Time queries must include a valid "sort" field.
+processorTypes.37.restricted: False
+processorTypes.37.tags.0: read
+processorTypes.37.tags.1: elasticsearch
+processorTypes.37.tags.2: query
+processorTypes.37.tags.3: elasticsearch7
+processorTypes.37.tags.4: scroll
+processorTypes.37.tags.5: elasticsearch8
+processorTypes.37.tags.6: json
+processorTypes.37.tags.7: elasticsearch5
+processorTypes.37.tags.8: elasticsearch6
+processorTypes.37.tags.9: page
+processorTypes.38.type: org.apache.nifi.processors.standard.PutSQL
+processorTypes.38.bundle.group: org.apache.nifi
+processorTypes.38.bundle.artifact: nifi-standard-nar
+processorTypes.38.bundle.version: 2.4.0
+processorTypes.38.description: Executes a SQL UPDATE or INSERT command. The content of an incoming FlowFile is expected to be the SQL command to execute. The SQL command may use the ? to escape parameters. In this case, the parameters to use must exist as FlowFile attributes with the naming convention sql.args.N.type and sql.args.N.value, where N is a positive integer. The sql.args.N.type is expected to be a number indicating the JDBC Type. The content of the FlowFile is expected to be in UTF-8 format.
+processorTypes.38.restricted: False
+processorTypes.38.tags.0: database
+processorTypes.38.tags.1: rdbms
+processorTypes.38.tags.2: update
+processorTypes.38.tags.3: insert
+processorTypes.38.tags.4: relational
+processorTypes.38.tags.5: put
+processorTypes.38.tags.6: sql
+processorTypes.39.type: org.apache.nifi.processors.standard.SplitXml
+processorTypes.39.bundle.group: org.apache.nifi
+processorTypes.39.bundle.artifact: nifi-standard-nar
+processorTypes.39.bundle.version: 2.4.0
+processorTypes.39.description: Splits an XML File into multiple separate FlowFiles, each comprising a child or descendant of the original root element
+processorTypes.39.restricted: False
+processorTypes.39.tags.0: split
+processorTypes.39.tags.1: xml
+processorTypes.40.type: org.apache.nifi.processors.aws.dynamodb.DeleteDynamoDB
+processorTypes.40.bundle.group: org.apache.nifi
+processorTypes.40.bundle.artifact: nifi-aws-nar
+processorTypes.40.bundle.version: 2.4.0
+processorTypes.40.description: Deletes a document from DynamoDB based on hash and range key. The key can be string or number. The request requires all the primary keys for the operation (hash or hash and range key)
+processorTypes.40.restricted: False
+processorTypes.40.tags.0: Delete
+processorTypes.40.tags.1: DynamoDB
+processorTypes.40.tags.2: Remove
+processorTypes.40.tags.3: Amazon
+processorTypes.40.tags.4: AWS
+processorTypes.41.type: org.apache.nifi.processors.azure.storage.MoveAzureDataLakeStorage
+processorTypes.41.bundle.group: org.apache.nifi
+processorTypes.41.bundle.artifact: nifi-azure-nar
+processorTypes.41.bundle.version: 2.4.0
+processorTypes.41.description: Moves content within an Azure Data Lake Storage Gen 2. After the move, files will be no longer available on source location.
+processorTypes.41.restricted: False
+processorTypes.41.tags.0: cloud
+processorTypes.41.tags.1: datalake
+processorTypes.41.tags.2: storage
+processorTypes.41.tags.3: microsoft
+processorTypes.41.tags.4: adlsgen2
+processorTypes.41.tags.5: azure
+processorTypes.42.type: org.apache.nifi.processors.gcp.storage.PutGCSObject
+processorTypes.42.bundle.group: org.apache.nifi
+processorTypes.42.bundle.artifact: nifi-gcp-nar
+processorTypes.42.bundle.version: 2.4.0
+processorTypes.42.description: Writes the contents of a FlowFile as an object in a Google Cloud Storage.
+processorTypes.42.restricted: False
+processorTypes.42.tags.0: gcs
+processorTypes.42.tags.1: google cloud
+processorTypes.42.tags.2: google
+processorTypes.42.tags.3: archive
+processorTypes.42.tags.4: put
+processorTypes.43.type: org.apache.nifi.processors.standard.ConvertRecord
+processorTypes.43.bundle.group: org.apache.nifi
+processorTypes.43.bundle.artifact: nifi-standard-nar
+processorTypes.43.bundle.version: 2.4.0
+processorTypes.43.description: Converts records from one data format to another using configured Record Reader and Record Write Controller Services. The Reader and Writer must be configured with "matching" schemas. By this, we mean the schemas must have the same field names. The types of the fields do not have to be the same if a field value can be coerced from one type to another. For instance, if the input schema has a field named "balance" of type double, the output schema can have a field named "balance" with a type of string, double, or float. If any field is present in the input that is not present in the output, the field will be left out of the output. If any field is specified in the output schema but is not present in the input data/schema, then the field will not be present in the output or will have a null value, depending on the writer.
+processorTypes.43.restricted: False
+processorTypes.43.tags.0: schema
+processorTypes.43.tags.1: log
+processorTypes.43.tags.2: record
+processorTypes.43.tags.3: csv
+processorTypes.43.tags.4: freeform
+processorTypes.43.tags.5: json
+processorTypes.43.tags.6: convert
+processorTypes.43.tags.7: text
+processorTypes.43.tags.8: logs
+processorTypes.43.tags.9: generic
+processorTypes.43.tags.10: avro
+processorTypes.44.type: org.apache.nifi.processors.aws.sns.PutSNS
+processorTypes.44.bundle.group: org.apache.nifi
+processorTypes.44.bundle.artifact: nifi-aws-nar
+processorTypes.44.bundle.version: 2.4.0
+processorTypes.44.description: Sends the content of a FlowFile as a notification to the Amazon Simple Notification Service
+processorTypes.44.restricted: False
+processorTypes.44.tags.0: amazon
+processorTypes.44.tags.1: publish
+processorTypes.44.tags.2: sns
+processorTypes.44.tags.3: topic
+processorTypes.44.tags.4: aws
+processorTypes.44.tags.5: put
+processorTypes.44.tags.6: pubsub
+processorTypes.45.type: org.apache.nifi.processors.standard.EvaluateXPath
+processorTypes.45.bundle.group: org.apache.nifi
+processorTypes.45.bundle.artifact: nifi-standard-nar
+processorTypes.45.bundle.version: 2.4.0
+processorTypes.45.description: Evaluates one or more XPaths against the content of a FlowFile. The results of those XPaths are assigned to FlowFile Attributes or are written to the content of the FlowFile itself, depending on configuration of the Processor. XPaths are entered by adding user-defined properties; the name of the property maps to the Attribute Name into which the result will be placed (if the Destination is flowfile-attribute; otherwise, the property name is ignored). The value of the property must be a valid XPath expression. If the XPath evaluates to more than one node and the Return Type is set to 'nodeset' (either directly, or via 'auto-detect' with a Destination of 'flowfile-content'), the FlowFile will be unmodified and will be routed to failure. If the XPath does not evaluate to a Node, the FlowFile will be routed to 'unmatched' without having its contents modified. If Destination is flowfile-attribute and the expression matches nothing, attributes will be created with empty strings as the value, and the FlowFile will always be routed to 'matched'
+processorTypes.45.restricted: False
+processorTypes.45.tags.0: XPath
+processorTypes.45.tags.1: XML
+processorTypes.45.tags.2: evaluate
+processorTypes.46.type: org.apache.nifi.processors.standard.QueryDatabaseTableRecord
+processorTypes.46.bundle.group: org.apache.nifi
+processorTypes.46.bundle.artifact: nifi-standard-nar
+processorTypes.46.bundle.version: 2.4.0
+processorTypes.46.description: Generates a SQL select query, or uses a provided statement, and executes it to fetch all rows whose values in the specified Maximum Value column(s) are larger than the previously-seen maxima. Query result will be converted to the format specified by the record writer. Expression Language is supported for several properties, but no incoming connections are permitted. The Environment/System properties may be used to provide values for any property containing Expression Language. If it is desired to leverage flow file attributes to perform these queries, the GenerateTableFetch and/or ExecuteSQL processors can be used for this purpose. Streaming is used so arbitrarily large result sets are supported. This processor can be scheduled to run on a timer or cron expression, using the standard scheduling methods. This processor is intended to be run on the Primary Node only. FlowFile attribute 'querydbtable.row.count' indicates how many rows were selected.
+processorTypes.46.restricted: False
+processorTypes.46.tags.0: database
+processorTypes.46.tags.1: select
+processorTypes.46.tags.2: query
+processorTypes.46.tags.3: record
+processorTypes.46.tags.4: jdbc
+processorTypes.46.tags.5: sql
+processorTypes.47.type: org.apache.nifi.processors.standard.SplitRecord
+processorTypes.47.bundle.group: org.apache.nifi
+processorTypes.47.bundle.artifact: nifi-standard-nar
+processorTypes.47.bundle.version: 2.4.0
+processorTypes.47.description: Splits up an input FlowFile that is in a record-oriented data format into multiple smaller FlowFiles
+processorTypes.47.restricted: False
+processorTypes.47.tags.0: schema
+processorTypes.47.tags.1: split
+processorTypes.47.tags.2: log
+processorTypes.47.tags.3: csv
+processorTypes.47.tags.4: freeform
+processorTypes.47.tags.5: json
+processorTypes.47.tags.6: text
+processorTypes.47.tags.7: logs
+processorTypes.47.tags.8: generic
+processorTypes.47.tags.9: avro
+processorTypes.48.type: org.apache.nifi.processors.snowflake.PutSnowflakeInternalStage
+processorTypes.48.bundle.group: org.apache.nifi
+processorTypes.48.bundle.artifact: nifi-snowflake-processors-nar
+processorTypes.48.bundle.version: 2.4.0
+processorTypes.48.description: Puts files into a Snowflake internal stage. The internal stage must be created in the Snowflake account beforehand. This processor can be connected to a StartSnowflakeIngest processor to ingest the file in the internal stage
+processorTypes.48.restricted: False
+processorTypes.48.tags.0: snowflake
+processorTypes.48.tags.1: database
+processorTypes.48.tags.2: jdbc
+processorTypes.48.tags.3: connection
+processorTypes.48.tags.4: snowpipe
+processorTypes.49.type: org.apache.nifi.processors.jslt.JSLTTransformJSON
+processorTypes.49.bundle.group: org.apache.nifi
+processorTypes.49.bundle.artifact: nifi-jslt-nar
+processorTypes.49.bundle.version: 2.4.0
+processorTypes.49.description: Applies a JSLT transformation to the FlowFile JSON payload. A new FlowFile is created with transformed content and is routed to the 'success' relationship. If the JSLT transform fails, the original FlowFile is routed to the 'failure' relationship.
+processorTypes.49.restricted: False
+processorTypes.49.tags.0: jslt
+processorTypes.49.tags.1: transform
+processorTypes.49.tags.2: json
+processorTypes.50.type: org.apache.nifi.amqp.processors.ConsumeAMQP
+processorTypes.50.bundle.group: org.apache.nifi
+processorTypes.50.bundle.artifact: nifi-amqp-nar
+processorTypes.50.bundle.version: 2.4.0
+processorTypes.50.description: Consumes AMQP Messages from an AMQP Broker using the AMQP 0.9.1 protocol. Each message that is received from the AMQP Broker will be emitted as its own FlowFile to the 'success' relationship.
+processorTypes.50.restricted: False
+processorTypes.50.tags.0: receive
+processorTypes.50.tags.1: amqp
+processorTypes.50.tags.2: rabbit
+processorTypes.50.tags.3: get
+processorTypes.50.tags.4: consume
+processorTypes.50.tags.5: message
+processorTypes.51.type: org.apache.nifi.processors.aws.dynamodb.GetDynamoDB
+processorTypes.51.bundle.group: org.apache.nifi
+processorTypes.51.bundle.artifact: nifi-aws-nar
+processorTypes.51.bundle.version: 2.4.0
+processorTypes.51.description: Retrieves a document from DynamoDB based on hash and range key.  The key can be string or number.For any get request all the primary keys are required (hash or hash and range based on the table keys).A Json Document ('Map') attribute of the DynamoDB item is read into the content of the FlowFile.
+processorTypes.51.restricted: False
+processorTypes.51.tags.0: Fetch
+processorTypes.51.tags.1: Get
+processorTypes.51.tags.2: DynamoDB
+processorTypes.51.tags.3: Amazon
+processorTypes.51.tags.4: AWS
+processorTypes.52.type: org.apache.nifi.processors.elasticsearch.JsonQueryElasticsearch
+processorTypes.52.bundle.group: org.apache.nifi
+processorTypes.52.bundle.artifact: nifi-elasticsearch-restapi-nar
+processorTypes.52.bundle.version: 2.4.0
+processorTypes.52.description: A processor that allows the user to run a query (with aggregations) written with the Elasticsearch JSON DSL. It does not automatically paginate queries for the user. If an incoming relationship is added to this processor, it will use the flowfile's content for the query. Care should be taken on the size of the query because the entire response from Elasticsearch will be loaded into memory all at once and converted into the resulting flowfiles.
+processorTypes.52.restricted: False
+processorTypes.52.tags.0: read
+processorTypes.52.tags.1: elasticsearch
+processorTypes.52.tags.2: query
+processorTypes.52.tags.3: get
+processorTypes.52.tags.4: elasticsearch7
+processorTypes.52.tags.5: elasticsearch8
+processorTypes.52.tags.6: json
+processorTypes.52.tags.7: elasticsearch5
+processorTypes.52.tags.8: elasticsearch6
+processorTypes.53.type: org.apache.nifi.processors.slack.PublishSlack
+processorTypes.53.bundle.group: org.apache.nifi
+processorTypes.53.bundle.artifact: nifi-slack-nar
+processorTypes.53.bundle.version: 2.4.0
+processorTypes.53.description: Posts a message to the specified Slack channel. The content of the message can be either a user-defined message that makes use of Expression Language or
+the contents of the FlowFile can be sent as the message. If sending a user-defined message, the contents of the FlowFile may also be optionally uploaded as
+a file attachment.
+
+processorTypes.53.restricted: False
+processorTypes.53.tags.0: chat.postMessage
+processorTypes.53.tags.1: upload
+processorTypes.53.tags.2: slack
+processorTypes.53.tags.3: unstructured
+processorTypes.53.tags.4: publish
+processorTypes.53.tags.5: team
+processorTypes.53.tags.6: text
+processorTypes.53.tags.7: social media
+processorTypes.53.tags.8: write
+processorTypes.53.tags.9: send
+processorTypes.53.tags.10: conversation
+processorTypes.54.type: org.apache.nifi.processors.standard.AttributesToJSON
+processorTypes.54.bundle.group: org.apache.nifi
+processorTypes.54.bundle.artifact: nifi-standard-nar
+processorTypes.54.bundle.version: 2.4.0
+processorTypes.54.description: Generates a JSON representation of the input FlowFile Attributes. The resulting JSON can be written to either a new Attribute 'JSONAttributes' or written to the FlowFile as content. Attributes  which contain nested JSON objects can either be handled as JSON or as escaped JSON depending on the strategy chosen.
+processorTypes.54.restricted: False
+processorTypes.54.tags.0: flowfile
+processorTypes.54.tags.1: json
+processorTypes.54.tags.2: attributes
+processorTypes.55.type: com.hxgn.processors.osi.pi.InvokeOSIPI
+processorTypes.55.bundle.group: hexagon
+processorTypes.55.bundle.artifact: dfs-osi-pi-processors-nar
+processorTypes.55.bundle.version: 2.4.0
+processorTypes.55.description: OSI PI processor can interact with the PI Web API RESTful interface, giving client applications read and write access to their AF and PI data over HTTPS. The PI Server URL and HTTP Method are configurable. Create corresponds to POST, read to GET, update to PUT (when the method requires the complete resource definition) or PATCH (when the method accepts a partial resource definition), and delete to DELETE. When the HTTP Method is PUT, POST or PATCH, the FlowFile contents are included as the body of the request and FlowFile attributes are converted to HTTP headers, optionally, based on configuration properties.
+processorTypes.55.restricted: False
+processorTypes.55.tags.0: hexagon
+processorTypes.56.type: org.apache.nifi.processors.azure.eventhub.ConsumeAzureEventHub
+processorTypes.56.bundle.group: org.apache.nifi
+processorTypes.56.bundle.artifact: nifi-azure-nar
+processorTypes.56.bundle.version: 2.4.0
+processorTypes.56.description: Receives messages from Microsoft Azure Event Hubs with checkpointing to ensure consistent event processing. Checkpoint tracking avoids consuming a message multiple times and enables reliable resumption of processing in the event of intermittent network failures. Checkpoint tracking requires external storage and provides the preferred approach to consuming messages from Azure Event Hubs. In clustered environment, ConsumeAzureEventHub processor instances form a consumer group and the messages are distributed among the cluster nodes (each message is processed on one cluster node only).
+processorTypes.56.restricted: False
+processorTypes.56.tags.0: cloud
+processorTypes.56.tags.1: streaming
+processorTypes.56.tags.2: streams
+processorTypes.56.tags.3: eventhub
+processorTypes.56.tags.4: microsoft
+processorTypes.56.tags.5: events
+processorTypes.56.tags.6: azure
+processorTypes.57.type: org.apache.nifi.processors.standard.RetryFlowFile
+processorTypes.57.bundle.group: org.apache.nifi
+processorTypes.57.bundle.artifact: nifi-standard-nar
+processorTypes.57.bundle.version: 2.4.0
+processorTypes.57.description: FlowFiles passed to this Processor have a 'Retry Attribute' value checked against a configured 'Maximum Retries' value. If the current attribute value is below the configured maximum, the FlowFile is passed to a retry relationship. The FlowFile may or may not be penalized in that condition. If the FlowFile's attribute value exceeds the configured maximum, the FlowFile will be passed to a 'retries_exceeded' relationship. WARNING: If the incoming FlowFile has a non-numeric value in the configured 'Retry Attribute' attribute, it will be reset to '1'. You may choose to fail the FlowFile instead of performing the reset. Additional dynamic properties can be defined for any attributes you wish to add to the FlowFiles transferred to 'retries_exceeded'. These attributes support attribute expression language.
+processorTypes.57.restricted: False
+processorTypes.57.tags.0: FlowFile
+processorTypes.57.tags.1: Retry
+processorTypes.58.type: org.apache.nifi.processors.aws.s3.ListS3
+processorTypes.58.bundle.group: org.apache.nifi
+processorTypes.58.bundle.artifact: nifi-aws-nar
+processorTypes.58.bundle.version: 2.4.0
+processorTypes.58.description: Retrieves a listing of objects from an S3 bucket. For each object that is listed, creates a FlowFile that represents the object so that it can be fetched in conjunction with FetchS3Object. This Processor is designed to run on Primary Node only in a cluster. If the primary node changes, the new Primary Node will pick up where the previous node left off without duplicating all of the data.
+processorTypes.58.restricted: False
+processorTypes.58.tags.0: S3
+processorTypes.58.tags.1: Amazon
+processorTypes.58.tags.2: list
+processorTypes.58.tags.3: AWS
+processorTypes.59.type: org.apache.nifi.processors.standard.EvaluateJsonPath
+processorTypes.59.bundle.group: org.apache.nifi
+processorTypes.59.bundle.artifact: nifi-standard-nar
+processorTypes.59.bundle.version: 2.4.0
+processorTypes.59.description: Evaluates one or more JsonPath expressions against the content of a FlowFile. The results of those expressions are assigned to FlowFile Attributes or are written to the content of the FlowFile itself, depending on configuration of the Processor. JsonPaths are entered by adding user-defined properties; the name of the property maps to the Attribute Name into which the result will be placed (if the Destination is flowfile-attribute; otherwise, the property name is ignored). The value of the property must be a valid JsonPath expression. A Return Type of 'auto-detect' will make a determination based off the configured destination. When 'Destination' is set to 'flowfile-attribute,' a return type of 'scalar' will be used. When 'Destination' is set to 'flowfile-content,' a return type of 'JSON' will be used.If the JsonPath evaluates to a JSON array or JSON object and the Return Type is set to 'scalar' the FlowFile will be unmodified and will be routed to failure. A Return Type of JSON can return scalar values if the provided JsonPath evaluates to the specified value and will be routed as a match.If Destination is 'flowfile-content' and the JsonPath does not evaluate to a defined path, the FlowFile will be routed to 'unmatched' without having its contents modified. If Destination is 'flowfile-attribute' and the expression matches nothing, attributes will be created with empty strings as the value unless 'Path Not Found Behaviour' is set to 'skip', and the FlowFile will always be routed to 'matched.'
+processorTypes.59.restricted: False
+processorTypes.59.tags.0: JSON
+processorTypes.59.tags.1: JsonPath
+processorTypes.59.tags.2: evaluate
+processorTypes.60.type: org.apache.nifi.processors.standard.ValidateXml
+processorTypes.60.bundle.group: org.apache.nifi
+processorTypes.60.bundle.artifact: nifi-standard-nar
+processorTypes.60.bundle.version: 2.4.0
+processorTypes.60.description: Validates XML contained in a FlowFile. By default, the XML is contained in the FlowFile content. If the 'XML Source Attribute' property is set, the XML to be validated is contained in the specified attribute. It is not recommended to use attributes to hold large XML documents; doing so could adversely affect system performance. Full schema validation is performed if the processor is configured with the XSD schema details. Otherwise, the only validation performed is to ensure the XML syntax is correct and well-formed, e.g. all opening tags are properly closed.
+processorTypes.60.restricted: True
+processorTypes.60.explicitRestrictions.0.requiredPermission.id: reference-remote-resources
+processorTypes.60.explicitRestrictions.0.requiredPermission.label: reference remote resources
+processorTypes.60.explicitRestrictions.0.explanation: Schema configuration can reference resources over HTTP
+processorTypes.60.tags.0: schema
+processorTypes.60.tags.1: xml
+processorTypes.60.tags.2: restricted
+processorTypes.60.tags.3: xsd
+processorTypes.60.tags.4: validation
+processorTypes.61.type: org.apache.nifi.processors.standard.ExecuteSQLRecord
+processorTypes.61.bundle.group: org.apache.nifi
+processorTypes.61.bundle.artifact: nifi-standard-nar
+processorTypes.61.bundle.version: 2.4.0
+processorTypes.61.description: Executes provided SQL select query. Query result will be converted to the format specified by a Record Writer. Streaming is used so arbitrarily large result sets are supported. This processor can be scheduled to run on a timer, or cron expression, using the standard scheduling methods, or it can be triggered by an incoming FlowFile. If it is triggered by an incoming FlowFile, then attributes of that FlowFile will be available when evaluating the select query, and the query may use the ? to escape parameters. In this case, the parameters to use must exist as FlowFile attributes with the naming convention sql.args.N.type and sql.args.N.value, where N is a positive integer. The sql.args.N.type is expected to be a number indicating the JDBC Type. The content of the FlowFile is expected to be in UTF-8 format. FlowFile attribute 'executesql.row.count' indicates how many rows were selected.
+processorTypes.61.restricted: False
+processorTypes.61.tags.0: database
+processorTypes.61.tags.1: select
+processorTypes.61.tags.2: query
+processorTypes.61.tags.3: record
+processorTypes.61.tags.4: jdbc
+processorTypes.61.tags.5: sql
+processorTypes.62.type: org.apache.nifi.processors.aws.s3.CopyS3Object
+processorTypes.62.bundle.group: org.apache.nifi
+processorTypes.62.bundle.artifact: nifi-aws-nar
+processorTypes.62.bundle.version: 2.4.0
+processorTypes.62.description: Copies a file from one bucket and key to another in AWS S3
+processorTypes.62.restricted: False
+processorTypes.62.tags.0: S3
+processorTypes.62.tags.1: Archive
+processorTypes.62.tags.2: Copy
+processorTypes.62.tags.3: Amazon
+processorTypes.62.tags.4: AWS
+processorTypes.63.type: org.apache.nifi.processors.standard.FlattenJson
+processorTypes.63.bundle.group: org.apache.nifi
+processorTypes.63.bundle.artifact: nifi-standard-nar
+processorTypes.63.bundle.version: 2.4.0
+processorTypes.63.description: Provides the user with the ability to take a nested JSON document and flatten it into a simple key/value pair document. The keys are combined at each level with a user-defined separator that defaults to '.'. This Processor also allows to unflatten back the flattened json. It supports four kinds of flatten mode such as normal, keep-arrays, dot notation for MongoDB query and keep-primitive-arrays. Default flatten mode is 'keep-arrays'.
+processorTypes.63.restricted: False
+processorTypes.63.tags.0: flatten
+processorTypes.63.tags.1: unflatten
+processorTypes.63.tags.2: json
+processorTypes.64.type: org.apache.nifi.processors.standard.UpdateDatabaseTable
+processorTypes.64.bundle.group: org.apache.nifi
+processorTypes.64.bundle.artifact: nifi-standard-nar
+processorTypes.64.bundle.version: 2.4.0
+processorTypes.64.description: This processor uses a JDBC connection and incoming records to generate any database table changes needed to support the incoming records. It expects a 'flat' record layout, meaning none of the top-level record fields has nested fields that are intended to become columns themselves.
+processorTypes.64.restricted: False
+processorTypes.64.tags.0: metadata
+processorTypes.64.tags.1: database
+processorTypes.64.tags.2: update
+processorTypes.64.tags.3: jdbc
+processorTypes.64.tags.4: table
+processorTypes.64.tags.5: alter
+processorTypes.65.type: org.apache.nifi.processors.standard.GetSFTP
+processorTypes.65.bundle.group: org.apache.nifi
+processorTypes.65.bundle.artifact: nifi-standard-nar
+processorTypes.65.bundle.version: 2.4.0
+processorTypes.65.description: Fetches files from an SFTP Server and creates FlowFiles from them
+processorTypes.65.restricted: False
+processorTypes.65.tags.0: input
+processorTypes.65.tags.1: get
+processorTypes.65.tags.2: fetch
+processorTypes.65.tags.3: retrieve
+processorTypes.65.tags.4: files
+processorTypes.65.tags.5: sftp
+processorTypes.65.tags.6: source
+processorTypes.65.tags.7: remote
+processorTypes.65.tags.8: ingest
+processorTypes.66.type: org.apache.nifi.processors.standard.FetchFTP
+processorTypes.66.bundle.group: org.apache.nifi
+processorTypes.66.bundle.artifact: nifi-standard-nar
+processorTypes.66.bundle.version: 2.4.0
+processorTypes.66.description: Fetches the content of a file from a remote FTP server and overwrites the contents of an incoming FlowFile with the content of the remote file.
+processorTypes.66.restricted: False
+processorTypes.66.tags.0: input
+processorTypes.66.tags.1: ftp
+processorTypes.66.tags.2: get
+processorTypes.66.tags.3: fetch
+processorTypes.66.tags.4: retrieve
+processorTypes.66.tags.5: files
+processorTypes.66.tags.6: source
+processorTypes.66.tags.7: remote
+processorTypes.66.tags.8: ingest
+processorTypes.67.type: org.apache.nifi.processors.standard.MergeContent
+processorTypes.67.bundle.group: org.apache.nifi
+processorTypes.67.bundle.artifact: nifi-standard-nar
+processorTypes.67.bundle.version: 2.4.0
+processorTypes.67.description: Merges a Group of FlowFiles together based on a user-defined strategy and packages them into a single FlowFile. It is recommended that the Processor be configured with only a single incoming connection, as Group of FlowFiles will not be created from FlowFiles in different connections. This processor updates the mime.type attribute as appropriate. NOTE: this processor should NOT be configured with Cron Driven for the Scheduling Strategy.
+processorTypes.67.restricted: False
+processorTypes.67.tags.0: zip
+processorTypes.67.tags.1: flowfile-stream-v3
+processorTypes.67.tags.2: flowfile-stream
+processorTypes.67.tags.3: concatenation
+processorTypes.67.tags.4: correlation
+processorTypes.67.tags.5: tar
+processorTypes.67.tags.6: stream
+processorTypes.67.tags.7: merge
+processorTypes.67.tags.8: archive
+processorTypes.67.tags.9: content
+processorTypes.68.type: org.apache.nifi.processors.workday.GetWorkdayReport
+processorTypes.68.bundle.group: org.apache.nifi
+processorTypes.68.bundle.artifact: nifi-workday-processors-nar
+processorTypes.68.bundle.version: 2.4.0
+processorTypes.68.description: A processor which can interact with a configurable Workday Report. The processor can forward the content without modification, or you can transform it by providing the specific Record Reader and Record Writer services based on your needs. You can also remove fields by defining schema in the Record Writer. Supported Workday report formats are: csv, simplexml, json
+processorTypes.68.restricted: False
+processorTypes.68.tags.0: report
+processorTypes.68.tags.1: Workday
+processorTypes.69.type: com.hxgn.processors.datalake.GetEAMDataLakeMessageProcessor
+processorTypes.69.bundle.group: hexagon
+processorTypes.69.bundle.artifact: nifi-datalake-processors-nar
+processorTypes.69.bundle.version: 2.4.0
+processorTypes.69.description: Connects to EAM’s Data Lake Utility tool, retrieving all messages published from the corresponding EAM tenant. A flowfile is created for each message retrieved. An attribute ‘datalake.tag’ is automatically added to each flowfile and includes the EAM table name provided by the Data Lake Utility tool (Ex. datalake.tag = eam_R5USERS). This should only be used once within a tenant canvas, as it reads all messages published by the EAM Data Lake Utility tool. Multiples of this processor will cause unintended outcomes and behaviors.
+processorTypes.69.restricted: False
+processorTypes.69.tags.0: hexagon
+processorTypes.70.type: org.apache.nifi.processors.elasticsearch.ConsumeElasticsearch
+processorTypes.70.bundle.group: org.apache.nifi
+processorTypes.70.bundle.artifact: nifi-elasticsearch-restapi-nar
+processorTypes.70.bundle.version: 2.4.0
+processorTypes.70.description: A processor that repeatedly runs a paginated query against a field using a Range query to consume new Documents from an Elasticsearch index/query. The processor will retrieve multiple pages of results until either no more results are available or the Pagination Keep Alive expiration is reached, after which the Range query will automatically update the field constraint based on the last retrieved Document value.
+processorTypes.70.restricted: False
+processorTypes.70.tags.0: search
+processorTypes.70.tags.1: elasticsearch
+processorTypes.70.tags.2: query
+processorTypes.70.tags.3: elasticsearch7
+processorTypes.70.tags.4: scroll
+processorTypes.70.tags.5: elasticsearch8
+processorTypes.70.tags.6: json
+processorTypes.70.tags.7: elasticsearch5
+processorTypes.70.tags.8: elasticsearch6
+processorTypes.70.tags.9: page
+processorTypes.71.type: org.apache.nifi.processors.standard.ValidateCsv
+processorTypes.71.bundle.group: org.apache.nifi
+processorTypes.71.bundle.artifact: nifi-standard-nar
+processorTypes.71.bundle.version: 2.4.0
+processorTypes.71.description: Validates the contents of FlowFiles or a FlowFile attribute value against a user-specified CSV schema. Take a look at the additional documentation of this processor for some schema examples.
+processorTypes.71.restricted: False
+processorTypes.71.tags.0: schema
+processorTypes.71.tags.1: csv
+processorTypes.71.tags.2: validation
+processorTypes.72.type: org.apache.nifi.processors.azure.storage.FetchAzureDataLakeStorage
+processorTypes.72.bundle.group: org.apache.nifi
+processorTypes.72.bundle.artifact: nifi-azure-nar
+processorTypes.72.bundle.version: 2.4.0
+processorTypes.72.description: Fetch the specified file from Azure Data Lake Storage
+processorTypes.72.restricted: False
+processorTypes.72.tags.0: cloud
+processorTypes.72.tags.1: datalake
+processorTypes.72.tags.2: storage
+processorTypes.72.tags.3: microsoft
+processorTypes.72.tags.4: adlsgen2
+processorTypes.72.tags.5: azure
+processorTypes.73.type: org.apache.nifi.processors.aws.dynamodb.PutDynamoDBRecord
+processorTypes.73.bundle.group: org.apache.nifi
+processorTypes.73.bundle.artifact: nifi-aws-nar
+processorTypes.73.bundle.version: 2.4.0
+processorTypes.73.description: Inserts items into DynamoDB based on record-oriented data. The record fields are mapped into DynamoDB item fields, including partition and sort keys if set. Depending on the number of records the processor might execute the insert in multiple chunks in order to overcome DynamoDB's limitation on batch writing. This might result partially processed FlowFiles in which case the FlowFile will be transferred to the "unprocessed" relationship with the necessary attribute to retry later without duplicating the already executed inserts.
+processorTypes.73.restricted: False
+processorTypes.73.tags.0: DynamoDB
+processorTypes.73.tags.1: Record
+processorTypes.73.tags.2: Amazon
+processorTypes.73.tags.3: Insert
+processorTypes.73.tags.4: AWS
+processorTypes.73.tags.5: Put
+processorTypes.74.type: org.apache.nifi.processors.standard.ControlRate
+processorTypes.74.bundle.group: org.apache.nifi
+processorTypes.74.bundle.artifact: nifi-standard-nar
+processorTypes.74.bundle.version: 2.4.0
+processorTypes.74.description: Controls the rate at which data is transferred to follow-on processors. If you configure a very small Time Duration, then the accuracy of the throttle gets worse. You can improve this accuracy by decreasing the Yield Duration, at the expense of more Tasks given to the processor.
+processorTypes.74.restricted: False
+processorTypes.74.tags.0: throttle
+processorTypes.74.tags.1: rate
+processorTypes.74.tags.2: rate control
+processorTypes.74.tags.3: throughput
+processorTypes.75.type: org.apache.nifi.processors.aws.s3.GetS3ObjectMetadata
+processorTypes.75.bundle.group: org.apache.nifi
+processorTypes.75.bundle.artifact: nifi-aws-nar
+processorTypes.75.bundle.version: 2.4.0
+processorTypes.75.description: Check for the existence of an Object in S3 and fetch its Metadata without attempting to download it. This processor can be used as a router for workflows that need to check on an Object in S3 before proceeding with data processing
+processorTypes.75.restricted: False
+processorTypes.75.tags.0: S3
+processorTypes.75.tags.1: Archive
+processorTypes.75.tags.2: Exists
+processorTypes.75.tags.3: Amazon
+processorTypes.75.tags.4: AWS
+processorTypes.76.type: org.apache.nifi.processors.dropbox.FetchDropbox
+processorTypes.76.bundle.group: org.apache.nifi
+processorTypes.76.bundle.artifact: nifi-dropbox-processors-nar
+processorTypes.76.bundle.version: 2.4.0
+processorTypes.76.description: Fetches files from Dropbox. Designed to be used in tandem with ListDropbox.
+processorTypes.76.restricted: False
+processorTypes.76.tags.0: dropbox
+processorTypes.76.tags.1: fetch
+processorTypes.76.tags.2: storage
+processorTypes.77.type: org.apache.nifi.processors.standard.FilterAttribute
+processorTypes.77.bundle.group: org.apache.nifi
+processorTypes.77.bundle.artifact: nifi-standard-nar
+processorTypes.77.bundle.version: 2.4.0
+processorTypes.77.description: Filters the attributes of a FlowFile by retaining specified attributes and removing the rest or by removing specified attributes and retaining the rest.
+processorTypes.77.restricted: False
+processorTypes.77.tags.0: filter
+processorTypes.77.tags.1: regex
+processorTypes.77.tags.2: retain
+processorTypes.77.tags.3: Attribute Expression Language
+processorTypes.77.tags.4: attributes
+processorTypes.77.tags.5: regular expression
+processorTypes.77.tags.6: modification
+processorTypes.77.tags.7: delete
+processorTypes.77.tags.8: remove
+processorTypes.78.type: org.apache.nifi.processors.standard.JoinEnrichment
+processorTypes.78.bundle.group: org.apache.nifi
+processorTypes.78.bundle.artifact: nifi-standard-nar
+processorTypes.78.bundle.version: 2.4.0
+processorTypes.78.description: Joins together Records from two different FlowFiles where one FlowFile, the 'original' contains arbitrary records and the second FlowFile, the 'enrichment' contains additional data that should be used to enrich the first. See Additional Details for more information on how to configure this processor and the different use cases that it aims to accomplish.
+processorTypes.78.restricted: False
+processorTypes.78.tags.0: enrichment
+processorTypes.78.tags.1: fork
+processorTypes.78.tags.2: record
+processorTypes.78.tags.3: merge
+processorTypes.78.tags.4: streams
+processorTypes.78.tags.5: join
+processorTypes.78.tags.6: recordpath
+processorTypes.78.tags.7: wrap
+processorTypes.78.tags.8: sql
+processorTypes.78.tags.9: combine
+processorTypes.79.type: org.apache.nifi.processors.standard.QueryRecord
+processorTypes.79.bundle.group: org.apache.nifi
+processorTypes.79.bundle.artifact: nifi-standard-nar
+processorTypes.79.bundle.version: 2.4.0
+processorTypes.79.description: Evaluates one or more SQL queries against the contents of a FlowFile. The result of the SQL query then becomes the content of the output FlowFile. This can be used, for example, for field-specific filtering, transformation, and row-level filtering. Columns can be renamed, simple calculations and aggregations performed, etc. The Processor is configured with a Record Reader Controller Service and a Record Writer service so as to allow flexibility in incoming and outgoing data formats. The Processor must be configured with at least one user-defined property. The name of the Property is the Relationship to route data to, and the value of the Property is a SQL SELECT statement that is used to specify how input data should be transformed/filtered. The SQL statement must be valid ANSI SQL and is powered by Apache Calcite. If the transformation fails, the original FlowFile is routed to the 'failure' relationship. Otherwise, the data selected will be routed to the associated relationship. If the Record Writer chooses to inherit the schema from the Record, it is important to note that the schema that is inherited will be from the ResultSet, rather than the input Record. This allows a single instance of the QueryRecord processor to have multiple queries, each of which returns a different set of columns and aggregations. As a result, though, the schema that is derived will have no schema name, so it is important that the configured Record Writer not attempt to write the Schema Name as an attribute if inheriting the Schema from the Record. See the Processor Usage documentation for more information.
+processorTypes.79.restricted: False
+processorTypes.79.tags.0: select
+processorTypes.79.tags.1: query
+processorTypes.79.tags.2: csv
+processorTypes.79.tags.3: update
+processorTypes.79.tags.4: calcite
+processorTypes.79.tags.5: sql
+processorTypes.79.tags.6: aggregate
+processorTypes.79.tags.7: filter
+processorTypes.79.tags.8: modify
+processorTypes.79.tags.9: transform
+processorTypes.79.tags.10: route
+processorTypes.79.tags.11: record
+processorTypes.79.tags.12: json
+processorTypes.79.tags.13: text
+processorTypes.79.tags.14: etl
+processorTypes.79.tags.15: logs
+processorTypes.79.tags.16: avro
+processorTypes.80.type: org.apache.nifi.processors.dropbox.ListDropbox
+processorTypes.80.bundle.group: org.apache.nifi
+processorTypes.80.bundle.artifact: nifi-dropbox-processors-nar
+processorTypes.80.bundle.version: 2.4.0
+processorTypes.80.description: Retrieves a listing of files from Dropbox (shortcuts are ignored). Each listed file may result in one FlowFile, the metadata being written as FlowFile attributes. When the 'Record Writer' property is set, the entire result is written as records to a single FlowFile. This Processor is designed to run on Primary Node only in a cluster. If the primary node changes, the new Primary Node will pick up where the previous node left off without duplicating all of the data.
+processorTypes.80.restricted: False
+processorTypes.80.tags.0: dropbox
+processorTypes.80.tags.1: storage
+processorTypes.81.type: org.apache.nifi.processors.standard.GenerateTableFetch
+processorTypes.81.bundle.group: org.apache.nifi
+processorTypes.81.bundle.artifact: nifi-standard-nar
+processorTypes.81.bundle.version: 2.4.0
+processorTypes.81.description: Generates SQL select queries that fetch "pages" of rows from a table. The partition size property, along with the table's row count, determine the size and number of pages and generated FlowFiles. In addition, incremental fetching can be achieved by setting Maximum-Value Columns, which causes the processor to track the columns' maximum values, thus only fetching rows whose columns' values exceed the observed maximums. This processor is intended to be run on the Primary Node only.
+
+This processor can accept incoming connections; the behavior of the processor is different whether incoming connections are provided:
+  - If no incoming connection(s) are specified, the processor will generate SQL queries on the specified processor schedule. Expression Language is supported for many fields, but no FlowFile attributes are available. However the properties will be evaluated using the Environment/System properties.
+  - If incoming connection(s) are specified and no FlowFile is available to a processor task, no work will be performed.
+  - If incoming connection(s) are specified and a FlowFile is available to a processor task, the FlowFile's attributes may be used in Expression Language for such fields as Table Name and others. However, the Max-Value Columns and Columns to Return fields must be empty or refer to columns that are available in each specified table.
+processorTypes.81.restricted: False
+processorTypes.81.tags.0: database
+processorTypes.81.tags.1: select
+processorTypes.81.tags.2: query
+processorTypes.81.tags.3: fetch
+processorTypes.81.tags.4: jdbc
+processorTypes.81.tags.5: generate
+processorTypes.81.tags.6: sql
+processorTypes.82.type: org.apache.nifi.processors.attributes.UpdateAttribute
+processorTypes.82.bundle.group: org.apache.nifi
+processorTypes.82.bundle.artifact: nifi-update-attribute-nar
+processorTypes.82.bundle.version: 2.4.0
+processorTypes.82.description: Updates the Attributes for a FlowFile by using the Attribute Expression Language and/or deletes the attributes based on a regular expression
+processorTypes.82.restricted: False
+processorTypes.82.tags.0: Attribute Expression Language
+processorTypes.82.tags.1: update
+processorTypes.82.tags.2: attributes
+processorTypes.82.tags.3: state
+processorTypes.82.tags.4: modification
+processorTypes.82.tags.5: delete
+processorTypes.83.type: org.apache.nifi.processors.standard.ListFTP
+processorTypes.83.bundle.group: org.apache.nifi
+processorTypes.83.bundle.artifact: nifi-standard-nar
+processorTypes.83.bundle.version: 2.4.0
+processorTypes.83.description: Performs a listing of the files residing on an FTP server. For each file that is found on the remote server, a new FlowFile will be created with the filename attribute set to the name of the file on the remote server. This can then be used in conjunction with FetchFTP in order to fetch those files.
+processorTypes.83.restricted: False
+processorTypes.83.tags.0: input
+processorTypes.83.tags.1: ftp
+processorTypes.83.tags.2: files
+processorTypes.83.tags.3: source
+processorTypes.83.tags.4: list
+processorTypes.83.tags.5: remote
+processorTypes.83.tags.6: ingest
+processorTypes.84.type: org.apache.nifi.processors.standard.UpdateCounter
+processorTypes.84.bundle.group: org.apache.nifi
+processorTypes.84.bundle.artifact: nifi-standard-nar
+processorTypes.84.bundle.version: 2.4.0
+processorTypes.84.description: This processor allows users to set specific counters and key points in their flow. It is useful for debugging and basic counting functions.
+processorTypes.84.restricted: False
+processorTypes.84.tags.0: debug
+processorTypes.84.tags.1: counter
+processorTypes.84.tags.2: instrumentation
+processorTypes.85.type: org.apache.nifi.processors.azure.storage.DeleteAzureDataLakeStorage
+processorTypes.85.bundle.group: org.apache.nifi
+processorTypes.85.bundle.artifact: nifi-azure-nar
+processorTypes.85.bundle.version: 2.4.0
+processorTypes.85.description: Deletes the provided file from Azure Data Lake Storage
+processorTypes.85.restricted: False
+processorTypes.85.tags.0: cloud
+processorTypes.85.tags.1: datalake
+processorTypes.85.tags.2: storage
+processorTypes.85.tags.3: microsoft
+processorTypes.85.tags.4: adlsgen2
+processorTypes.85.tags.5: azure
+processorTypes.86.type: com.hxgn.processors.groovyexecutionservice.processor.GroovyExecutionService
+processorTypes.86.bundle.group: hexagon
+processorTypes.86.bundle.artifact: nifi-hxgn-nar
+processorTypes.86.bundle.version: 2.4.0
+processorTypes.86.description: Groovy Execution Service script processor.
+processorTypes.86.restricted: True
+processorTypes.86.explicitRestrictions.0.requiredPermission.id: execute-code
+processorTypes.86.explicitRestrictions.0.requiredPermission.label: execute code
+processorTypes.86.explicitRestrictions.0.explanation: Allows execution of arbitrary code.
+processorTypes.86.tags.0: groovy
+processorTypes.86.tags.1: restricted
+processorTypes.86.tags.2: hexagon
+processorTypes.86.tags.3: script
+processorTypes.87.type: org.apache.nifi.kafka.processors.ConsumeKafka
+processorTypes.87.bundle.group: org.apache.nifi
+processorTypes.87.bundle.artifact: nifi-kafka-nar
+processorTypes.87.bundle.version: 2.4.0
+processorTypes.87.description: Consumes messages from Apache Kafka Consumer API. The complementary NiFi processor for sending messages is PublishKafka. The Processor supports consumption of Kafka messages, optionally interpreted as NiFi records. Please note that, at this time (in read record mode), the Processor assumes that all records that are retrieved from a given partition have the same schema. For this mode, if any of the Kafka messages are pulled but cannot be parsed or written with the configured Record Reader or Record Writer, the contents of the message will be written to a separate FlowFile, and that FlowFile will be transferred to the 'parse.failure' relationship. Otherwise, each FlowFile is sent to the 'success' relationship and may contain many individual messages within the single FlowFile. A 'record.count' attribute is added to indicate how many messages are contained in the FlowFile. No two Kafka messages will be placed into the same FlowFile if they have different schemas, or if they have different values for a message header that is included by the <Headers to Add as Attributes> property.
+processorTypes.87.restricted: False
+processorTypes.87.tags.0: PubSub
+processorTypes.87.tags.1: Consume
+processorTypes.87.tags.2: Ingest
+processorTypes.87.tags.3: Get
+processorTypes.87.tags.4: csv
+processorTypes.87.tags.5: Kafka
+processorTypes.87.tags.6: json
+processorTypes.87.tags.7: Ingress
+processorTypes.87.tags.8: Record
+processorTypes.87.tags.9: Topic
+processorTypes.87.tags.10: avro
+processorTypes.88.type: org.apache.nifi.processors.standard.ExtractText
+processorTypes.88.bundle.group: org.apache.nifi
+processorTypes.88.bundle.artifact: nifi-standard-nar
+processorTypes.88.bundle.version: 2.4.0
+processorTypes.88.description: Evaluates one or more Regular Expressions against the content of a FlowFile.  The results of those Regular Expressions are assigned to FlowFile Attributes.  Regular Expressions are entered by adding user-defined properties; the name of the property maps to the Attribute Name into which the result will be placed.  The attributes are generated differently based on the enabling of named capture groups.  If named capture groups are not enabled:  The first capture group, if any found, will be placed into that attribute name.But all capture groups, including the matching string sequence itself will also be provided at that attribute name with an index value provided, with the exception of a capturing group that is optional and does not match - for example, given the attribute name "regex" and expression "abc(def)?(g)" we would add an attribute "regex.1" with a value of "def" if the "def" matched. If the "def" did not match, no attribute named "regex.1" would be added but an attribute named "regex.2" with a value of "g" will be added regardless.If named capture groups are enabled:  Each named capture group, if found will be placed into the attributes name with the name provided.  If enabled the matching string sequence itself will be placed into the attribute name.  If multiple matches are enabled, and index will be applied after the first set of matches. The exception is a capturing group that is optional and does not match  For example, given the attribute name "regex" and expression "abc(?<NAMED>def)?(?<NAMED-TWO>g)"  we would add an attribute "regex.NAMED" with the value of "def" if the "def" matched.  We would   add an attribute "regex.NAMED-TWO" with the value of "g" if the "g" matched regardless.  The value of the property must be a valid Regular Expressions with one or more capturing groups. If named capture groups are enabled, all capture groups must be named.  If they are not, then the  processor configuration will fail validation.  If the Regular Expression matches more than once, only the first match will be used unless the property enabling repeating capture group is set to true. If any provided Regular Expression matches, the FlowFile(s) will be routed to 'matched'. If no provided Regular Expression matches, the FlowFile will be routed to 'unmatched' and no attributes will be applied to the FlowFile.
+processorTypes.88.restricted: False
+processorTypes.88.tags.0: Regular Expression
+processorTypes.88.tags.1: regex
+processorTypes.88.tags.2: extract
+processorTypes.88.tags.3: Text
+processorTypes.88.tags.4: evaluate
+processorTypes.89.type: org.apache.nifi.processors.azure.cosmos.document.PutAzureCosmosDBRecord
+processorTypes.89.bundle.group: org.apache.nifi
+processorTypes.89.bundle.artifact: nifi-azure-nar
+processorTypes.89.bundle.version: 2.4.0
+processorTypes.89.description: This processor is a record-aware processor for inserting data into Cosmos DB with Core SQL API. It uses a configured record reader and schema to read an incoming record set from the body of a Flowfile and then inserts those records into a configured Cosmos DB Container.
+processorTypes.89.restricted: False
+processorTypes.89.tags.0: record
+processorTypes.89.tags.1: insert
+processorTypes.89.tags.2: cosmos
+processorTypes.89.tags.3: put
+processorTypes.89.tags.4: azure
+processorTypes.90.type: org.apache.nifi.processors.standard.SplitText
+processorTypes.90.bundle.group: org.apache.nifi
+processorTypes.90.bundle.artifact: nifi-standard-nar
+processorTypes.90.bundle.version: 2.4.0
+processorTypes.90.description: Splits a text file into multiple smaller text files on line boundaries limited by maximum number of lines or total size of fragment. Each output split file will contain no more than the configured number of lines or bytes. If both Line Split Count and Maximum Fragment Size are specified, the split occurs at whichever limit is reached first. If the first line of a fragment exceeds the Maximum Fragment Size, that line will be output in a single split file which exceeds the configured maximum size limit. This component also allows one to specify that each split should include a header lines. Header lines can be computed by either specifying the amount of lines that should constitute a header or by using header marker to match against the read lines. If such match happens then the corresponding line will be treated as header. Keep in mind that upon the first failure of header marker match, no more matches will be performed and the rest of the data will be parsed as regular lines for a given split. If after computation of the header there are no more data, the resulting split will consists of only header lines.
+processorTypes.90.restricted: False
+processorTypes.90.tags.0: split
+processorTypes.90.tags.1: text
+processorTypes.91.type: org.apache.nifi.processors.elasticsearch.GetElasticsearch
+processorTypes.91.bundle.group: org.apache.nifi
+processorTypes.91.bundle.artifact: nifi-elasticsearch-restapi-nar
+processorTypes.91.bundle.version: 2.4.0
+processorTypes.91.description: Elasticsearch get processor that uses the official Elastic REST client libraries to fetch a single document from Elasticsearch by _id. Note that the full body of the document will be read into memory before being written to a FlowFile for transfer.
+processorTypes.91.restricted: False
+processorTypes.91.tags.0: elasticsearch
+processorTypes.91.tags.1: record
+processorTypes.91.tags.2: elasticsearch7
+processorTypes.91.tags.3: json
+processorTypes.91.tags.4: elasticsearch8
+processorTypes.91.tags.5: index
+processorTypes.91.tags.6: elasticsearch5
+processorTypes.91.tags.7: elasticsearch6
+processorTypes.91.tags.8: put
+processorTypes.92.type: org.apache.nifi.processors.snowflake.GetSnowflakeIngestStatus
+processorTypes.92.bundle.group: org.apache.nifi
+processorTypes.92.bundle.artifact: nifi-snowflake-processors-nar
+processorTypes.92.bundle.version: 2.4.0
+processorTypes.92.description: Waits until a file in a Snowflake stage is ingested. The stage must be created in the Snowflake account beforehand. This processor is usually connected to an upstream StartSnowflakeIngest processor to make sure that the file is ingested.
+processorTypes.92.restricted: False
+processorTypes.92.tags.0: snowflake
+processorTypes.92.tags.1: history
+processorTypes.92.tags.2: snowpipe
+processorTypes.92.tags.3: ingest
+processorTypes.93.type: org.apache.nifi.processors.standard.ReplaceText
+processorTypes.93.bundle.group: org.apache.nifi
+processorTypes.93.bundle.artifact: nifi-standard-nar
+processorTypes.93.bundle.version: 2.4.0
+processorTypes.93.description: Updates the content of a FlowFile by searching for some textual value in the FlowFile content (via Regular Expression/regex, or literal value) and replacing the section of the content that matches with some alternate value. It can also be used to append or prepend text to the contents of a FlowFile.
+processorTypes.93.restricted: False
+processorTypes.93.tags.0: Regular Expression
+processorTypes.93.tags.1: Replace
+processorTypes.93.tags.2: Regex
+processorTypes.93.tags.3: Text
+processorTypes.93.tags.4: Modify
+processorTypes.93.tags.5: Change
+processorTypes.93.tags.6: Update
+processorTypes.94.type: org.apache.nifi.processors.standard.ForkRecord
+processorTypes.94.bundle.group: org.apache.nifi
+processorTypes.94.bundle.artifact: nifi-standard-nar
+processorTypes.94.bundle.version: 2.4.0
+processorTypes.94.description: This processor allows the user to fork a record into multiple records. The user must specify at least one Record Path, as a dynamic property, pointing to a field of type ARRAY containing RECORD objects. The processor accepts two modes: 'split' and 'extract'. In both modes, there is one record generated per element contained in the designated array. In the 'split' mode, each generated record will preserve the same schema as given in the input but the array will contain only one element. In the 'extract' mode, the element of the array must be of record type and will be the generated record. Additionally, in the 'extract' mode, it is possible to specify if each generated record should contain all the fields of the parent records from the root level to the extracted record. This assumes that the fields to add in the record are defined in the schema of the Record Writer controller service. See examples in the additional details documentation of this processor.
+processorTypes.94.restricted: False
+processorTypes.94.tags.0: fork
+processorTypes.94.tags.1: array
+processorTypes.94.tags.2: stream
+processorTypes.94.tags.3: record
+processorTypes.94.tags.4: event
+processorTypes.94.tags.5: content
+processorTypes.95.type: org.apache.nifi.kafka.processors.PublishKafka
+processorTypes.95.bundle.group: org.apache.nifi
+processorTypes.95.bundle.artifact: nifi-kafka-nar
+processorTypes.95.bundle.version: 2.4.0
+processorTypes.95.description: Sends the contents of a FlowFile as either a message or as individual records to Apache Kafka using the Kafka Producer API. The messages to send may be individual FlowFiles, may be delimited using a user-specified delimiter (such as a new-line), or may be record-oriented data that can be read by the configured Record Reader. The complementary NiFi processor for fetching messages is ConsumeKafka. To produce a kafka tombstone message while using PublishStrategy.USE_WRAPPER, simply set the value of a record to 'null'.
+processorTypes.95.restricted: False
+processorTypes.95.tags.0: PubSub
+processorTypes.95.tags.1: Message
+processorTypes.95.tags.2: csv
+processorTypes.95.tags.3: Kafka
+processorTypes.95.tags.4: json
+processorTypes.95.tags.5: Record
+processorTypes.95.tags.6: Apache
+processorTypes.95.tags.7: logs
+processorTypes.95.tags.8: Put
+processorTypes.95.tags.9: avro
+processorTypes.95.tags.10: Send
+processorTypes.96.type: org.apache.nifi.processors.elasticsearch.UpdateByQueryElasticsearch
+processorTypes.96.bundle.group: org.apache.nifi
+processorTypes.96.bundle.artifact: nifi-elasticsearch-restapi-nar
+processorTypes.96.bundle.version: 2.4.0
+processorTypes.96.description: Update documents in an Elasticsearch index using a query. The query can be loaded from a flowfile body or from the Query parameter. The loaded Query can contain any JSON accepted by Elasticsearch's _update_by_query API, for example a "query" object to identify what documents are to be updated, plus a "script" to define the updates to perform.
+processorTypes.96.restricted: False
+processorTypes.96.tags.0: elasticsearch
+processorTypes.96.tags.1: query
+processorTypes.96.tags.2: elastic
+processorTypes.96.tags.3: elasticsearch7
+processorTypes.96.tags.4: elasticsearch8
+processorTypes.96.tags.5: update
+processorTypes.96.tags.6: elasticsearch5
+processorTypes.96.tags.7: elasticsearch6
+processorTypes.97.type: org.apache.nifi.processors.aws.s3.FetchS3Object
+processorTypes.97.bundle.group: org.apache.nifi
+processorTypes.97.bundle.artifact: nifi-aws-nar
+processorTypes.97.bundle.version: 2.4.0
+processorTypes.97.description: Retrieves the contents of an S3 Object and writes it to the content of a FlowFile
+processorTypes.97.restricted: False
+processorTypes.97.tags.0: S3
+processorTypes.97.tags.1: Fetch
+processorTypes.97.tags.2: Get
+processorTypes.97.tags.3: Amazon
+processorTypes.97.tags.4: AWS
+processorTypes.98.type: org.apache.nifi.processors.standard.LookupAttribute
+processorTypes.98.bundle.group: org.apache.nifi
+processorTypes.98.bundle.artifact: nifi-standard-nar
+processorTypes.98.bundle.version: 2.4.0
+processorTypes.98.description: Lookup attributes from a lookup service
+processorTypes.98.restricted: False
+processorTypes.98.tags.0: lookup
+processorTypes.98.tags.1: cache
+processorTypes.98.tags.2: Attribute Expression Language
+processorTypes.98.tags.3: enrich
+processorTypes.98.tags.4: attributes
+processorTypes.98.tags.5: join
+processorTypes.99.type: org.apache.nifi.processors.standard.CalculateRecordStats
+processorTypes.99.bundle.group: org.apache.nifi
+processorTypes.99.bundle.artifact: nifi-standard-nar
+processorTypes.99.bundle.version: 2.4.0
+processorTypes.99.description: Counts the number of Records in a record set, optionally counting the number of elements per category, where the categories are defined by user-defined properties.
+processorTypes.99.restricted: False
+processorTypes.99.tags.0: stats
+processorTypes.99.tags.1: record
+processorTypes.99.tags.2: metrics
+processorTypes.100.type: org.apache.nifi.processors.standard.DistributeLoad
+processorTypes.100.bundle.group: org.apache.nifi
+processorTypes.100.bundle.artifact: nifi-standard-nar
+processorTypes.100.bundle.version: 2.4.0
+processorTypes.100.description: Distributes FlowFiles to downstream processors based on a Distribution Strategy. If using the Round Robin strategy, the default is to assign each destination a weighting of 1 (evenly distributed). However, optional properties can be added to the change this; adding a property with the name '5' and value '10' means that the relationship with name '5' will be receive 10 FlowFiles in each iteration instead of 1.
+processorTypes.100.restricted: False
+processorTypes.100.tags.0: route
+processorTypes.100.tags.1: round robin
+processorTypes.100.tags.2: load balance
+processorTypes.100.tags.3: distribute
+processorTypes.100.tags.4: weighted
+processorTypes.101.type: org.apache.nifi.processors.standard.ExecuteSQL
+processorTypes.101.bundle.group: org.apache.nifi
+processorTypes.101.bundle.artifact: nifi-standard-nar
+processorTypes.101.bundle.version: 2.4.0
+processorTypes.101.description: Executes provided SQL select query. Query result will be converted to Avro format. Streaming is used so arbitrarily large result sets are supported. This processor can be scheduled to run on a timer, or cron expression, using the standard scheduling methods, or it can be triggered by an incoming FlowFile. If it is triggered by an incoming FlowFile, then attributes of that FlowFile will be available when evaluating the select query, and the query may use the ? to escape parameters. In this case, the parameters to use must exist as FlowFile attributes with the naming convention sql.args.N.type and sql.args.N.value, where N is a positive integer. The sql.args.N.type is expected to be a number indicating the JDBC Type. The content of the FlowFile is expected to be in UTF-8 format. FlowFile attribute 'executesql.row.count' indicates how many rows were selected.
+processorTypes.101.restricted: False
+processorTypes.101.tags.0: database
+processorTypes.101.tags.1: select
+processorTypes.101.tags.2: query
+processorTypes.101.tags.3: jdbc
+processorTypes.101.tags.4: sql
+processorTypes.102.type: org.apache.nifi.processors.standard.RouteOnContent
+processorTypes.102.bundle.group: org.apache.nifi
+processorTypes.102.bundle.artifact: nifi-standard-nar
+processorTypes.102.bundle.version: 2.4.0
+processorTypes.102.description: Applies Regular Expressions to the content of a FlowFile and routes a copy of the FlowFile to each destination whose Regular Expression matches. Regular Expressions are added as User-Defined Properties where the name of the property is the name of the relationship and the value is a Regular Expression to match against the FlowFile content. User-Defined properties do support the Attribute Expression Language, but the results are interpreted as literal values, not Regular Expressions
+processorTypes.102.restricted: False
+processorTypes.102.tags.0: filter
+processorTypes.102.tags.1: regexp
+processorTypes.102.tags.2: regex
+processorTypes.102.tags.3: search
+processorTypes.102.tags.4: route
+processorTypes.102.tags.5: string
+processorTypes.102.tags.6: find
+processorTypes.102.tags.7: detect
+processorTypes.102.tags.8: regular expression
+processorTypes.102.tags.9: text
+processorTypes.102.tags.10: content
+processorTypes.103.type: org.apache.nifi.processors.standard.ReplaceTextWithMapping
+processorTypes.103.bundle.group: org.apache.nifi
+processorTypes.103.bundle.artifact: nifi-standard-nar
+processorTypes.103.bundle.version: 2.4.0
+processorTypes.103.description: Updates the content of a FlowFile by evaluating a Regular Expression against it and replacing the section of the content that matches the Regular Expression with some alternate value provided in a mapping file.
+processorTypes.103.restricted: False
+processorTypes.103.tags.0: Regular Expression
+processorTypes.103.tags.1: Replace
+processorTypes.103.tags.2: Regex
+processorTypes.103.tags.3: Text
+processorTypes.103.tags.4: Modify
+processorTypes.103.tags.5: Mapping
+processorTypes.103.tags.6: Change
+processorTypes.103.tags.7: Update
+processorTypes.104.type: org.apache.nifi.processors.gcp.storage.ListGCSBucket
+processorTypes.104.bundle.group: org.apache.nifi
+processorTypes.104.bundle.artifact: nifi-gcp-nar
+processorTypes.104.bundle.version: 2.4.0
+processorTypes.104.description: Retrieves a listing of objects from a GCS bucket. For each object that is listed, creates a FlowFile that represents the object so that it can be fetched in conjunction with FetchGCSObject. This Processor is designed to run on Primary Node only in a cluster. If the primary node changes, the new Primary Node will pick up where the previous node left off without duplicating all of the data.
+processorTypes.104.restricted: False
+processorTypes.104.tags.0: gcs
+processorTypes.104.tags.1: google cloud
+processorTypes.104.tags.2: google
+processorTypes.104.tags.3: storage
+processorTypes.104.tags.4: list
+processorTypes.105.type: org.apache.nifi.processors.azure.storage.ListAzureDataLakeStorage
+processorTypes.105.bundle.group: org.apache.nifi
+processorTypes.105.bundle.artifact: nifi-azure-nar
+processorTypes.105.bundle.version: 2.4.0
+processorTypes.105.description: Lists directory in an Azure Data Lake Storage Gen 2 filesystem
+processorTypes.105.restricted: False
+processorTypes.105.tags.0: cloud
+processorTypes.105.tags.1: datalake
+processorTypes.105.tags.2: storage
+processorTypes.105.tags.3: microsoft
+processorTypes.105.tags.4: adlsgen2
+processorTypes.105.tags.5: azure
+processorTypes.106.type: org.apache.nifi.processors.gcp.bigquery.PutBigQuery
+processorTypes.106.bundle.group: org.apache.nifi
+processorTypes.106.bundle.artifact: nifi-gcp-nar
+processorTypes.106.bundle.version: 2.4.0
+processorTypes.106.description: Writes the contents of a FlowFile to a Google BigQuery table. The processor is record based so the schema that is used is driven by the RecordReader. Attributes that are not matched to the target schema are skipped. Exactly once delivery semantics are achieved via stream offsets.
+processorTypes.106.restricted: False
+processorTypes.106.tags.0: google cloud
+processorTypes.106.tags.1: google
+processorTypes.106.tags.2: bigquery
+processorTypes.106.tags.3: bq
+processorTypes.107.type: org.apache.nifi.processors.standard.PutRecord
+processorTypes.107.bundle.group: org.apache.nifi
+processorTypes.107.bundle.artifact: nifi-standard-nar
+processorTypes.107.bundle.version: 2.4.0
+processorTypes.107.description: The PutRecord processor uses a specified RecordReader to input (possibly multiple) records from an incoming flow file, and sends them to a destination specified by a Record Destination Service (i.e. record sink).
+processorTypes.107.restricted: False
+processorTypes.107.tags.0: sink
+processorTypes.107.tags.1: record
+processorTypes.107.tags.2: put
+processorTypes.108.type: org.apache.nifi.processors.standard.UnpackContent
+processorTypes.108.bundle.group: org.apache.nifi
+processorTypes.108.bundle.artifact: nifi-standard-nar
+processorTypes.108.bundle.version: 2.4.0
+processorTypes.108.description: Unpacks the content of FlowFiles that have been packaged with one of several different Packaging Formats, emitting one to many FlowFiles for each input FlowFile. Supported formats are TAR, ZIP, and FlowFile Stream packages.
+processorTypes.108.restricted: False
+processorTypes.108.tags.0: zip
+processorTypes.108.tags.1: flowfile-stream-v3
+processorTypes.108.tags.2: flowfile-stream
+processorTypes.108.tags.3: un-merge
+processorTypes.108.tags.4: tar
+processorTypes.108.tags.5: archive
+processorTypes.108.tags.6: Unpack
+processorTypes.109.type: org.apache.nifi.processors.standard.SplitContent
+processorTypes.109.bundle.group: org.apache.nifi
+processorTypes.109.bundle.artifact: nifi-standard-nar
+processorTypes.109.bundle.version: 2.4.0
+processorTypes.109.description: Splits incoming FlowFiles by a specified byte sequence
+processorTypes.109.restricted: False
+processorTypes.109.tags.0: split
+processorTypes.109.tags.1: binary
+processorTypes.109.tags.2: content
+processorTypes.110.type: org.apache.nifi.processors.standard.LogAttribute
+processorTypes.110.bundle.group: org.apache.nifi
+processorTypes.110.bundle.artifact: nifi-standard-nar
+processorTypes.110.bundle.version: 2.4.0
+processorTypes.110.description: Emits attributes of the FlowFile at the specified log level
+processorTypes.110.restricted: False
+processorTypes.110.tags.0: logging
+processorTypes.110.tags.1: attributes
+processorTypes.111.type: org.apache.nifi.processors.aws.kinesis.stream.ConsumeKinesisStream
+processorTypes.111.bundle.group: org.apache.nifi
+processorTypes.111.bundle.artifact: nifi-aws-nar
+processorTypes.111.bundle.version: 2.4.0
+processorTypes.111.description: Reads data from the specified AWS Kinesis stream and outputs a FlowFile for every processed Record (raw)  or a FlowFile for a batch of processed records if a Record Reader and Record Writer are configured. At-least-once delivery of all Kinesis Records within the Stream while the processor is running. AWS Kinesis Client Library can take several seconds to initialise before starting to fetch data. Uses DynamoDB for check pointing and CloudWatch (optional) for metrics. Ensure that the credentials provided have access to DynamoDB and CloudWatch (optional) along with Kinesis.
+processorTypes.111.restricted: False
+processorTypes.111.tags.0: amazon
+processorTypes.111.tags.1: stream
+processorTypes.111.tags.2: consume
+processorTypes.111.tags.3: aws
+processorTypes.111.tags.4: kinesis
+processorTypes.112.type: org.apache.nifi.processors.groovyx.ExecuteGroovyScript
+processorTypes.112.bundle.group: org.apache.nifi
+processorTypes.112.bundle.artifact: nifi-groovyx-nar
+processorTypes.112.bundle.version: 2.4.0
+processorTypes.112.description: Experimental Extended Groovy script processor. The script is responsible for handling the incoming flow file (transfer to SUCCESS or remove, e.g.) as well as any flow files created by the script. If the handling is incomplete or incorrect, the session will be rolled back.
+processorTypes.112.restricted: True
+processorTypes.112.explicitRestrictions.0.requiredPermission.id: execute-code
+processorTypes.112.explicitRestrictions.0.requiredPermission.label: execute code
+processorTypes.112.explicitRestrictions.0.explanation: Provides operator the ability to execute arbitrary code assuming all permissions that NiFi has.
+processorTypes.112.tags.0: groovyx
+processorTypes.112.tags.1: groovy
+processorTypes.112.tags.2: restricted
+processorTypes.112.tags.3: script
+processorTypes.113.type: org.apache.nifi.processors.kafka.pubsub.ConsumeKafkaRecord_2_6
+processorTypes.113.bundle.group: org.apache.nifi
+processorTypes.113.bundle.artifact: nifi-kafka-2-6-nar
+processorTypes.113.bundle.version: 2.4.0
+processorTypes.113.description: Deprecated Consumes messages from Apache Kafka specifically built against the Kafka 2.6 Consumer API. The complementary NiFi processor for sending messages is PublishKafkaRecord_2_6. Please note that, at this time, the Processor assumes that all records that are retrieved from a given partition have the same schema. If any of the Kafka messages are pulled but cannot be parsed or written with the configured Record Reader or Record Writer, the contents of the message will be written to a separate FlowFile, and that FlowFile will be transferred to the 'parse.failure' relationship. Otherwise, each FlowFile is sent to the 'success' relationship and may contain many individual messages within the single FlowFile. A 'record.count' attribute is added to indicate how many messages are contained in the FlowFile. No two Kafka messages will be placed into the same FlowFile if they have different schemas, or if they have different values for a message header that is included by the <Headers to Add as Attributes> property.
+processorTypes.113.restricted: False
+processorTypes.113.tags.0: PubSub
+processorTypes.113.tags.1: Consume
+processorTypes.113.tags.2: Ingest
+processorTypes.113.tags.3: Get
+processorTypes.113.tags.4: csv
+processorTypes.113.tags.5: Kafka
+processorTypes.113.tags.6: json
+processorTypes.113.tags.7: Ingress
+processorTypes.113.tags.8: Record
+processorTypes.113.tags.9: 2.6
+processorTypes.113.tags.10: Topic
+processorTypes.113.tags.11: avro
+processorTypes.114.type: org.apache.nifi.processors.standard.GenerateRecord
+processorTypes.114.bundle.group: org.apache.nifi
+processorTypes.114.bundle.artifact: nifi-standard-nar
+processorTypes.114.bundle.version: 2.4.0
+processorTypes.114.description: This processor creates FlowFiles with records having random value for the specified fields. GenerateRecord is useful for testing, configuration, and simulation. It uses either user-defined properties to define a record schema or a provided schema and generates the specified number of records using random data for the fields in the schema.
+processorTypes.114.restricted: False
+processorTypes.114.tags.0: random
+processorTypes.114.tags.1: test
+processorTypes.114.tags.2: fake
+processorTypes.114.tags.3: generate
+processorTypes.115.type: org.apache.nifi.processors.standard.EvaluateXQuery
+processorTypes.115.bundle.group: org.apache.nifi
+processorTypes.115.bundle.artifact: nifi-standard-nar
+processorTypes.115.bundle.version: 2.4.0
+processorTypes.115.description: Evaluates one or more XQueries against the content of a FlowFile.  The results of those XQueries are assigned to FlowFile Attributes or are written to the content of the FlowFile itself, depending on configuration of the Processor.  XQueries are entered by adding user-defined properties; the name of the property maps to the Attribute Name into which the result will be placed (if the Destination is 'flowfile-attribute'; otherwise, the property name is ignored).  The value of the property must be a valid XQuery.  If the XQuery returns more than one result, new attributes or FlowFiles (for Destinations of 'flowfile-attribute' or 'flowfile-content' respectively) will be created for each result (attributes will have a '.n' one-up number appended to the specified attribute name).  If any provided XQuery returns a result, the FlowFile(s) will be routed to 'matched'. If no provided XQuery returns a result, the FlowFile will be routed to 'unmatched'.  If the Destination is 'flowfile-attribute' and the XQueries matche nothing, no attributes will be applied to the FlowFile.
+processorTypes.115.restricted: False
+processorTypes.115.tags.0: XPath
+processorTypes.115.tags.1: XML
+processorTypes.115.tags.2: XQuery
+processorTypes.115.tags.3: evaluate
+processorTypes.116.type: org.apache.nifi.processors.snowflake.StartSnowflakeIngest
+processorTypes.116.bundle.group: org.apache.nifi
+processorTypes.116.bundle.artifact: nifi-snowflake-processors-nar
+processorTypes.116.bundle.version: 2.4.0
+processorTypes.116.description: Ingests files from a Snowflake internal or external stage into a Snowflake table. The stage must be created in the Snowflake account beforehand. The result of the ingestion is not available immediately, so this processor can be connected to an GetSnowflakeIngestStatus processor to wait for the results
+processorTypes.116.restricted: False
+processorTypes.116.tags.0: snowflake
+processorTypes.116.tags.1: snowpipe
+processorTypes.116.tags.2: ingest
+processorTypes.117.type: org.apache.nifi.processors.standard.TransformXml
+processorTypes.117.bundle.group: org.apache.nifi
+processorTypes.117.bundle.artifact: nifi-standard-nar
+processorTypes.117.bundle.version: 2.4.0
+processorTypes.117.description: Applies the provided XSLT file to the FlowFile XML payload. A new FlowFile is created with transformed content and is routed to the 'success' relationship. If the XSL transform fails, the original FlowFile is routed to the 'failure' relationship
+processorTypes.117.restricted: False
+processorTypes.117.tags.0: transform
+processorTypes.117.tags.1: xml
+processorTypes.117.tags.2: xslt
+processorTypes.118.type: org.apache.nifi.processors.gcp.storage.FetchGCSObject
+processorTypes.118.bundle.group: org.apache.nifi
+processorTypes.118.bundle.artifact: nifi-gcp-nar
+processorTypes.118.bundle.version: 2.4.0
+processorTypes.118.description: Fetches a file from a Google Cloud Bucket. Designed to be used in tandem with ListGCSBucket.
+processorTypes.118.restricted: False
+processorTypes.118.tags.0: gcs
+processorTypes.118.tags.1: google cloud
+processorTypes.118.tags.2: fetch
+processorTypes.118.tags.3: google
+processorTypes.118.tags.4: storage
+processorTypes.119.type: org.apache.nifi.processors.azure.eventhub.GetAzureEventHub
+processorTypes.119.bundle.group: org.apache.nifi
+processorTypes.119.bundle.artifact: nifi-azure-nar
+processorTypes.119.bundle.version: 2.4.0
+processorTypes.119.description: Receives messages from Microsoft Azure Event Hubs without reliable checkpoint tracking. In clustered environment, GetAzureEventHub processor instances work independently and all cluster nodes process all messages (unless running the processor in Primary Only mode). ConsumeAzureEventHub offers the recommended approach to receiving messages from Azure Event Hubs. This processor creates a thread pool for connections to Azure Event Hubs.
+processorTypes.119.restricted: False
+processorTypes.119.tags.0: cloud
+processorTypes.119.tags.1: streaming
+processorTypes.119.tags.2: streams
+processorTypes.119.tags.3: eventhub
+processorTypes.119.tags.4: microsoft
+processorTypes.119.tags.5: events
+processorTypes.119.tags.6: azure
+processorTypes.120.type: com.hxgn.processors.im.InboundMessagesProcessor
+processorTypes.120.bundle.group: hexagon
+processorTypes.120.bundle.artifact: nifi-inbound-messages-nar
+processorTypes.120.bundle.version: 2.4.0
+processorTypes.120.description: Retrieves messages from the tenant’s inbound message queue. A flowfile is created for each message retrieved. The flowfile content is not reformatted or validated during retrieval and processing. To assist with routing incoming messages, an attribute ‘im.tag’ is added to each flowfile. The tag value must be provided from the sending application or system (via the Inbound Messages API); else, it will be blank. This should only be used once within a tenant canvas, as it reads all messages within the tenant’s inbound message queue. Multiples of this processor will cause unintended outcomes and behaviors.
+processorTypes.120.restricted: False
+processorTypes.120.tags.0: hexagon
+processorTypes.121.type: org.apache.nifi.processors.avro.SplitAvro
+processorTypes.121.bundle.group: org.apache.nifi
+processorTypes.121.bundle.artifact: nifi-avro-nar
+processorTypes.121.bundle.version: 2.4.0
+processorTypes.121.description: Splits a binary encoded Avro datafile into smaller files based on the configured Output Size. The Output Strategy determines if the smaller files will be Avro datafiles, or bare Avro records with metadata in the FlowFile attributes. The output will always be binary encoded.
+processorTypes.121.restricted: False
+processorTypes.121.tags.0: split
+processorTypes.121.tags.1: avro
+processorTypes.122.type: org.apache.nifi.processors.box.PutBoxFile
+processorTypes.122.bundle.group: org.apache.nifi
+processorTypes.122.bundle.artifact: nifi-box-nar
+processorTypes.122.bundle.version: 2.4.0
+processorTypes.122.description: Puts content to a Box folder.
+processorTypes.122.restricted: False
+processorTypes.122.tags.0: box
+processorTypes.122.tags.1: storage
+processorTypes.122.tags.2: put
+processorTypes.123.type: org.apache.nifi.processors.excel.SplitExcel
+processorTypes.123.bundle.group: org.apache.nifi
+processorTypes.123.bundle.artifact: nifi-poi-nar
+processorTypes.123.bundle.version: 2.4.0
+processorTypes.123.description: This processor splits a multi sheet Microsoft Excel spreadsheet into multiple Microsoft Excel spreadsheets where each sheet from the original file is converted to an individual spreadsheet in its own flow file. Currently this processor is only capable of processing .xlsx (XSSF 2007 OOXML file format) Excel documents and not older .xls (HSSF '97(-2007) file format) documents. Please note all original cell styles are dropped and formulas are removed leaving only the calculated values. Even a single sheet Microsoft Excel spreadsheet is converted to its own flow file with all the original cell styles dropped and formulas removed.
+processorTypes.123.restricted: False
+processorTypes.123.tags.0: split
+processorTypes.123.tags.1: text
+processorTypes.124.type: org.apache.nifi.processors.azure.storage.PutAzureBlobStorage_v12
+processorTypes.124.bundle.group: org.apache.nifi
+processorTypes.124.bundle.artifact: nifi-azure-nar
+processorTypes.124.bundle.version: 2.4.0
+processorTypes.124.description: Puts content into a blob on Azure Blob Storage. The processor uses Azure Blob Storage client library v12.
+processorTypes.124.restricted: False
+processorTypes.124.tags.0: cloud
+processorTypes.124.tags.1: blob
+processorTypes.124.tags.2: storage
+processorTypes.124.tags.3: microsoft
+processorTypes.124.tags.4: azure
+processorTypes.125.type: org.apache.nifi.processors.aws.s3.DeleteS3Object
+processorTypes.125.bundle.group: org.apache.nifi
+processorTypes.125.bundle.artifact: nifi-aws-nar
+processorTypes.125.bundle.version: 2.4.0
+processorTypes.125.description: Deletes a file from an Amazon S3 Bucket. If attempting to delete a file that does not exist, FlowFile is routed to success.
+processorTypes.125.restricted: False
+processorTypes.125.tags.0: S3
+processorTypes.125.tags.1: Delete
+processorTypes.125.tags.2: Archive
+processorTypes.125.tags.3: Amazon
+processorTypes.125.tags.4: AWS
+processorTypes.126.type: org.apache.nifi.processors.standard.ListDatabaseTables
+processorTypes.126.bundle.group: org.apache.nifi
+processorTypes.126.bundle.artifact: nifi-standard-nar
+processorTypes.126.bundle.version: 2.4.0
+processorTypes.126.description: Generates a set of flow files, each containing attributes corresponding to metadata about a table from a database connection. Once metadata about a table has been fetched, it will not be fetched again until the Refresh Interval (if set) has elapsed, or until state has been manually cleared.
+processorTypes.126.restricted: False
+processorTypes.126.tags.0: database
+processorTypes.126.tags.1: jdbc
+processorTypes.126.tags.2: list
+processorTypes.126.tags.3: table
+processorTypes.126.tags.4: sql
+processorTypes.127.type: org.apache.nifi.processors.standard.QueryDatabaseTable
+processorTypes.127.bundle.group: org.apache.nifi
+processorTypes.127.bundle.artifact: nifi-standard-nar
+processorTypes.127.bundle.version: 2.4.0
+processorTypes.127.description: Generates a SQL select query, or uses a provided statement, and executes it to fetch all rows whose values in the specified Maximum Value column(s) are larger than the previously-seen maxima. Query result will be converted to Avro format. Expression Language is supported for several properties, but no incoming connections are permitted. The Environment/System properties may be used to provide values for any property containing Expression Language. If it is desired to leverage flow file attributes to perform these queries, the GenerateTableFetch and/or ExecuteSQL processors can be used for this purpose. Streaming is used so arbitrarily large result sets are supported. This processor can be scheduled to run on a timer or cron expression, using the standard scheduling methods. This processor is intended to be run on the Primary Node only. FlowFile attribute 'querydbtable.row.count' indicates how many rows were selected.
+processorTypes.127.restricted: False
+processorTypes.127.tags.0: database
+processorTypes.127.tags.1: select
+processorTypes.127.tags.2: query
+processorTypes.127.tags.3: jdbc
+processorTypes.127.tags.4: sql
+processorTypes.128.type: org.apache.nifi.processors.standard.RouteOnAttribute
+processorTypes.128.bundle.group: org.apache.nifi
+processorTypes.128.bundle.artifact: nifi-standard-nar
+processorTypes.128.bundle.version: 2.4.0
+processorTypes.128.description: Routes FlowFiles based on their Attributes using the Attribute Expression Language
+processorTypes.128.restricted: False
+processorTypes.128.tags.0: regexp
+processorTypes.128.tags.1: string
+processorTypes.128.tags.2: Attribute Expression Language
+processorTypes.128.tags.3: detect
+processorTypes.128.tags.4: Regular Expression
+processorTypes.128.tags.5: filter
+processorTypes.128.tags.6: routing
+processorTypes.128.tags.7: regex
+processorTypes.128.tags.8: Expression Language
+processorTypes.128.tags.9: search
+processorTypes.128.tags.10: find
+processorTypes.128.tags.11: attributes
+processorTypes.128.tags.12: text
+processorTypes.129.type: org.apache.nifi.processors.standard.EncodeContent
+processorTypes.129.bundle.group: org.apache.nifi
+processorTypes.129.bundle.artifact: nifi-standard-nar
+processorTypes.129.bundle.version: 2.4.0
+processorTypes.129.description: Encode or decode the contents of a FlowFile using Base64, Base32, or hex encoding schemes
+processorTypes.129.restricted: False
+processorTypes.129.tags.0: encode
+processorTypes.129.tags.1: base32
+processorTypes.129.tags.2: base64
+processorTypes.129.tags.3: hex
+processorTypes.129.tags.4: decode
+processorTypes.130.type: org.apache.nifi.processors.mqtt.PublishMQTT
+processorTypes.130.bundle.group: org.apache.nifi
+processorTypes.130.bundle.artifact: nifi-mqtt-nar
+processorTypes.130.bundle.version: 2.4.0
+processorTypes.130.description: Publishes a message to an MQTT topic
+processorTypes.130.restricted: False
+processorTypes.130.tags.0: MQTT
+processorTypes.130.tags.1: publish
+processorTypes.130.tags.2: IOT
+processorTypes.131.type: org.apache.nifi.processors.standard.LogMessage
+processorTypes.131.bundle.group: org.apache.nifi
+processorTypes.131.bundle.artifact: nifi-standard-nar
+processorTypes.131.bundle.version: 2.4.0
+processorTypes.131.description: Emits a log message at the specified log level
+processorTypes.131.restricted: False
+processorTypes.131.tags.0: logging
+processorTypes.131.tags.1: attributes
+processorTypes.132.type: org.apache.nifi.processors.compress.ModifyCompression
+processorTypes.132.bundle.group: org.apache.nifi
+processorTypes.132.bundle.artifact: nifi-compress-nar
+processorTypes.132.bundle.version: 2.4.0
+processorTypes.132.description: Changes the compression algorithm used to compress the contents of a FlowFile by decompressing the contents of FlowFiles using a user-specified compression algorithm and recompressing the contents using the specified compression format properties. This processor operates in a very memory efficient way so very large objects well beyond the heap size are generally fine to process
+processorTypes.132.restricted: False
+processorTypes.132.tags.0: compress
+processorTypes.132.tags.1: snappy framed
+processorTypes.132.tags.2: brotli
+processorTypes.132.tags.3: recompress
+processorTypes.132.tags.4: gzip
+processorTypes.132.tags.5: snappy
+processorTypes.132.tags.6: bzip2
+processorTypes.132.tags.7: content
+processorTypes.132.tags.8: lz4-framed
+processorTypes.132.tags.9: lzma
+processorTypes.132.tags.10: snappy-hadoop
+processorTypes.132.tags.11: zstd
+processorTypes.132.tags.12: deflate
+processorTypes.132.tags.13: xz-lzma2
+processorTypes.133.type: org.apache.nifi.processors.standard.PutFTP
+processorTypes.133.bundle.group: org.apache.nifi
+processorTypes.133.bundle.artifact: nifi-standard-nar
+processorTypes.133.bundle.version: 2.4.0
+processorTypes.133.description: Sends FlowFiles to an FTP Server
+processorTypes.133.restricted: False
+processorTypes.133.tags.0: ftp
+processorTypes.133.tags.1: files
+processorTypes.133.tags.2: archive
+processorTypes.133.tags.3: copy
+processorTypes.133.tags.4: remote
+processorTypes.133.tags.5: put
+processorTypes.133.tags.6: egress
+processorTypes.134.type: org.apache.nifi.processors.aws.s3.TagS3Object
+processorTypes.134.bundle.group: org.apache.nifi
+processorTypes.134.bundle.artifact: nifi-aws-nar
+processorTypes.134.bundle.version: 2.4.0
+processorTypes.134.description: Adds or updates a tag on an Amazon S3 Object.
+processorTypes.134.restricted: False
+processorTypes.134.tags.0: S3
+processorTypes.134.tags.1: Archive
+processorTypes.134.tags.2: Tag
+processorTypes.134.tags.3: Amazon
+processorTypes.134.tags.4: AWS
+processorTypes.135.type: org.apache.nifi.processors.standard.SampleRecord
+processorTypes.135.bundle.group: org.apache.nifi
+processorTypes.135.bundle.artifact: nifi-standard-nar
+processorTypes.135.bundle.version: 2.4.0
+processorTypes.135.description: Samples the records of a FlowFile based on a specified sampling strategy (such as Reservoir Sampling). The resulting FlowFile may be of a fixed number of records (in the case of reservoir-based algorithms) or some subset of the total number of records (in the case of probabilistic sampling), or a deterministic number of records (in the case of interval sampling).
+processorTypes.135.restricted: False
+processorTypes.135.tags.0: record
+processorTypes.135.tags.1: range
+processorTypes.135.tags.2: interval
+processorTypes.135.tags.3: reservoir
+processorTypes.135.tags.4: sample
+processorTypes.136.type: org.apache.nifi.processors.standard.PutSFTP
+processorTypes.136.bundle.group: org.apache.nifi
+processorTypes.136.bundle.artifact: nifi-standard-nar
+processorTypes.136.bundle.version: 2.4.0
+processorTypes.136.description: Sends FlowFiles to an SFTP Server
+processorTypes.136.restricted: False
+processorTypes.136.tags.0: files
+processorTypes.136.tags.1: sftp
+processorTypes.136.tags.2: archive
+processorTypes.136.tags.3: copy
+processorTypes.136.tags.4: remote
+processorTypes.136.tags.5: put
+processorTypes.136.tags.6: egress
+processorTypes.137.type: org.apache.nifi.processors.aws.kinesis.firehose.PutKinesisFirehose
+processorTypes.137.bundle.group: org.apache.nifi
+processorTypes.137.bundle.artifact: nifi-aws-nar
+processorTypes.137.bundle.version: 2.4.0
+processorTypes.137.description: Sends the contents to a specified Amazon Kinesis Firehose. In order to send data to firehose, the firehose delivery stream name has to be specified.
+processorTypes.137.restricted: False
+processorTypes.137.tags.0: amazon
+processorTypes.137.tags.1: firehose
+processorTypes.137.tags.2: stream
+processorTypes.137.tags.3: aws
+processorTypes.137.tags.4: kinesis
+processorTypes.137.tags.5: put
+processorTypes.138.type: org.apache.nifi.processors.azure.eventhub.PutAzureEventHub
+processorTypes.138.bundle.group: org.apache.nifi
+processorTypes.138.bundle.artifact: nifi-azure-nar
+processorTypes.138.bundle.version: 2.4.0
+processorTypes.138.description: Send FlowFile contents to Azure Event Hubs
+processorTypes.138.restricted: False
+processorTypes.138.tags.0: cloud
+processorTypes.138.tags.1: streaming
+processorTypes.138.tags.2: streams
+processorTypes.138.tags.3: eventhub
+processorTypes.138.tags.4: microsoft
+processorTypes.138.tags.5: events
+processorTypes.138.tags.6: azure
+processorTypes.139.type: org.apache.nifi.processors.standard.DeleteSFTP
+processorTypes.139.bundle.group: org.apache.nifi
+processorTypes.139.bundle.artifact: nifi-standard-nar
+processorTypes.139.bundle.version: 2.4.0
+processorTypes.139.description: Deletes a file residing on an SFTP server.
+processorTypes.139.restricted: False
+processorTypes.139.tags.0: sftp
+processorTypes.139.tags.1: remote
+processorTypes.139.tags.2: delete
+processorTypes.139.tags.3: remove
+processorTypes.140.type: org.apache.nifi.processors.standard.DuplicateFlowFile
+processorTypes.140.bundle.group: org.apache.nifi
+processorTypes.140.bundle.artifact: nifi-standard-nar
+processorTypes.140.bundle.version: 2.4.0
+processorTypes.140.description: Intended for load testing, this processor will create the configured number of copies of each incoming FlowFile. The original FlowFile as well as all generated copies are sent to the 'success' relationship. In addition, each FlowFile gets an attribute 'copy.index' set to the copy number, where the original FlowFile gets a value of zero, and all copies receive incremented integer values.
+processorTypes.140.restricted: False
+processorTypes.140.tags.0: test
+processorTypes.140.tags.1: load
+processorTypes.140.tags.2: duplicate
+processorTypes.141.type: org.apache.nifi.processors.azure.storage.FetchAzureBlobStorage_v12
+processorTypes.141.bundle.group: org.apache.nifi
+processorTypes.141.bundle.artifact: nifi-azure-nar
+processorTypes.141.bundle.version: 2.4.0
+processorTypes.141.description: Retrieves the specified blob from Azure Blob Storage and writes its content to the content of the FlowFile. The processor uses Azure Blob Storage client library v12.
+processorTypes.141.restricted: False
+processorTypes.141.tags.0: cloud
+processorTypes.141.tags.1: blob
+processorTypes.141.tags.2: storage
+processorTypes.141.tags.3: microsoft
+processorTypes.141.tags.4: azure
+processorTypes.142.type: org.apache.nifi.processors.elasticsearch.DeleteByQueryElasticsearch
+processorTypes.142.bundle.group: org.apache.nifi
+processorTypes.142.bundle.artifact: nifi-elasticsearch-restapi-nar
+processorTypes.142.bundle.version: 2.4.0
+processorTypes.142.description: Delete from an Elasticsearch index using a query. The query can be loaded from a flowfile body or from the Query parameter.
+processorTypes.142.restricted: False
+processorTypes.142.tags.0: elasticsearch
+processorTypes.142.tags.1: query
+processorTypes.142.tags.2: elastic
+processorTypes.142.tags.3: elasticsearch7
+processorTypes.142.tags.4: elasticsearch8
+processorTypes.142.tags.5: elasticsearch5
+processorTypes.142.tags.6: elasticsearch6
+processorTypes.142.tags.7: delete
+processorTypes.143.type: org.apache.nifi.processors.standard.SegmentContent
+processorTypes.143.bundle.group: org.apache.nifi
+processorTypes.143.bundle.artifact: nifi-standard-nar
+processorTypes.143.bundle.version: 2.4.0
+processorTypes.143.description: Segments a FlowFile into multiple smaller segments on byte boundaries. Each segment is given the following attributes: fragment.identifier, fragment.index, fragment.count, segment.original.filename; these attributes can then be used by the MergeContent processor in order to reconstitute the original FlowFile
+processorTypes.143.restricted: False
+processorTypes.143.tags.0: split
+processorTypes.143.tags.1: segment
+processorTypes.144.type: org.apache.nifi.processors.standard.PutDatabaseRecord
+processorTypes.144.bundle.group: org.apache.nifi
+processorTypes.144.bundle.artifact: nifi-standard-nar
+processorTypes.144.bundle.version: 2.4.0
+processorTypes.144.description: The PutDatabaseRecord processor uses a specified RecordReader to input (possibly multiple) records from an incoming flow file. These records are translated to SQL statements and executed as a single transaction. If any errors occur, the flow file is routed to failure or retry, and if the records are transmitted successfully, the incoming flow file is routed to success.  The type of statement executed by the processor is specified via the Statement Type property, which accepts some hard-coded values such as INSERT, UPDATE, and DELETE, as well as 'Use statement.type Attribute', which causes the processor to get the statement type from a flow file attribute.  IMPORTANT: If the Statement Type is UPDATE, then the incoming records must not alter the value(s) of the primary keys (or user-specified Update Keys). If such records are encountered, the UPDATE statement issued to the database may do nothing (if no existing records with the new primary key values are found), or could inadvertently corrupt the existing data (by changing records for which the new values of the primary keys exist).
+processorTypes.144.restricted: False
+processorTypes.144.tags.0: database
+processorTypes.144.tags.1: record
+processorTypes.144.tags.2: update
+processorTypes.144.tags.3: insert
+processorTypes.144.tags.4: jdbc
+processorTypes.144.tags.5: delete
+processorTypes.144.tags.6: put
+processorTypes.144.tags.7: sql
+processorTypes.145.type: org.apache.nifi.processors.standard.SplitJson
+processorTypes.145.bundle.group: org.apache.nifi
+processorTypes.145.bundle.artifact: nifi-standard-nar
+processorTypes.145.bundle.version: 2.4.0
+processorTypes.145.description: Splits a JSON File into multiple, separate FlowFiles for an array element specified by a JsonPath expression. Each generated FlowFile is comprised of an element of the specified array and transferred to relationship 'split,' with the original file transferred to the 'original' relationship. If the specified JsonPath is not found or does not evaluate to an array element, the original file is routed to 'failure' and no files are generated.
+processorTypes.145.restricted: False
+processorTypes.145.tags.0: split
+processorTypes.145.tags.1: jsonpath
+processorTypes.145.tags.2: json
+processorTypes.146.type: org.apache.nifi.processors.standard.MonitorActivity
+processorTypes.146.bundle.group: org.apache.nifi
+processorTypes.146.bundle.artifact: nifi-standard-nar
+processorTypes.146.bundle.version: 2.4.0
+processorTypes.146.description: Monitors the flow for activity and sends out an indicator when the flow has not had any data for some specified amount of time and again when the flow's activity is restored
+processorTypes.146.restricted: False
+processorTypes.146.tags.0: detection
+processorTypes.146.tags.1: inactive
+processorTypes.146.tags.2: activity
+processorTypes.146.tags.3: active
+processorTypes.146.tags.4: monitor
+processorTypes.146.tags.5: flow
+processorTypes.147.type: org.apache.nifi.processors.standard.DeduplicateRecord
+processorTypes.147.bundle.group: org.apache.nifi
+processorTypes.147.bundle.artifact: nifi-standard-nar
+processorTypes.147.bundle.version: 2.4.0
+processorTypes.147.description: This processor de-duplicates individual records within a record set. It can operate on a per-file basis using an in-memory hashset or bloom filter. When configured with a distributed map cache, it de-duplicates records across multiple files.
+processorTypes.147.restricted: False
+processorTypes.147.tags.0: dedupe
+processorTypes.147.tags.1: change
+processorTypes.147.tags.2: replace
+processorTypes.147.tags.3: update
+processorTypes.147.tags.4: distinct
+processorTypes.147.tags.5: dupe
+processorTypes.147.tags.6: duplicate
+processorTypes.147.tags.7: filter
+processorTypes.147.tags.8: modify
+processorTypes.147.tags.9: record
+processorTypes.147.tags.10: unique
+processorTypes.147.tags.11: text
+processorTypes.147.tags.12: hash
+processorTypes.148.type: org.apache.nifi.processors.gcp.storage.DeleteGCSObject
+processorTypes.148.bundle.group: org.apache.nifi
+processorTypes.148.bundle.artifact: nifi-gcp-nar
+processorTypes.148.bundle.version: 2.4.0
+processorTypes.148.description: Deletes objects from a Google Cloud Bucket. If attempting to delete a file that does not exist, FlowFile is routed to success.
+processorTypes.148.restricted: False
+processorTypes.148.tags.0: gcs
+processorTypes.148.tags.1: google cloud
+processorTypes.148.tags.2: google
+processorTypes.148.tags.3: storage
+processorTypes.148.tags.4: delete
+processorTypes.149.type: org.apache.nifi.processors.aws.s3.PutS3Object
+processorTypes.149.bundle.group: org.apache.nifi
+processorTypes.149.bundle.artifact: nifi-aws-nar
+processorTypes.149.bundle.version: 2.4.0
+processorTypes.149.description: Writes the contents of a FlowFile as an S3 Object to an Amazon S3 Bucket.
+processorTypes.149.restricted: False
+processorTypes.149.tags.0: S3
+processorTypes.149.tags.1: Archive
+processorTypes.149.tags.2: Amazon
+processorTypes.149.tags.3: AWS
+processorTypes.149.tags.4: Put
+processorTypes.150.type: org.apache.nifi.processors.standard.ListSFTP
+processorTypes.150.bundle.group: org.apache.nifi
+processorTypes.150.bundle.artifact: nifi-standard-nar
+processorTypes.150.bundle.version: 2.4.0
+processorTypes.150.description: Performs a listing of the files residing on an SFTP server. For each file that is found on the remote server, a new FlowFile will be created with the filename attribute set to the name of the file on the remote server. This can then be used in conjunction with FetchSFTP in order to fetch those files.
+processorTypes.150.restricted: False
+processorTypes.150.tags.0: input
+processorTypes.150.tags.1: files
+processorTypes.150.tags.2: sftp
+processorTypes.150.tags.3: source
+processorTypes.150.tags.4: list
+processorTypes.150.tags.5: remote
+processorTypes.150.tags.6: ingest
+processorTypes.151.type: org.apache.nifi.processors.azure.storage.ListAzureBlobStorage_v12
+processorTypes.151.bundle.group: org.apache.nifi
+processorTypes.151.bundle.artifact: nifi-azure-nar
+processorTypes.151.bundle.version: 2.4.0
+processorTypes.151.description: Lists blobs in an Azure Blob Storage container. Listing details are attached to an empty FlowFile for use with FetchAzureBlobStorage. This Processor is designed to run on Primary Node only in a cluster. If the primary node changes, the new Primary Node will pick up where the previous node left off without duplicating all of the data. The processor uses Azure Blob Storage client library v12.
+processorTypes.151.restricted: False
+processorTypes.151.tags.0: cloud
+processorTypes.151.tags.1: blob
+processorTypes.151.tags.2: storage
+processorTypes.151.tags.3: microsoft
+processorTypes.151.tags.4: azure
+processorTypes.152.type: org.apache.nifi.processors.aws.kinesis.stream.PutKinesisStream
+processorTypes.152.bundle.group: org.apache.nifi
+processorTypes.152.bundle.artifact: nifi-aws-nar
+processorTypes.152.bundle.version: 2.4.0
+processorTypes.152.description: Sends the contents to a specified Amazon Kinesis. In order to send data to Kinesis, the stream name has to be specified.
+processorTypes.152.restricted: False
+processorTypes.152.tags.0: amazon
+processorTypes.152.tags.1: stream
+processorTypes.152.tags.2: aws
+processorTypes.152.tags.3: kinesis
+processorTypes.152.tags.4: put
+processorTypes.153.type: org.apache.nifi.processors.stateful.analysis.AttributeRollingWindow
+processorTypes.153.bundle.group: org.apache.nifi
+processorTypes.153.bundle.artifact: nifi-stateful-analysis-nar
+processorTypes.153.bundle.version: 2.4.0
+processorTypes.153.description: Track a Rolling Window based on evaluating an Expression Language expression on each FlowFile and add that value to the processor's state. Each FlowFile will be emitted with the count of FlowFiles and total aggregate value of values processed in the current time window.
+processorTypes.153.restricted: False
+processorTypes.153.tags.0: rolling
+processorTypes.153.tags.1: data science
+processorTypes.153.tags.2: Attribute Expression Language
+processorTypes.153.tags.3: state
+processorTypes.153.tags.4: window
+processorTypes.154.type: org.apache.nifi.processors.dropbox.PutDropbox
+processorTypes.154.bundle.group: org.apache.nifi
+processorTypes.154.bundle.artifact: nifi-dropbox-processors-nar
+processorTypes.154.bundle.version: 2.4.0
+processorTypes.154.description: Puts content to a Dropbox folder.
+processorTypes.154.restricted: False
+processorTypes.154.tags.0: dropbox
+processorTypes.154.tags.1: storage
+processorTypes.154.tags.2: put
+processorTypes.155.type: org.apache.nifi.processors.box.FetchBoxFile
+processorTypes.155.bundle.group: org.apache.nifi
+processorTypes.155.bundle.artifact: nifi-box-nar
+processorTypes.155.bundle.version: 2.4.0
+processorTypes.155.description: Fetches files from a Box Folder. Designed to be used in tandem with ListBoxFile.
+processorTypes.155.restricted: False
+processorTypes.155.tags.0: fetch
+processorTypes.155.tags.1: box
+processorTypes.155.tags.2: storage
+processorTypes.156.type: org.apache.nifi.processors.jolt.JoltTransformJSON
+processorTypes.156.bundle.group: org.apache.nifi
+processorTypes.156.bundle.artifact: nifi-jolt-nar
+processorTypes.156.bundle.version: 2.4.0
+processorTypes.156.description: Applies a list of Jolt specifications to either the FlowFile JSON content or a specified FlowFile JSON attribute. If the JSON transform fails, the original FlowFile is routed to the 'failure' relationship.
+processorTypes.156.restricted: False
+processorTypes.156.tags.0: transform
+processorTypes.156.tags.1: chainr
+processorTypes.156.tags.2: defaultr
+processorTypes.156.tags.3: shiftr
+processorTypes.156.tags.4: json
+processorTypes.156.tags.5: removr
+processorTypes.156.tags.6: sort
+processorTypes.156.tags.7: jolt
+processorTypes.156.tags.8: cardinality
+processorTypes.157.type: org.apache.nifi.processors.elasticsearch.SearchElasticsearch
+processorTypes.157.bundle.group: org.apache.nifi
+processorTypes.157.bundle.artifact: nifi-elasticsearch-restapi-nar
+processorTypes.157.bundle.version: 2.4.0
+processorTypes.157.description: A processor that allows the user to repeatedly run a paginated query (with aggregations) written with the Elasticsearch JSON DSL. Search After/Point in Time queries must include a valid "sort" field. The processor will retrieve multiple pages of results until either no more results are available or the Pagination Keep Alive expiration is reached, after which the query will restart with the first page of results being retrieved.
+processorTypes.157.restricted: False
+processorTypes.157.tags.0: search
+processorTypes.157.tags.1: elasticsearch
+processorTypes.157.tags.2: query
+processorTypes.157.tags.3: elasticsearch7
+processorTypes.157.tags.4: scroll
+processorTypes.157.tags.5: elasticsearch8
+processorTypes.157.tags.6: json
+processorTypes.157.tags.7: elasticsearch5
+processorTypes.157.tags.8: elasticsearch6
+processorTypes.157.tags.9: page
+processorTypes.158.type: org.apache.nifi.processors.standard.ForkEnrichment
+processorTypes.158.bundle.group: org.apache.nifi
+processorTypes.158.bundle.artifact: nifi-standard-nar
+processorTypes.158.bundle.version: 2.4.0
+processorTypes.158.description: Used in conjunction with the JoinEnrichment processor, this processor is responsible for adding the attributes that are necessary for the JoinEnrichment processor to perform its function. Each incoming FlowFile will be cloned. The original FlowFile will have appropriate attributes added and then be transferred to the 'original' relationship. The clone will have appropriate attributes added and then be routed to the 'enrichment' relationship. See the documentation for the JoinEnrichment processor (and especially its Additional Details) for more information on how these Processors work together and how to perform enrichment tasks in NiFi by using these Processors.
+processorTypes.158.restricted: False
+processorTypes.158.tags.0: fork
+processorTypes.158.tags.1: record
+processorTypes.158.tags.2: enrich
+processorTypes.158.tags.3: join

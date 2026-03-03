@@ -1,0 +1,40 @@
+flowAnalysisRuleTypes.0.type: org.apache.nifi.flowanalysis.rules.DisallowComponentType
+flowAnalysisRuleTypes.0.bundle.group: org.apache.nifi
+flowAnalysisRuleTypes.0.bundle.artifact: nifi-standard-nar
+flowAnalysisRuleTypes.0.bundle.version: 2.4.0
+flowAnalysisRuleTypes.0.description: Produces rule violations for each component (i.e. processors or controller services) of a given type.
+flowAnalysisRuleTypes.0.restricted: False
+flowAnalysisRuleTypes.0.tags.0: component
+flowAnalysisRuleTypes.0.tags.1: controller service
+flowAnalysisRuleTypes.0.tags.2: type
+flowAnalysisRuleTypes.0.tags.3: processor
+flowAnalysisRuleTypes.1.type: org.apache.nifi.flowanalysis.rules.RequireServerSSLContextService
+flowAnalysisRuleTypes.1.bundle.group: org.apache.nifi
+flowAnalysisRuleTypes.1.bundle.artifact: nifi-standard-nar
+flowAnalysisRuleTypes.1.bundle.version: 2.4.0
+flowAnalysisRuleTypes.1.description: Produces rule violations for each component (i.e. processors or controller services) having a property identifying an SSLContextService that is not set.
+flowAnalysisRuleTypes.1.restricted: False
+flowAnalysisRuleTypes.1.tags.0: component
+flowAnalysisRuleTypes.1.tags.1: controller service
+flowAnalysisRuleTypes.1.tags.2: tls
+flowAnalysisRuleTypes.1.tags.3: type
+flowAnalysisRuleTypes.1.tags.4: processor
+flowAnalysisRuleTypes.1.tags.5: ssl
+flowAnalysisRuleTypes.1.tags.6: listen
+flowAnalysisRuleTypes.2.type: org.apache.nifi.flowanalysis.rules.RestrictBackpressureSettings
+flowAnalysisRuleTypes.2.bundle.group: org.apache.nifi
+flowAnalysisRuleTypes.2.bundle.artifact: nifi-standard-nar
+flowAnalysisRuleTypes.2.bundle.version: 2.4.0
+flowAnalysisRuleTypes.2.description: This rule will generate a violation if backpressure settings of a connection exceed configured thresholds. Improper configuration of backpressure settings can lead to decreased performance because of excessive swapping and can fill up the content repository with too much in-flight data.
+flowAnalysisRuleTypes.2.restricted: False
+flowAnalysisRuleTypes.2.tags.0: backpressure
+flowAnalysisRuleTypes.2.tags.1: connection
+flowAnalysisRuleTypes.3.type: org.apache.nifi.flowanalysis.rules.RestrictFlowFileExpiration
+flowAnalysisRuleTypes.3.bundle.group: org.apache.nifi
+flowAnalysisRuleTypes.3.bundle.artifact: nifi-standard-nar
+flowAnalysisRuleTypes.3.bundle.version: 2.4.0
+flowAnalysisRuleTypes.3.description: This rule will generate a violation if FlowFile expiration settings of a connection exceed configured thresholds. Improper configuration of FlowFile expiration settings can cause files to be deleted unexpectedly and can cause the content repository to fill up.
+flowAnalysisRuleTypes.3.restricted: False
+flowAnalysisRuleTypes.3.tags.0: connection
+flowAnalysisRuleTypes.3.tags.1: expiration
+flowAnalysisRuleTypes.3.tags.2: age
