@@ -163,5 +163,5 @@ if __name__ == "__main__":
             filepath= os.path.join(DOCS_DIR, filename)
             with open(filepath, "r", encoding="utf-8") as f:
                 content = f.read()
-            sync_document(filename, content, existing_docs)
+                sync_document(filename, content, existing_docs)
     sync_metadata()
