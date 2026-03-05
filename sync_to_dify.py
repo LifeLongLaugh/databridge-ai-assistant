@@ -41,7 +41,7 @@ def _make_payload(file_name: str, content: str):
                 "rules": {
                     "parent_mode": "paragraph",
                     "segmentation": {"separator": "\\n\\n", "max_tokens": 1000},
-                    "subchunk_segmentation": {"separator": "\\n", "max_tokens": 500},
+                    "subchunk_segmentation": {"separator": "\\n", "max_tokens": 500}
                 },
             },
         }
@@ -51,7 +51,7 @@ def _make_payload(file_name: str, content: str):
             "text": content,
             "indexing_technique": "high_quality",
             "doc_form": "text_model",
-            "process_rule": {"mode": "automatic"},
+            "process_rule": {"mode": "automatic"}
         }
     else:
         return None
@@ -101,14 +101,14 @@ def sync_metadata():
             url = f"{BASE_URL}/datasets/{DATASET_ID}/documents/{file_id}/metadata"
             payload = {
                 "doc_type": "others",
-                "doc_metadata": {"category": "technical_doc", "system": "HxGN EAM Databridge Pro"},
+                "doc_metadata": {"category": "technical_doc", "system": "HxGN EAM Databridge Pro"}
             }
             print(f"Creating metadata for {file_name}...")
         elif file_name.endswith(".txt"):
             url = f"{BASE_URL}/datasets/{DATASET_ID}/documents/{file_id}/metadata"
             payload = {
                 "doc_type": "others",
-                "doc_metadata": {"category": "element_details", "system": "HxGN EAM Databridge Pro"},
+                "doc_metadata": {"category": "element_details", "system": "HxGN EAM Databridge Pro"}
             }
             print(f"Creating metadata for {file_name}...")
         else:
@@ -158,4 +158,5 @@ if __name__ == "__main__":
 
     # once all documents are created/updated, sync metadata
     sync_metadata()
+
 
