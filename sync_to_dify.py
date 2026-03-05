@@ -27,33 +27,126 @@ def get_existing_documents():
 def sync_document(file_name, content, existing_docs):
 
     """Creates a new document or updates an existing one."""
-    """if file_name in existing_docs:
+    if file_name in existing_docs:
         # Document exists, update it
         doc_id= existing_docs[file_name]
         url=f"{BASE_URL}/datasets/{DATASET_ID}/documents/{doc_id}/update-by-text"
-        payload = {
-            "name": file_name,
-            "text": content,
-            "process_rule": {"mode": "automatic"}
-        }
-        print(f"Updating existing document: {file_name}...")"""
+        if filename.endswith(".md"):
+            payload = {
+                "name": file_name,
+                "text": content,
+                "indexing_technique": "high_quality",
+                "doc_form": "hierarchical_model",
+                "process_rule": {
+                    "mode": "hierarchical",
+                    "rules": {
+                        "parent_mode": "paragraph",
+                        "segmentation": {
+                            "separator": "\\n\\n",
+                            "max_tokens": 1000
+                        },
+                        "subchunk_segmentation": {
+                            "separator": "\\n",
+                            "max_tokens": 500
+                        }
+                    }
+                }
+            }
+            print(f"Updating existing document: {file_name}...")
+
+        if filename.endswith(".txt"):
+            payload = {
+                "name": file_name,
+                "text": content,
+                "indexing_technique": "high_quality",
+                "doc_form": "text_model",
+                "process_rule": { "mode": "hierarchical" }
+                }
+            }
+            print(f"Updating existing document: {file_name}...")
 
     if file_name not in existing_docs:
         #Document is new, create it
         url = f"{BASE_URL}/datasets/{DATASET_ID}/document/create-by-text"
-        payload = {
-            "name": file_name,
-            "text": content,
-            "indexing_technique": "high_quality",
-            "process_rule": {"mode": "automatic"}
+        if filename.endswith(".md"):
+            payload = {
+                "name": file_name,
+                "text": content,
+                "indexing_technique": "high_quality",
+                "doc_form": "hierarchical_model",
+                "process_rule": {
+                    "mode": "hierarchical",
+                    "rules": {
+                        "parent_mode": "paragraph",
+                        "segmentation": {
+                            "separator": "\\n\\n",
+                            "max_tokens": 1000
+                        },
+                        "subchunk_segmentation": {
+                            "separator": "\\n",
+                            "max_tokens": 500
+                        }
+                    }
+                }
+            }
+        	print(f"Creating new document: {file_name}...")
+
+        if filename.endswith(".txt"):
+            payload = {
+                "name": file_name,
+                "text": content,
+                "indexing_technique": "high_quality",
+                "doc_form": "text_model",
+                "process_rule": { "mode": "hierarchical" }
+                }
+            }
+        	print(f"Creating new document: {file_name}...")
         }
-        print(f"Creating new document: {file_name}...")
 
         response = requests.post(url, headers=headers, json=payload)
         if response.status_code == 200:
             print(f"SUCCESS: {file_name} synced.")
         else:
             print(f"FAILED to sync (file_name). Error: {response.text}")
+
+
+def sync_metadata():
+     """Fetches the list of documents already inside the Dify Knowledge Base."""
+    url = f"{BASE_URL}/datasets/{DATASET_ID}/documents"
+    response = requests.get(url, headers=headers)
+    response.raise_for_status()
+
+    #Create a dictionary of {filename: document_id}
+    existing_docs = {doc['name']: doc['id'] for doc in response.json().get('data',)}
+
+    for filename,fileid in existing_docs:
+        if filename.endswith(".md"):
+            url = f"{BASE_URL}/datasets/{DATASET_ID}/document/{fileid}/metadata"
+            payload = {
+                "doc_type" : "others",
+                "doc_metadata": {
+                    "category" : "technical_doc",
+                    "system" : "HxGN EAM Databridge Pro"
+                }
+            }
+            print(f"Creating metadata for {file_name}...")
+
+        if filename.endswith(".txt"):
+            url = f"{BASE_URL}/datasets/{DATASET_ID}/document/{fileid}/metadata"
+            payload = {
+                "doc_type" : "others",
+                "doc_metadata": {
+                    "category" : "element_details",
+                    "system" : "HxGN EAM Databridge Pro"
+                }
+            }
+            print(f"Creating metadata for {file_name}...")
+    
+        response = requests.post(url, headers=headers, json=payload)
+        if response.status_code == 200:
+            print(f"SUCCESS: {file_name} metadata synced.")
+        else:
+            print(f"FAILED to sync (file_name) metadata. Error: {response.text}")
 
 
 if __name__ == "__main__":
@@ -74,5 +167,4 @@ if __name__ == "__main__":
             with open(filepath, "r", encoding="utf-8") as f:
                 content = f.read()
         sync_document(filename, content, existing_docs)
-
-
+        sync_metadata()
