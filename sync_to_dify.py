@@ -61,7 +61,6 @@ def sync_document(file_name, content, existing_docs):
                 "indexing_technique": "high_quality",
                 "doc_form": "text_model",
                 "process_rule": { "mode": "hierarchical" }
-                }
             }
             print(f"Updating existing document: {file_name}...")
 
@@ -89,7 +88,7 @@ def sync_document(file_name, content, existing_docs):
                     }
                 }
             }
-        	print(f"Creating new document: {file_name}...")
+            print(f"Creating new document: {file_name}...")
 
         if filename.endswith(".txt"):
             payload = {
@@ -98,10 +97,8 @@ def sync_document(file_name, content, existing_docs):
                 "indexing_technique": "high_quality",
                 "doc_form": "text_model",
                 "process_rule": { "mode": "hierarchical" }
-                }
             }
-        	print(f"Creating new document: {file_name}...")
-        }
+            print(f"Creating new document: {file_name}...")
 
         response = requests.post(url, headers=headers, json=payload)
         if response.status_code == 200:
@@ -111,7 +108,7 @@ def sync_document(file_name, content, existing_docs):
 
 
 def sync_metadata():
-     """Fetches the list of documents already inside the Dify Knowledge Base."""
+    """Fetches the list of documents already inside the Dify Knowledge Base."""
     url = f"{BASE_URL}/datasets/{DATASET_ID}/documents"
     response = requests.get(url, headers=headers)
     response.raise_for_status()
@@ -167,4 +164,5 @@ if __name__ == "__main__":
             with open(filepath, "r", encoding="utf-8") as f:
                 content = f.read()
         sync_document(filename, content, existing_docs)
-        sync_metadata()
+    sync_metadata()
+
