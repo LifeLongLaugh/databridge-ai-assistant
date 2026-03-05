@@ -30,6 +30,7 @@ def sync_document(file_name, content, existing_docs):
         if file_name in existing_docs:
             # Document exists, update it
             doc_id= existing_docs[file_name]
+            print(f"{file_name} with id {doc_id} exists in existing_docs")
             url=f"{BASE_URL}/datasets/{DATASET_ID}/documents/{doc_id}/update-by-text"
             payload = {
                 "name": file_name,
@@ -56,6 +57,7 @@ def sync_document(file_name, content, existing_docs):
         if file_name not in existing_docs:
             #Document is new, create it
             url = f"{BASE_URL}/datasets/{DATASET_ID}/document/create-by-text"
+            print(f"{file_name} does not exist in existing_docs")
             payload = {
                 "name": file_name,
                 "text": content,
@@ -89,6 +91,7 @@ def sync_document(file_name, content, existing_docs):
         if file_name in existing_docs:
             # Document exists, update it
             doc_id= existing_docs[file_name]
+            print(f"{file_name} with id {doc_id} exists in existing_docs")
             url=f"{BASE_URL}/datasets/{DATASET_ID}/documents/{doc_id}/update-by-text"
             payload = {
                 "name": file_name,
@@ -101,6 +104,7 @@ def sync_document(file_name, content, existing_docs):
 
         if file_name not in existing_docs:
             #Document is new, create it
+            print(f"{file_name} does not exist in existing_docs")
             url = f"{BASE_URL}/datasets/{DATASET_ID}/document/create-by-text"
             payload = {
                 "name": file_name,
@@ -123,6 +127,7 @@ def sync_metadata(file_name, existing_docs):
         if file_name in existing_docs:
             # Document exists, create metadata
             doc_id= existing_docs[file_name]
+            print(f"{file_name} with id {doc_id} exists in existing_docs")
             url=f"{BASE_URL}/datasets/{DATASET_ID}/documents/{doc_id}/metadata"
             payload = {
                 "doc_type" : "others",
@@ -144,6 +149,7 @@ def sync_metadata(file_name, existing_docs):
         if file_name in existing_docs:
             # Document exists, create metadata
             doc_id= existing_docs[file_name]
+            print(f"{file_name} with id {doc_id} exists in existing_docs")
             url=f"{BASE_URL}/datasets/{DATASET_ID}/documents/{doc_id}/metadata"
             payload = {
                 "doc_type" : "others",
@@ -172,6 +178,8 @@ if __name__ == "__main__":
         print("Failed to fetch existing documents: {e}")
         exit(1)
 
+    print(json.dumps(existing_docs, indent=4))
+
     #Loop through all markdown files in the Doc folder
     for filename in os.listdir(DOCS_DIR):
         if filename.endswith(".md") or filename.endswith(".txt"):
@@ -180,3 +188,4 @@ if __name__ == "__main__":
                 content = f.read()
         sync_document(filename, content, existing_docs)
         sync_metadata(filename, existing_docs)
+
