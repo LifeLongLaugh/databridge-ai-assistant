@@ -101,8 +101,8 @@ def sync_document(file_name: str, content: str, existing_docs: dict):
 
     if file_name in existing_docs:
         doc_id = existing_docs[file_name]
-        url = f"{BASE_URL}/datasets/{DATASET_ID}/documents/{doc_id}/update-by-text"
-        print(f"Updating existing document: {file_name} (id={doc_id}) ...")
+        """url = f"{BASE_URL}/datasets/{DATASET_ID}/documents/{doc_id}/update-by-text"
+        print(f"Updating existing document: {file_name} (id={doc_id}) ...")"""
     else:
         url = f"{BASE_URL}/datasets/{DATASET_ID}/document/create-by-text"
         print(f"Creating new document: {file_name} ...")
@@ -134,7 +134,7 @@ def sync_document(file_name: str, content: str, existing_docs: dict):
         except Exception:
             pass
 
-def sync_metadata(existing_docs: dict):
+"""def sync_metadata(existing_docs: dict):
     for file_name, file_id in existing_docs.items():
         if not (file_name.endswith(".md") or file_name.endswith(".txt")):
             continue
@@ -160,7 +160,7 @@ def sync_metadata(existing_docs: dict):
         if resp.ok:
             print(f"SUCCESS metadata: {file_name}")
         else:
-            print(f"FAILED metadata: {file_name}. Status: {resp.status_code}. Response: {resp.text}")
+            print(f"FAILED metadata: {file_name}. Status: {resp.status_code}. Response: {resp.text}")"""
 
 if __name__ == "__main__":
     try:
@@ -195,4 +195,5 @@ if __name__ == "__main__":
                 print(f"Failed to read or sync {filename}: {e}")
 
     # Once all documents are processed, update metadata
-    sync_metadata(existing_docs)
+    #sync_metadata(existing_docs)
+
