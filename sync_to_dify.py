@@ -51,7 +51,7 @@ def _make_payload(file_name: str, content: str):
             "text": content,
             "indexing_technique": "high_quality",
             "doc_form": "text_model",
-            "process_rule": {"mode": "hierarchical"},
+            "process_rule": {"mode": "automatic"},
         }
     else:
         return None
@@ -98,14 +98,14 @@ def sync_metadata():
 
     for file_name, file_id in existing_docs.items():
         if file_name.endswith(".md"):
-            url = f"{BASE_URL}/datasets/{DATASET_ID}/document/{file_id}/metadata"
+            url = f"{BASE_URL}/datasets/{DATASET_ID}/documents/{file_id}/metadata"
             payload = {
                 "doc_type": "others",
                 "doc_metadata": {"category": "technical_doc", "system": "HxGN EAM Databridge Pro"},
             }
             print(f"Creating metadata for {file_name}...")
         elif file_name.endswith(".txt"):
-            url = f"{BASE_URL}/datasets/{DATASET_ID}/document/{file_id}/metadata"
+            url = f"{BASE_URL}/datasets/{DATASET_ID}/documents/{file_id}/metadata"
             payload = {
                 "doc_type": "others",
                 "doc_metadata": {"category": "element_details", "system": "HxGN EAM Databridge Pro"},
@@ -158,3 +158,4 @@ if __name__ == "__main__":
 
     # once all documents are created/updated, sync metadata
     sync_metadata()
+
