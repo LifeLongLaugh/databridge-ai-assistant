@@ -1,20 +1,26 @@
-name: Sync Docs to Dify Knowledge Base
+name: Dify Knowledge Base Sync
 
 on:
   push:
     branches:
       - main
     paths:
-      - 'Docs/**' # Only trigger when markdown files in the Docs folder change
-  workflow_dispatch: # Allows you to trigger the sync manually from the GitHub UI if needed
+      - 'Docs/**'
 
 jobs:
-  sync_to_dify:
+  sync-to-dify:
     runs-on: ubuntu-latest
-    
     steps:
-      - name: Checkout repository
+      - name: Checkout Repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Required to detect deletions and modifications
+
+      - name: Get Changed Files
+        id: changed-files
+        uses: tj-actions/changed-files@v42
+        with:
+          files: Docs/**
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -23,13 +29,14 @@ jobs:
 
       - name: Install Dependencies
         run: pip install requests
-      
-      - name: Print script for debugging
-        run: cat sync_to_dify.py
-      
+
       - name: Run Dify Sync Script
         env:
           DIFY_API_KEY: ${{ secrets.DIFY_API_KEY }}
-          DIFY_DATASET_ID: ${{ secrets.DIFY_DATASET_ID }}
-
-        run: python sync_to_dify.py
+          DATASET_ID_MD: ${{ secrets.DIFY_DATASET_ID_MD }}
+          DATASET_ID_TXT: ${{ secrets.DIFY_DATASET_ID_TXT }}
+        run: |
+          python sync to dify.py \
+            "${{ steps.changed-files.outputs.added files }}" \
+            "${{ steps.changed-files.outputs.modified files }}" \
+            "${{ steps.changed-files.outputs.deleted files }}"
